@@ -18,6 +18,7 @@
 		5546BC982601183100C1340F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BC972601183100C1340F /* ContentView.swift */; };
 		5546BC9A2601183300C1340F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5546BC992601183300C1340F /* Assets.xcassets */; };
 		5546BC9D2601183300C1340F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5546BC9C2601183300C1340F /* Preview Assets.xcassets */; };
+		D82F22A226025A22003BC3F6 /* PostFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F22A126025A22003BC3F6 /* PostFoodView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		5546BC992601183300C1340F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5546BC9C2601183300C1340F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5546BC9E2601183300C1340F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D82F22A126025A22003BC3F6 /* PostFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFoodView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				0D7144412601C3DE00B73C76 /* SignInView.swift */,
 				0D71444A2601DFB600B73C76 /* HeaderView.swift */,
 				0D7144472601CFFC00B73C76 /* CreateAccountView.swift */,
+				D82F22A126025A22003BC3F6 /* PostFoodView.swift */,
 				0D7144442601CA5B00B73C76 /* BackgroundView.swift */,
 				535D26412601C01900F8E22A /* LogIn.swift */,
 				5546BC992601183300C1340F /* Assets.xcassets */,
@@ -163,6 +166,7 @@
 				0D71444B2601DFB600B73C76 /* HeaderView.swift in Sources */,
 				5546BC982601183100C1340F /* ContentView.swift in Sources */,
 				0D7144452601CA5B00B73C76 /* BackgroundView.swift in Sources */,
+				D82F22A226025A22003BC3F6 /* PostFoodView.swift in Sources */,
 				535D26422601C01A00F8E22A /* LogIn.swift in Sources */,
 				535D26482601CF1D00F8E22A /* CreateAccount.swift in Sources */,
 				535D26452601C30C00F8E22A /* Database.swift in Sources */,
