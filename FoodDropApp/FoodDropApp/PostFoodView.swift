@@ -44,7 +44,9 @@ struct PostFoodFormView: View {
     @State var foodType: String = ""
     @State var pickUpAdd: String = ""
     @State var pickUpDate: Date = Date()
-    
+    @State var pickedFoodCondition = "Fresh"
+    var foodCondition = ["Fresh","About to Expire","Expired"]
+
     var body: some View {
         VStack {
             
@@ -67,14 +69,26 @@ struct PostFoodFormView: View {
                 .padding(.horizontal)
             
             
-            
-            
             DatePicker("Pickup By", selection: $pickUpDate, in: Date()...)
                 .frame(height: 20)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(5.0)
                 .padding(.horizontal)
+            
+            
+            Picker("Food Condition", selection: $pickedFoodCondition) {
+                ForEach(foodCondition, id:\.self){
+                    Text($0)
+                }
+            }.frame(height: 40)
+            .padding()
+            .padding(.top, 40)
+//            .background(Color.white)
+            .cornerRadius(5.0)
+            .padding(.horizontal)
+            
+            
             
             Spacer()
             
@@ -88,6 +102,7 @@ struct PostFoodFormView: View {
                     .cornerRadius(15.0)
                     .padding(.top)
             })
+            
             
             Spacer()
             
