@@ -165,7 +165,7 @@
 				0D7144452601CA5B00B73C76 /* BackgroundView.swift in Sources */,
 				535D26422601C01A00F8E22A /* LogIn.swift in Sources */,
 				535D26482601CF1D00F8E22A /* CreateAccount.swift in Sources */,
-				535D26452601C30C00F8E22A /* Database.swift in Sources */,\
+				535D26452601C30C00F8E22A /* Database.swift in Sources */,
 				5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */,
 				0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */,
 			);
