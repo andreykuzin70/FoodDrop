@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var goToCreateAccount: Bool = false
+    @State var goToLogIn: Bool = true
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        if goToCreateAccount {
+            CreateAccountView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
+        } else if goToLogIn {
+            SignInView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
+        }
     }
 }
 
