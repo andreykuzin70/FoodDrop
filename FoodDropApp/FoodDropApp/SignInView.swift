@@ -62,7 +62,9 @@ struct LogInFormView: View {
                 .cornerRadius(5.0)
                 .padding(.bottom, 20)
                 .frame(width: 300)
-            Button(action: {}, label: {
+            Button(action: {
+                
+            }, label: {
                 Text("LOGIN")
                     .font(.headline)
                     .foregroundColor(.white)
