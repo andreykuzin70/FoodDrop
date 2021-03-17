@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D7144422601C3DE00B73C76 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144412601C3DE00B73C76 /* SignInView.swift */; };
+		0D7144452601CA5B00B73C76 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144442601CA5B00B73C76 /* BackgroundView.swift */; };
+		0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144472601CFFC00B73C76 /* CreateAccountView.swift */; };
 		5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BC952601183100C1340F /* FoodDropAppApp.swift */; };
 		5546BC982601183100C1340F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BC972601183100C1340F /* ContentView.swift */; };
 		5546BC9A2601183300C1340F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5546BC992601183300C1340F /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D7144412601C3DE00B73C76 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		0D7144442601CA5B00B73C76 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		0D7144472601CFFC00B73C76 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		5546BC922601183100C1340F /* FoodDropApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDropApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5546BC952601183100C1340F /* FoodDropAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDropAppApp.swift; sourceTree = "<group>"; };
 		5546BC972601183100C1340F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +60,9 @@
 			children = (
 				5546BC952601183100C1340F /* FoodDropAppApp.swift */,
 				5546BC972601183100C1340F /* ContentView.swift */,
+				0D7144412601C3DE00B73C76 /* SignInView.swift */,
+				0D7144472601CFFC00B73C76 /* CreateAccountView.swift */,
+				0D7144442601CA5B00B73C76 /* BackgroundView.swift */,
 				5546BC992601183300C1340F /* Assets.xcassets */,
 				5546BC9E2601183300C1340F /* Info.plist */,
 				5546BC9B2601183300C1340F /* Preview Content */,
@@ -138,8 +147,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7144422601C3DE00B73C76 /* SignInView.swift in Sources */,
 				5546BC982601183100C1340F /* ContentView.swift in Sources */,
+				0D7144452601CA5B00B73C76 /* BackgroundView.swift in Sources */,
 				5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */,
+				0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
