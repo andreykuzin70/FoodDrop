@@ -46,6 +46,8 @@ struct CreateAccountFormView: View {
     @State var lastName: String = ""
     @State var orgName: String = ""
     @State var email: String = ""
+    @State var username: String = ""
+    @State var password: String = ""
     @State var phoneNumber: String = ""
     @State var streetAddress: String = ""
     @State var city: String = ""
@@ -77,6 +79,16 @@ struct CreateAccountFormView: View {
                 .cornerRadius(5.0)
                 .padding(.horizontal)
                 .keyboardType(.emailAddress)
+            TextField("Username", text: $username)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(5.0)
+                .padding(.horizontal)
+            SecureField("Password", text: $password)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(5.0)
+                .padding(.horizontal)
             TextField("Phone Number", text: $phoneNumber)
                 .padding()
                 .background(Color.white)
