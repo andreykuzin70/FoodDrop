@@ -42,22 +42,6 @@ struct SignInView_Previews: PreviewProvider {
     }
 }
 
-struct HeaderView: View {
-    var body: some View {
-        HStack {
-            Text("Food Drop")
-                .font(.largeTitle)
-                .bold()
-                .padding()
-            
-            Image("food-icon")
-                .renderingMode(.original)
-                .resizable()
-                .frame(width: 60, height: 60)
-        }
-    }
-}
-
 struct LogInFormView: View {
     @State var username: String = ""
     @State var password: String = ""
