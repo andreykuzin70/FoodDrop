@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		535D26422601C01A00F8E22A /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26412601C01900F8E22A /* LogIn.swift */; };
+		535D26452601C30C00F8E22A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26442601C30C00F8E22A /* Database.swift */; };
+		535D26482601CF1D00F8E22A /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26472601CF1D00F8E22A /* CreateAccount.swift */; };
 		5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BC952601183100C1340F /* FoodDropAppApp.swift */; };
 		5546BC982601183100C1340F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BC972601183100C1340F /* ContentView.swift */; };
 		5546BC9A2601183300C1340F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5546BC992601183300C1340F /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		535D26412601C01900F8E22A /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
+		535D26442601C30C00F8E22A /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		535D26472601CF1D00F8E22A /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		5546BC922601183100C1340F /* FoodDropApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDropApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5546BC952601183100C1340F /* FoodDropAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDropAppApp.swift; sourceTree = "<group>"; };
 		5546BC972601183100C1340F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,9 +60,12 @@
 			children = (
 				5546BC952601183100C1340F /* FoodDropAppApp.swift */,
 				5546BC972601183100C1340F /* ContentView.swift */,
+				535D26412601C01900F8E22A /* LogIn.swift */,
 				5546BC992601183300C1340F /* Assets.xcassets */,
 				5546BC9E2601183300C1340F /* Info.plist */,
 				5546BC9B2601183300C1340F /* Preview Content */,
+				535D26442601C30C00F8E22A /* Database.swift */,
+				535D26472601CF1D00F8E22A /* CreateAccount.swift */,
 			);
 			path = FoodDropApp;
 			sourceTree = "<group>";
@@ -139,6 +148,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5546BC982601183100C1340F /* ContentView.swift in Sources */,
+				535D26422601C01A00F8E22A /* LogIn.swift in Sources */,
+				535D26482601CF1D00F8E22A /* CreateAccount.swift in Sources */,
+				535D26452601C30C00F8E22A /* Database.swift in Sources */,
 				5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
