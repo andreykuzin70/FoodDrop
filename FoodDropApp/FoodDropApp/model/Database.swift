@@ -25,17 +25,18 @@ public struct User_info{
 public struct Food_post{
     var food_type: String
     var pickup_address: String
-    var pickup_date: String
+    var madeOnDate: Date
+    var pickup_date: Date
 }
+
 
 public class Database {
     
     static var userDatabase: [String: User_info] = [:]
-    static var FoodPosts: [String: String] = [:]
+    static var FoodPosts: [Int: Food_post] = [:]
     
     init() {
     }
-    
     
     static func add_user(user:User_info)-> Bool{
         
@@ -48,4 +49,13 @@ public class Database {
         userDatabase[user.userName] = user
         return true;
     }
+    
+    static func add_post(post: Food_post){
+        
+        
+    }
+    
+    
+    
+    
 }

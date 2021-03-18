@@ -9,8 +9,6 @@ import SwiftUI
 
 struct PostFoodView: View {
     
-    
-    
     var body: some View {
         ZStack {
             BackgroundView()
@@ -44,9 +42,12 @@ struct PostFoodFormView: View {
     @State var foodType: String = ""
     @State var pickUpAdd: String = ""
     @State var pickUpDate: Date = Date()
+    @State var madeOnDate: Date = Date()
     @State var pickedFoodCondition = "Fresh"
     var foodCondition = ["Fresh","About to Expire","Expired"]
-
+    
+    @State var showAlert = false
+    
     var body: some View {
         VStack {
             
@@ -61,7 +62,7 @@ struct PostFoodFormView: View {
                 .cornerRadius(5.0)
                 .padding(.horizontal)
             
-            DatePicker("Made on ", selection: $pickUpDate)
+            DatePicker("Made on ", selection: $madeOnDate)
                 .frame(height: 20)
                 .padding()
                 .background(Color.white)
@@ -92,7 +93,16 @@ struct PostFoodFormView: View {
             
             Spacer()
             
-            Button(action: {}, label: {
+            Button(action: {
+                
+                if PostFood.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate){
+                    
+                    // successfully added
+                    print("food successfully posted")
+                }else{
+                    showAlert = true
+                }
+            }, label: {
                 Text("Submit Food")
                     .font(.headline)
                     .foregroundColor(.white)
@@ -101,7 +111,9 @@ struct PostFoodFormView: View {
                     .background(Color.red)
                     .cornerRadius(15.0)
                     .padding(.top)
-            })
+            }).alert(isPresented: $showAlert) {
+                Alert(title: Text("Submission Failed"), message: Text(" Must fill the text fields "), dismissButton: .default(Text("OK")))
+            }
             
             
             Spacer()
