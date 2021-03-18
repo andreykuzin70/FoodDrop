@@ -11,12 +11,15 @@ struct ContentView: View {
     
     @State var goToCreateAccount: Bool = false
     @State var goToLogIn: Bool = true
+    @State var goToPost: Bool = false
     
     var body: some View {
         if goToCreateAccount {
             CreateAccountView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
         } else if goToLogIn {
-            SignInView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
+            SignInView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost)
+        } else if goToPost {
+            PostFoodView()
         }
     }
 }

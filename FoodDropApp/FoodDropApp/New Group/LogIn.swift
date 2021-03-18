@@ -13,7 +13,12 @@ public class LogIn: ObservableObject{
     init() {
     }
     
-    func validate_logIN(userName:String, password:String) -> Bool{
+    static func validate_logIN(userName:String, password:String) -> Bool{
+    
+        // for testing log in validation
+        let temp = User_info(first_name: "Kib", last_name: "Geb", org_name: "Swift", email: "kgebrehi@umd.edu", phone_num: "123 456 7890", address: "1234 umd st.", state: "Md", city: "college park", zipcode: "12345", userName: "kibreab", password: "123456")
+        
+        Database.add_user(user: temp)
         
         if(userName == "" || password == ""){
             return false

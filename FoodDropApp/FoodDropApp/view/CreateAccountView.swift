@@ -54,6 +54,9 @@ struct CreateAccountFormView: View {
     @State var state: String = ""
     @State var zipcode: String = ""
     
+    @State var showAlert = false
+    //@State var successAlert = false
+    
     var body: some View {
         VStack {
             HStack(spacing: -15) {
@@ -119,8 +122,15 @@ struct CreateAccountFormView: View {
             }
             
             Button(action: {
-                self.goToCreateAccount = false
-                self.goToLogIn = true
+                
+                if CreateAccount.create_Account(firstName: firstName, lastName: lastName, orgName: orgName, email: email, phoneNum: phoneNumber, address: streetAddress, state: state, city: city, zipcode: zipcode, username: username, password: password) {
+                
+                    self.goToCreateAccount = false
+                    self.goToLogIn = true
+                }else{
+                    showAlert = true
+                }
+                
             }, label: {
                 Text("Register")
                     .font(.headline)
@@ -130,7 +140,9 @@ struct CreateAccountFormView: View {
                     .background(Color.red)
                     .cornerRadius(15.0)
                     .padding(.top)
-            })
+            }).alert(isPresented: $showAlert) {
+                Alert(title: Text("Create account error"), message: Text(" One or more filds are empty "), dismissButton: .default(Text("OK")))
+            }
         }
     }
 }
