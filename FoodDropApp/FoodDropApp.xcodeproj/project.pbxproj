@@ -18,6 +18,8 @@
 		5546BC982601183100C1340F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BC972601183100C1340F /* ContentView.swift */; };
 		5546BC9A2601183300C1340F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5546BC992601183300C1340F /* Assets.xcassets */; };
 		5546BC9D2601183300C1340F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5546BC9C2601183300C1340F /* Preview Assets.xcassets */; };
+		5546BCA826027A1100C1340F /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BCA726027A1100C1340F /* user.swift */; };
+		5546BCAB2602834E00C1340F /* userList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BCAA2602834E00C1340F /* userList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		5546BC992601183300C1340F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5546BC9C2601183300C1340F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5546BC9E2601183300C1340F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5546BCA726027A1100C1340F /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
+		5546BCAA2602834E00C1340F /* userList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +54,7 @@
 		5546BC892601183100C1340F = {
 			isa = PBXGroup;
 			children = (
+				5546BCA6260279F300C1340F /* models */,
 				5546BC942601183100C1340F /* FoodDropApp */,
 				5546BC932601183100C1340F /* Products */,
 			);
@@ -76,7 +81,6 @@
 				5546BC992601183300C1340F /* Assets.xcassets */,
 				5546BC9E2601183300C1340F /* Info.plist */,
 				5546BC9B2601183300C1340F /* Preview Content */,
-				535D26442601C30C00F8E22A /* Database.swift */,
 				535D26472601CF1D00F8E22A /* CreateAccount.swift */,
 			);
 			path = FoodDropApp;
@@ -88,6 +92,16 @@
 				5546BC9C2601183300C1340F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5546BCA6260279F300C1340F /* models */ = {
+			isa = PBXGroup;
+			children = (
+				535D26442601C30C00F8E22A /* Database.swift */,
+				5546BCA726027A1100C1340F /* user.swift */,
+				5546BCAA2602834E00C1340F /* userList.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,10 +173,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5546BCA826027A1100C1340F /* user.swift in Sources */,
 				0D7144422601C3DE00B73C76 /* SignInView.swift in Sources */,
 				0D71444B2601DFB600B73C76 /* HeaderView.swift in Sources */,
 				5546BC982601183100C1340F /* ContentView.swift in Sources */,
 				0D7144452601CA5B00B73C76 /* BackgroundView.swift in Sources */,
+				5546BCAB2602834E00C1340F /* userList.swift in Sources */,
 				535D26422601C01A00F8E22A /* LogIn.swift in Sources */,
 				535D26482601CF1D00F8E22A /* CreateAccount.swift in Sources */,
 				535D26452601C30C00F8E22A /* Database.swift in Sources */,
