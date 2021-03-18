@@ -15,7 +15,7 @@ public struct Food_post{
 
 public class Database {
     
-    static var userDatabase: [String: User_info] = [:]
+    static var userDatabase: [String: User] = [:]
     static var FoodPosts: [String: String] = [:]
     
     init() {

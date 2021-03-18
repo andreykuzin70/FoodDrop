@@ -20,10 +20,10 @@ public class CreateAccount: ObservableObject {
         
          // add user to the data bass
         
-       let a = User_info(first_name: fistName, last_name: lastName, org_name: orgName,
+       let a = User(first_name: fistName, last_name: lastName, org_name: orgName,
                          email: email, phone_num: phoneNum, address: address,
                          state: state, city: city , zipcode: zipcode,
-                         userName: username, password: password);
+                         username: username, password: password);
         
         return Database.add_user(user:a)
         
