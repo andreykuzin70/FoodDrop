@@ -21,6 +21,7 @@
 		5546BCA826027A1100C1340F /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BCA726027A1100C1340F /* user.swift */; };
 		5546BCAB2602834E00C1340F /* userList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BCAA2602834E00C1340F /* userList.swift */; };
 		5570265F2603A9D600D57CF8 /* FoodPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570265E2603A9D600D57CF8 /* FoodPost.swift */; };
+		557026652603ACB200D57CF8 /* FoodPostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557026642603ACB200D57CF8 /* FoodPostList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		5546BCA726027A1100C1340F /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		5546BCAA2602834E00C1340F /* userList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userList.swift; sourceTree = "<group>"; };
 		5570265E2603A9D600D57CF8 /* FoodPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPost.swift; sourceTree = "<group>"; };
+		557026642603ACB200D57CF8 /* FoodPostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPostList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				5546BCA726027A1100C1340F /* user.swift */,
 				5546BCAA2602834E00C1340F /* userList.swift */,
 				5570265E2603A9D600D57CF8 /* FoodPost.swift */,
+				557026642603ACB200D57CF8 /* FoodPostList.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5546BCA826027A1100C1340F /* user.swift in Sources */,
+				557026652603ACB200D57CF8 /* FoodPostList.swift in Sources */,
 				0D7144422601C3DE00B73C76 /* SignInView.swift in Sources */,
 				0D71444B2601DFB600B73C76 /* HeaderView.swift in Sources */,
 				5546BC982601183100C1340F /* ContentView.swift in Sources */,
