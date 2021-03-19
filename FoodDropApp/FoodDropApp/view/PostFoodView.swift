@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PostFoodView: View {
+    @Binding var foodPosted: Bool
+    @Binding var foodPost: Bool
     
     var body: some View {
         ZStack {
@@ -23,7 +25,7 @@ struct PostFoodView: View {
                     .bold()
                     .padding(.bottom, 20)
                 
-                PostFoodFormView()
+                PostFoodFormView(foodPosted: $foodPosted, foodPost: $foodPost)
                 
                 Spacer()
             }
@@ -32,13 +34,16 @@ struct PostFoodView: View {
 }
 
 
-struct PostFoodView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostFoodView()
-    }
-}
+//struct PostFoodView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PostFoodView()
+//    }
+//}
 
 struct PostFoodFormView: View {
+    @Binding var foodPosted: Bool
+    @Binding var foodPost: Bool
+    
     @State var foodType: String = ""
     @State var pickUpAdd: String = ""
     @State var pickUpDate: Date = Date()
@@ -97,6 +102,8 @@ struct PostFoodFormView: View {
                 
                 if PostFood.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate){
                     
+                    foodPost = false
+                    foodPosted = true
                     // successfully added
                     print("food successfully posted")
                 }else{
