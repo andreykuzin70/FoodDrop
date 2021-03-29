@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct User_info{
+public struct User_info: Codable {
     var first_name: String?
     var last_name: String?
     var org_name: String?

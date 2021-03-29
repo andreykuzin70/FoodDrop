@@ -67,8 +67,8 @@ struct LogInFormView: View {
                 .padding(.bottom, 20)
                 .frame(width: 300)
             Button(action: {
-                
-                if LogIn.validate_logIN(userName: username, password: password) == false {
+                let curr = LogIn()
+                if curr.validate_logIN(userName: username, password: password) == false {
                     showAlert = true
                 }else{
                     // take me to post/ food for now

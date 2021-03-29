@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,8 @@
 		0D7144452601CA5B00B73C76 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144442601CA5B00B73C76 /* BackgroundView.swift */; };
 		0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144472601CFFC00B73C76 /* CreateAccountView.swift */; };
 		0D71444B2601DFB600B73C76 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D71444A2601DFB600B73C76 /* HeaderView.swift */; };
+		0DAE43042611AF5C00879720 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE43032611AF5C00879720 /* UserRepository.swift */; };
+		0DFF49692611A0E100FCBA03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DFF49682611A0E100FCBA03 /* GoogleService-Info.plist */; };
 		535D26422601C01A00F8E22A /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26412601C01900F8E22A /* LogIn.swift */; };
 		535D26452601C30C00F8E22A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26442601C30C00F8E22A /* Database.swift */; };
 		535D26482601CF1D00F8E22A /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26472601CF1D00F8E22A /* CreateAccount.swift */; };
@@ -20,6 +22,7 @@
 		5546BC982601183100C1340F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BC972601183100C1340F /* ContentView.swift */; };
 		5546BC9A2601183300C1340F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5546BC992601183300C1340F /* Assets.xcassets */; };
 		5546BC9D2601183300C1340F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5546BC9C2601183300C1340F /* Preview Assets.xcassets */; };
+		ACCA496FB9B346F9CCABB429 /* Pods_FoodDropApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22BC8AAD79849B2C6B680FDD /* Pods_FoodDropApp.framework */; };
 		D82F22A226025A22003BC3F6 /* PostFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F22A126025A22003BC3F6 /* PostFoodView.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +31,9 @@
 		0D7144442601CA5B00B73C76 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		0D7144472601CFFC00B73C76 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		0D71444A2601DFB600B73C76 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		0DAE43032611AF5C00879720 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		0DFF49682611A0E100FCBA03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		22BC8AAD79849B2C6B680FDD /* Pods_FoodDropApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodDropApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		535D26412601C01900F8E22A /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogIn.swift; path = FoodDropApp/ViewModels/LogIn.swift; sourceTree = SOURCE_ROOT; };
 		535D26442601C30C00F8E22A /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		535D26472601CF1D00F8E22A /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccount.swift; path = FoodDropApp/ViewModels/CreateAccount.swift; sourceTree = SOURCE_ROOT; };
@@ -39,7 +45,9 @@
 		5546BC992601183300C1340F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5546BC9C2601183300C1340F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5546BC9E2601183300C1340F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A426C1A8B0DC72057565D523 /* Pods-FoodDropApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDropApp.debug.xcconfig"; path = "Target Support Files/Pods-FoodDropApp/Pods-FoodDropApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D82F22A126025A22003BC3F6 /* PostFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFoodView.swift; sourceTree = "<group>"; };
+		F817DB1B9D84DC549F94022D /* Pods-FoodDropApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDropApp.release.xcconfig"; path = "Target Support Files/Pods-FoodDropApp/Pods-FoodDropApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,12 +55,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACCA496FB9B346F9CCABB429 /* Pods_FoodDropApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DAE43022611AF1A00879720 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				0DAE43032611AF5C00879720 /* UserRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		5446F30A7AF2A3B058C54419 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A426C1A8B0DC72057565D523 /* Pods-FoodDropApp.debug.xcconfig */,
+				F817DB1B9D84DC549F94022D /* Pods-FoodDropApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		55434F42260514D600046D3F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +115,8 @@
 			children = (
 				5546BC942601183100C1340F /* FoodDropApp */,
 				5546BC932601183100C1340F /* Products */,
+				5446F30A7AF2A3B058C54419 /* Pods */,
+				C322E33D39D24DF9CA420EB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +131,7 @@
 		5546BC942601183100C1340F /* FoodDropApp */ = {
 			isa = PBXGroup;
 			children = (
+				0DAE43022611AF1A00879720 /* Repositories */,
 				55434F49260517BB00046D3F /* Model */,
 				55434F4B260517C800046D3F /* ViewModels */,
 				5546BC952601183100C1340F /* FoodDropAppApp.swift */,
@@ -110,6 +139,7 @@
 				55434F42260514D600046D3F /* Views */,
 				5546BC992601183300C1340F /* Assets.xcassets */,
 				5546BC9E2601183300C1340F /* Info.plist */,
+				0DFF49682611A0E100FCBA03 /* GoogleService-Info.plist */,
 				5546BC9B2601183300C1340F /* Preview Content */,
 			);
 			path = FoodDropApp;
@@ -123,6 +153,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		C322E33D39D24DF9CA420EB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				22BC8AAD79849B2C6B680FDD /* Pods_FoodDropApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,9 +168,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5546BCA12601183300C1340F /* Build configuration list for PBXNativeTarget "FoodDropApp" */;
 			buildPhases = (
+				B550FB2E716C84333EA90763 /* [CP] Check Pods Manifest.lock */,
 				5546BC8E2601183100C1340F /* Sources */,
 				5546BC8F2601183100C1340F /* Frameworks */,
 				5546BC902601183100C1340F /* Resources */,
+				D44F5EFDB6BFDBD657F8B12B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -182,16 +222,60 @@
 			files = (
 				5546BC9D2601183300C1340F /* Preview Assets.xcassets in Resources */,
 				5546BC9A2601183300C1340F /* Assets.xcassets in Resources */,
+				0DFF49692611A0E100FCBA03 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B550FB2E716C84333EA90763 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodDropApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D44F5EFDB6BFDBD657F8B12B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodDropApp/Pods-FoodDropApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodDropApp/Pods-FoodDropApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FoodDropApp/Pods-FoodDropApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5546BC8E2601183100C1340F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DAE43042611AF5C00879720 /* UserRepository.swift in Sources */,
 				0D7144422601C3DE00B73C76 /* SignInView.swift in Sources */,
 				55434F332605083B00046D3F /* PostFood.swift in Sources */,
 				0D71444B2601DFB600B73C76 /* HeaderView.swift in Sources */,
@@ -328,6 +412,7 @@
 		};
 		5546BCA22601183300C1340F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A426C1A8B0DC72057565D523 /* Pods-FoodDropApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -350,6 +435,7 @@
 		};
 		5546BCA32601183300C1340F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F817DB1B9D84DC549F94022D /* Pods-FoodDropApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
