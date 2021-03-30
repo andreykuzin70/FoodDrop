@@ -6,27 +6,31 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-public struct User_info: Codable {
-    var first_name: String?
-    var last_name: String?
-    var org_name: String?
+public struct User_info: Codable, Identifiable {
+    @DocumentID public var id: String?
+    var userId: String?
+    var firstName: String?
+    var lastName: String?
+    var orgName: String?
     var email: String
-    var phone_num: String
+    var phoneNum: String
     var address: String
     var state: String
     var city: String
     var zipcode: String
-    var userName: String
     var password: String
 }
 
 
-public struct Food_post{
-    var food_type: String
-    var pickup_address: String
+public struct Food_post: Codable, Identifiable {
+    @DocumentID public var id: String?
+    var foodType: String
+    var pickupAddress: String
     var madeOnDate: Date
-    var pickup_date: Date
+    var pickupDate: Date
 }
 
 
@@ -40,13 +44,13 @@ public class Database {
     
     static func add_user(user:User_info)-> Bool{
         
-        if let _ = userDatabase[user.userName] {
-            
-            // user name exist
-            return false
-        }
-        
-        userDatabase[user.userName] = user
+//        if let _ = userDatabase[user.userName] {
+//
+//            // user name exist
+//            return false
+//        }
+//
+//        userDatabase[user.userName] = user
         return true;
     }
     

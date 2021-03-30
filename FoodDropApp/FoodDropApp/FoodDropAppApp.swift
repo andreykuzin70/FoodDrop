@@ -21,9 +21,9 @@ struct FoodDropAppApp: App {
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        print("1Your code here")
+        
         FirebaseApp.configure()
-        print("2Your code here")
+        
         return true
     }
 }

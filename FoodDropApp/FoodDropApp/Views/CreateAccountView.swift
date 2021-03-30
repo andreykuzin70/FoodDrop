@@ -46,7 +46,6 @@ struct CreateAccountFormView: View {
     @State var lastName: String = ""
     @State var orgName: String = ""
     @State var email: String = ""
-    @State var username: String = ""
     @State var password: String = ""
     @State var phoneNumber: String = ""
     @State var streetAddress: String = ""
@@ -65,28 +64,28 @@ struct CreateAccountFormView: View {
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.horizontal)
+                    .disableAutocorrection(true)
                 TextField("Last Name", text: $lastName)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.horizontal)
+                    .disableAutocorrection(true)
             }
             TextField("Organization Name", text: $orgName)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(5.0)
                 .padding(.horizontal)
+                .disableAutocorrection(true)
             TextField("Email", text: $email)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(5.0)
                 .padding(.horizontal)
                 .keyboardType(.emailAddress)
-            TextField("Username", text: $username)
-                .padding()
-                .background(Color.white)
-                .cornerRadius(5.0)
-                .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
             SecureField("Password", text: $password)
                 .padding()
                 .background(Color.white)
@@ -103,17 +102,21 @@ struct CreateAccountFormView: View {
                 .background(Color.white)
                 .cornerRadius(5.0)
                 .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
             HStack(spacing: -20) {
                 TextField("City", text: $city)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.horizontal)
+                    .disableAutocorrection(true)
                 TextField("State", text: $state)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.horizontal)
+                    .disableAutocorrection(true)
                 TextField("ZipCode", text: $zipcode)
                     .padding()
                     .background(Color.white)
@@ -122,8 +125,8 @@ struct CreateAccountFormView: View {
             }
             
             Button(action: {
-                
-                if CreateAccount.create_Account(firstName: firstName, lastName: lastName, orgName: orgName, email: email, phoneNum: phoneNumber, address: streetAddress, state: state, city: city, zipcode: zipcode, username: username, password: password) {
+                let createAccountVM = CreateAccount()
+                if createAccountVM.create_Account(firstName: firstName, lastName: lastName, orgName: orgName, email: email, phoneNum: phoneNumber, address: streetAddress, state: state, city: city, zipcode: zipcode, password: password) {
                 
                     self.goToCreateAccount = false
                     self.goToLogIn = true

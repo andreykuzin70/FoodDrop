@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SignInView: View {
+struct LogInView: View {
     
     @State var username: String = ""
     @State var password: String = ""
@@ -39,12 +39,12 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(goToCreateAccount: .constant(false), goToLogIn: .constant(true), goToPost: .constant(false))
+        LogInView(goToCreateAccount: .constant(false), goToLogIn: .constant(true), goToPost: .constant(false))
     }
 }
 
 struct LogInFormView: View {
-    @State var username: String = ""
+    @State var email: String = ""
     @State var password: String = ""
     @Binding var goToCreateAccount: Bool
     @Binding var goToLogIn: Bool
@@ -54,12 +54,13 @@ struct LogInFormView: View {
     
     var body: some View {
         VStack {
-            TextField("Username", text: $username)
+            TextField("Email", text: $email)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(5.0)
                 .padding(.bottom, 20)
                 .frame(width: 300)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
             SecureField("Password", text: $password)
                 .padding()
                 .background(Color.white)
@@ -67,10 +68,10 @@ struct LogInFormView: View {
                 .padding(.bottom, 20)
                 .frame(width: 300)
             Button(action: {
-                let curr = LogIn()
-                if curr.validate_logIN(userName: username, password: password) == false {
+                let logInVM = LogIn()
+                if logInVM.validate_logIN(email: email, password: password) == false {
                     showAlert = true
-                }else{
+                } else {
                     // take me to post/ food for now
                     print("Log in success")
                     self.goToPost = true

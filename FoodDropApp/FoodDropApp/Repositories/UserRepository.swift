@@ -18,19 +18,16 @@ class UserRepository: ObservableObject {
     }
     
     func loadData() {
-        db.collection("users").addSnapshotListener { (querySnapshot, error) in
-            if let querySnapshot = querySnapshot {
-                self.users = querySnapshot.documents.compactMap { document in
-                    do {
-                        let x = try document.data(as: User_info.self)
-                        Database.add_user(user: x!)
-                    } catch {
-                        print(error)
-                    }
-                    return nil
-                }
-            }
+        return
+    }
+    
+    func addUser(_ user: User_info) -> Bool {
+        do {
+            let _ = try db.collection("users").addDocument(from: user)
+            return true
         }
-        print("data loaded")
+        catch {
+          fatalError("Unable to encode user: \(error.localizedDescription).")
+        }
     }
 }

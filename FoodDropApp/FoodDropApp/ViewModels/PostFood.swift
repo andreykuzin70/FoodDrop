@@ -10,33 +10,31 @@ import Foundation
 
 public class PostFood: ObservableObject {
     
-    static var id: Int = 0
+    @Published var foodRepository = FoodRepository()
     
-    static func post_food(food_type: String, pickup_address: String,
+    func post_food(food_type: String, pickup_address: String,
                      madeOnDate: Date, pickup_date: Date) -> Bool{
         
         if !validate_post(food_type: food_type, pickup_address: pickup_address, madeOnDate: madeOnDate, pickup_date: pickup_date) {
             return false
         }
         
-        let new_post = Food_post(food_type: food_type, pickup_address: pickup_address, madeOnDate: madeOnDate, pickup_date: pickup_date)
+        let new_post = Food_post(foodType: food_type, pickupAddress: pickup_address, madeOnDate: madeOnDate, pickupDate: pickup_date)
         
-        Database.FoodPosts[id] = new_post
+//        Database.FoodPosts[id] = new_post
         
-            id = id + 1
+        self.foodRepository.addFood(new_post)
         
         return true
 
     }
     
     
-    static func validate_post(food_type: String, pickup_address: String, madeOnDate: Date, pickup_date: Date) -> Bool{
+    func validate_post(food_type: String, pickup_address: String, madeOnDate: Date, pickup_date: Date) -> Bool{
         
         if(food_type == "" || pickup_address == "" || madeOnDate >= pickup_date){
             return false
         }
-        
-        
         return true
     }
 }

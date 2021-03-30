@@ -18,7 +18,7 @@ struct ContentView: View {
         if goToCreateAccount {
             CreateAccountView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
         } else if goToLogIn {
-            SignInView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost)
+            LogInView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost)
         } else if goToPost {
             PostFoodView(foodPosted: $postSubmitted, foodPost: $goToPost)
         }else if postSubmitted{
