@@ -10,7 +10,7 @@ import Foundation
 
 public class ClaimFood: ObservableObject {
  
-    // This is the function that will return the all of the foods listed in the database
+    // This is the function that will return an array, including all the foodposts data from Database
     func get_food() -> [Food_post]?{
         return nil;
 //            Database.FoodPosts[id] ?? Database.FoodPosts("Lasagna", "123 Rockville", Date.init(), Date.init(timeIntervalSinceNow: 3600))

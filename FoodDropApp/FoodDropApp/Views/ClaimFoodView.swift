@@ -11,17 +11,29 @@ struct ClaimFoodView: View {
     var body: some View {
         ZStack {
             BackgroundView()
-            
             VStack {
                 HeaderView()
-                
-                Spacer()
-                List {
-                    Text("food 1")
-                    Text("food 1")
-                    Text("food 1")
+                NavigationView{
+                    List {
+                        HStack {
+                            NavigationLink(
+                                destination: ClaimFoodSheetView(),
+                                label: {
+                                    Text("Food Name")
+                                    Spacer()
+                                    Text("Condition").foregroundColor(.gray)
+                                })
+                        }
+                        HStack{
+                            Text("Food 2")
+                        }
+                        HStack{
+                            Text("Food 3")
+                        }
+                        
                     }
-            }
+                }
+            }.navigationTitle("Claim your desired food")
         }
     }
 }
