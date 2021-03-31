@@ -7,44 +7,38 @@
 
 import Foundation
 import Firebase
+import Combine
 
 
 public class CreateAccountVM: ObservableObject {
     
     @Published var userRepository = UserRepository()
     
-    func create_Account(firstName: String, lastName: String, orgName: String,
+    // to user to the database
+    func createAccountAddUser(firstName: String, lastName: String, orgName: String,
                         email: String, phoneNum: String, address: String,
                         state: String, city: String, zipcode: String,
-                        password: String)-> Bool {
-        // validate and add user
-        if validate_info(first_name: firstName, last_name: lastName, org_name: orgName, email: email, phone_num: phoneNum, address: address, state: state, city: city, zipcode: zipcode, password: password) {
-            var userId: String?
-            
-            Auth.auth().createUser(withEmail: email, password: password) { (res, error) in
-                if let error = error {
-                    fatalError(error.localizedDescription)
-                } else {
-//                    userId = Auth.auth().currentUser?.uid
-                    print("signed up")
-                }
-            }
-            Auth.auth().addStateDidChangeListener { (auth, user) in
-                userId = user?.uid
-                let newUser = User_info(userId: userId, firstName: firstName, lastName: lastName, orgName: orgName,
-                                        email: email, phoneNum: phoneNum, address: address,
-                                        state: state, city: city , zipcode: zipcode, password: password);
-                print("added user")
-                self.userRepository.addUser(newUser)
-            }
-            return true
-        }
+                        password: String) {
+        var userId: String?
         
-        // user is not added 
-        return false
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            userId = user?.uid
+            let newUser = User_info(userId: userId, firstName: firstName, lastName: lastName, orgName: orgName,
+                                    email: email, phoneNum: phoneNum, address: address,
+                                    state: state, city: city , zipcode: zipcode, password: password);
+            print("added user")
+            let _ = self.userRepository.addUser(newUser)
+        }
+        }
+
+    // to add it to the authentication
+    func createAccount(email: String, password: String,
+                       handler: @escaping AuthDataResultCallback){
+        
+        Auth.auth().createUser(withEmail: email, password: password, completion: handler)
     }
     
-    
+    // validate inputs
     func validate_info(first_name: String?, last_name: String?, org_name: String?,
                        email: String, phone_num: String, address: String,
                        state: String, city: String , zipcode: String,
@@ -58,4 +52,5 @@ public class CreateAccountVM: ObservableObject {
         return true
         
     }
+   
 }

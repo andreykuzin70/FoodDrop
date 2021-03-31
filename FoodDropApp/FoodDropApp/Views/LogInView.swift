@@ -29,7 +29,7 @@ struct LogInView: View {
                     .bold()
                     .padding(.bottom, 20)
                 
-                LogInFormView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost)
+                LogInFormView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost).environmentObject(LogInVM())
                 
                 Spacer()
             }
@@ -39,7 +39,7 @@ struct LogInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView(goToCreateAccount: .constant(false), goToLogIn: .constant(true), goToPost: .constant(false))
+        LogInView(goToCreateAccount: .constant(false), goToLogIn: .constant(true), goToPost: .constant(false)).environmentObject(LogInVM())
     }
 }
 
@@ -51,6 +51,32 @@ struct LogInFormView: View {
     @Binding var goToPost: Bool
     
     @State var showAlert = false
+    
+    @EnvironmentObject var session: LogInVM
+    
+    
+    // a method that listens to any change that happend the user signing
+    func getUser () {
+        session.listen()
+    }
+    
+    //https://benmcmahen.com/authentication-with-swiftui-and-firebase/
+    ///
+    
+    // This method takes care of user signing in. if there is an error it changes the state of the alert otherwise changes the state of the view to which it next go to. This is used in the action of the login button
+    func logIn () {
+        session.signIn(email: email, password: password) { (result, error) in
+                //self.loading = false
+                if error != nil {
+                    self.showAlert = true
+                } else {
+                    print("Log in success")
+                    self.goToPost = true
+                    self.goToLogIn = false
+                    self.goToCreateAccount = false
+                }
+        }
+    }
     
     var body: some View {
         VStack {
@@ -67,18 +93,7 @@ struct LogInFormView: View {
                 .cornerRadius(5.0)
                 .padding(.bottom, 20)
                 .frame(width: 300)
-            Button(action: {
-                let logInVM = LogInVM()
-                if logInVM.validate_logIN(email: email, password: password) == false {
-                    showAlert = true
-                } else {
-                    // take me to post/ food for now
-                    print("Log in success")
-                    self.goToPost = true
-                    self.goToLogIn = false
-                    self.goToCreateAccount = false
-                }
-                
+            Button(action: { self.logIn()
             }, label: {
                 Text("LOGIN")
                     .font(.headline)
@@ -104,6 +119,6 @@ struct LogInFormView: View {
                     .background(Color.red)
                     .cornerRadius(15.0)
             })
-        }
+        }.onAppear(perform: getUser)
     }
 }

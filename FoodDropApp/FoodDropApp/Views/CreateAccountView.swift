@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct CreateAccountView: View {
     
@@ -26,7 +27,7 @@ struct CreateAccountView: View {
                     .bold()
                     .padding(.bottom, 20)
                 
-                CreateAccountFormView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
+                CreateAccountFormView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn).environmentObject(CreateAccountVM())
                 Spacer()
             }
         }
@@ -54,8 +55,10 @@ struct CreateAccountFormView: View {
     @State var zipcode: String = ""
     
     @State var showAlert = false
-    //@State var successAlert = false
+    @State var alertMessage = ""
     
+    @EnvironmentObject var accountSession: CreateAccountVM
+
     var body: some View {
         VStack {
             HStack(spacing: -15) {
@@ -125,15 +128,7 @@ struct CreateAccountFormView: View {
             }
             
             Button(action: {
-                let createAccountVM = CreateAccountVM()
-                if createAccountVM.create_Account(firstName: firstName, lastName: lastName, orgName: orgName, email: email, phoneNum: phoneNumber, address: streetAddress, state: state, city: city, zipcode: zipcode, password: password) {
-                
-                    self.goToCreateAccount = false
-                    self.goToLogIn = true
-                }else{
-                    showAlert = true
-                }
-                
+                self.createAccount()
             }, label: {
                 Text("Register")
                     .font(.headline)
@@ -144,8 +139,41 @@ struct CreateAccountFormView: View {
                     .cornerRadius(15.0)
                     .padding(.top)
             }).alert(isPresented: $showAlert) {
-                Alert(title: Text("Create account error"), message: Text(" One or more filds are empty "), dismissButton: .default(Text("OK")))
+                Alert(title: Text("Create account error"), message: Text(self.alertMessage), dismissButton: .default(Text("OK")))
             }
         }
     }
+    
+    
+    // This function takes care of the creation of new account. it validates if the textfields are empty and alert the user. if the user coudnt be added to the authentication for some reason, we show alert to correctly outputing
+    func createAccount () {
+    
+        // check the validation of empty entries
+        if !accountSession.validate_info(first_name: firstName, last_name: lastName, org_name: orgName, email: email, phone_num: phoneNumber, address: streetAddress, state: state, city: city, zipcode: zipcode, password: password){
+            
+            self.showAlert = true
+            self.alertMessage = "One or more field is empty"
+            return
+        }
+        
+        // add to the auth database
+        accountSession.createAccount(email: email, password: password) { (result, error) in
+                //self.loading = false
+                if error != nil {
+                    self.showAlert = true
+                    self.alertMessage = ("\(String(describing: error))")
+                   
+                    return
+                } else {
+                    print("Create Success")
+                    self.goToCreateAccount = false
+                    self.goToLogIn = true
+                    
+                    // add to the user database
+                    accountSession.createAccountAddUser(firstName: firstName, lastName: lastName, orgName: orgName, email: email, phoneNum: phoneNumber, address: streetAddress, state: state, city: city, zipcode: zipcode, password: password)
+                }
+        }
+        
+    }
+    
 }
