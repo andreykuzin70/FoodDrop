@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 
-public class PostFood: ObservableObject {
+public class PostFoodVM: ObservableObject {
     
     @Published var foodRepository = FoodRepository()
     
@@ -19,11 +20,16 @@ public class PostFood: ObservableObject {
             return false
         }
         
-        let new_post = Food_post(foodType: food_type, pickupAddress: pickup_address, madeOnDate: madeOnDate, pickupDate: pickup_date)
+        var userId: String?
         
-//        Database.FoodPosts[id] = new_post
-        
-        self.foodRepository.addFood(new_post)
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            userId = user?.uid
+            
+            let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : madeOnDate.description, pickupDate: pickup_date.description)
+            
+            print("added Food")
+            let _ = self.foodRepository.addFood(newFood)
+        }
         
         return true
 

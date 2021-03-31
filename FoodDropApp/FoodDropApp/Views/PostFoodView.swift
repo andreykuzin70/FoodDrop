@@ -103,8 +103,8 @@ struct PostFoodFormView: View {
             Spacer()
             
             Button(action: {
-                
-                if PostFood.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate){
+                let postFoodVM = PostFoodVM()
+                if postFoodVM.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate){
                     
                     foodPost = false
                     foodPosted = true

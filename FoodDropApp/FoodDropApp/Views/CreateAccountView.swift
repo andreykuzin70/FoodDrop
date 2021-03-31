@@ -125,7 +125,7 @@ struct CreateAccountFormView: View {
             }
             
             Button(action: {
-                let createAccountVM = CreateAccount()
+                let createAccountVM = CreateAccountVM()
                 if createAccountVM.create_Account(firstName: firstName, lastName: lastName, orgName: orgName, email: email, phoneNum: phoneNumber, address: streetAddress, state: state, city: city, zipcode: zipcode, password: password) {
                 
                     self.goToCreateAccount = false

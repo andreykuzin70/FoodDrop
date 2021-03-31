@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 
 
-public class CreateAccount: ObservableObject {
+public class CreateAccountVM: ObservableObject {
     
     @Published var userRepository = UserRepository()
     
@@ -20,6 +20,7 @@ public class CreateAccount: ObservableObject {
         // validate and add user
         if validate_info(first_name: firstName, last_name: lastName, org_name: orgName, email: email, phone_num: phoneNum, address: address, state: state, city: city, zipcode: zipcode, password: password) {
             var userId: String?
+            
             Auth.auth().createUser(withEmail: email, password: password) { (res, error) in
                 if let error = error {
                     fatalError(error.localizedDescription)

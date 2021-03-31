@@ -22,44 +22,16 @@ public struct User_info: Codable, Identifiable {
     var city: String
     var zipcode: String
     var password: String
+    
 }
 
 
 public struct Food_post: Codable, Identifiable {
     @DocumentID public var id: String?
+    var ownerId: String?
     var foodType: String
     var pickupAddress: String
-    var madeOnDate: Date
-    var pickupDate: Date
-}
-
-
-public class Database {
-    
-    static var userDatabase: [String: User_info] = [:]
-    static var FoodPosts: [Int: Food_post] = [:]
-    
-    init() {
-    }
-    
-    static func add_user(user:User_info)-> Bool{
-        
-//        if let _ = userDatabase[user.userName] {
-//
-//            // user name exist
-//            return false
-//        }
-//
-//        userDatabase[user.userName] = user
-        return true;
-    }
-    
-    static func add_post(post: Food_post){
-        
-        
-    }
-    
-    
-    
-    
+    var madeOnDate: String
+    var pickupDate: String
+    //var discription: String
 }

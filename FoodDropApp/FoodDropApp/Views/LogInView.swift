@@ -68,7 +68,7 @@ struct LogInFormView: View {
                 .padding(.bottom, 20)
                 .frame(width: 300)
             Button(action: {
-                let logInVM = LogIn()
+                let logInVM = LogInVM()
                 if logInVM.validate_logIN(email: email, password: password) == false {
                     showAlert = true
                 } else {
