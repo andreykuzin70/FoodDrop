@@ -14,6 +14,11 @@
 		535D26422601C01A00F8E22A /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26412601C01900F8E22A /* LogIn.swift */; };
 		535D26452601C30C00F8E22A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26442601C30C00F8E22A /* Database.swift */; };
 		535D26482601CF1D00F8E22A /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26472601CF1D00F8E22A /* CreateAccount.swift */; };
+		553D70462614F425004AA3CA /* NavMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D70452614F425004AA3CA /* NavMenuView.swift */; };
+		553D704D2614F95A004AA3CA /* SideViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D704C2614F95A004AA3CA /* SideViewMenu.swift */; };
+		553D705026150094004AA3CA /* SideMenuOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D704F26150094004AA3CA /* SideMenuOptionView.swift */; };
+		553D7053261503DE004AA3CA /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D7052261503DE004AA3CA /* SideMenuHeaderView.swift */; };
+		553D70572615240A004AA3CA /* SideViewOptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D70562615240A004AA3CA /* SideViewOptionModel.swift */; };
 		55434F332605083B00046D3F /* PostFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55434F322605083A00046D3F /* PostFood.swift */; };
 		55434F3C26050A9800046D3F /* PostConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55434F3B26050A9800046D3F /* PostConfirmationView.swift */; };
 		5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BC952601183100C1340F /* FoodDropAppApp.swift */; };
@@ -34,6 +39,11 @@
 		535D26412601C01900F8E22A /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogIn.swift; path = FoodDropApp/ViewModels/LogIn.swift; sourceTree = SOURCE_ROOT; };
 		535D26442601C30C00F8E22A /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		535D26472601CF1D00F8E22A /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccount.swift; path = FoodDropApp/ViewModels/CreateAccount.swift; sourceTree = SOURCE_ROOT; };
+		553D70452614F425004AA3CA /* NavMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavMenuView.swift; sourceTree = "<group>"; };
+		553D704C2614F95A004AA3CA /* SideViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewMenu.swift; sourceTree = "<group>"; };
+		553D704F26150094004AA3CA /* SideMenuOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionView.swift; sourceTree = "<group>"; };
+		553D7052261503DE004AA3CA /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
+		553D70562615240A004AA3CA /* SideViewOptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewOptionModel.swift; sourceTree = "<group>"; };
 		55434F322605083A00046D3F /* PostFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostFood.swift; path = FoodDropApp/ViewModels/PostFood.swift; sourceTree = SOURCE_ROOT; };
 		55434F3B26050A9800046D3F /* PostConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostConfirmationView.swift; sourceTree = "<group>"; };
 		5546BC922601183100C1340F /* FoodDropApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDropApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +80,10 @@
 				0D7144442601CA5B00B73C76 /* BackgroundView.swift */,
 				D84D4349261432760076D4DE /* ClaimFoodView.swift */,
 				D8DE93E82614378D003105A1 /* ClaimFoodSheetView.swift */,
+				553D70452614F425004AA3CA /* NavMenuView.swift */,
+				553D704C2614F95A004AA3CA /* SideViewMenu.swift */,
+				553D704F26150094004AA3CA /* SideMenuOptionView.swift */,
+				553D7052261503DE004AA3CA /* SideMenuHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -89,6 +103,7 @@
 				535D26412601C01900F8E22A /* LogIn.swift */,
 				55434F322605083A00046D3F /* PostFood.swift */,
 				D84D43462614324F0076D4DE /* ClaimFood.swift */,
+				553D70562615240A004AA3CA /* SideViewOptionModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -202,10 +217,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8DE93E92614378D003105A1 /* ClaimFoodSheetView.swift in Sources */,
+				553D70462614F425004AA3CA /* NavMenuView.swift in Sources */,
 				0D7144422601C3DE00B73C76 /* SignInView.swift in Sources */,
 				55434F332605083B00046D3F /* PostFood.swift in Sources */,
 				0D71444B2601DFB600B73C76 /* HeaderView.swift in Sources */,
 				5546BC982601183100C1340F /* ContentView.swift in Sources */,
+				553D70572615240A004AA3CA /* SideViewOptionModel.swift in Sources */,
 				0D7144452601CA5B00B73C76 /* BackgroundView.swift in Sources */,
 				D82F22A226025A22003BC3F6 /* PostFoodView.swift in Sources */,
 				535D26422601C01A00F8E22A /* LogIn.swift in Sources */,
@@ -214,8 +231,11 @@
 				D84D434A261432760076D4DE /* ClaimFoodView.swift in Sources */,
 				535D26452601C30C00F8E22A /* Database.swift in Sources */,
 				D84D43472614324F0076D4DE /* ClaimFood.swift in Sources */,
+				553D7053261503DE004AA3CA /* SideMenuHeaderView.swift in Sources */,
+				553D704D2614F95A004AA3CA /* SideViewMenu.swift in Sources */,
 				5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */,
 				0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */,
+				553D705026150094004AA3CA /* SideMenuOptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

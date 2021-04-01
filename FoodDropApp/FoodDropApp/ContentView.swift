@@ -15,6 +15,7 @@ struct ContentView: View {
     @State var postSubmitted: Bool = false
     
     var body: some View {
+        
         if goToCreateAccount {
             CreateAccountView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
         } else if goToLogIn {
