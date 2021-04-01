@@ -13,7 +13,7 @@ struct LogInView: View {
     @State var password: String = ""
     @Binding var goToCreateAccount: Bool
     @Binding var goToLogIn: Bool
-    @Binding var goToPost: Bool
+    @Binding var goToNavMenu: Bool
     
     var body: some View {
         ZStack {
@@ -29,7 +29,7 @@ struct LogInView: View {
                     .bold()
                     .padding(.bottom, 20)
                 
-                LogInFormView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost).environmentObject(LogInVM())
+                LogInFormView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu).environmentObject(LogInVM())
                 
                 Spacer()
             }
@@ -39,7 +39,7 @@ struct LogInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView(goToCreateAccount: .constant(false), goToLogIn: .constant(true), goToPost: .constant(false)).environmentObject(LogInVM())
+        LogInView(goToCreateAccount: .constant(false), goToLogIn: .constant(true), goToNavMenu:.constant(false)).environmentObject(LogInVM())
     }
 }
 
@@ -48,7 +48,7 @@ struct LogInFormView: View {
     @State var password: String = ""
     @Binding var goToCreateAccount: Bool
     @Binding var goToLogIn: Bool
-    @Binding var goToPost: Bool
+    @Binding var goToNavMenu: Bool
     
     @State var showAlert = false
     
@@ -66,12 +66,11 @@ struct LogInFormView: View {
     // This method takes care of user signing in. if there is an error it changes the state of the alert otherwise changes the state of the view to which it next go to. This is used in the action of the login button
     func logIn () {
         session.signIn(email: email, password: password) { (result, error) in
-                //self.loading = false
                 if error != nil {
                     self.showAlert = true
                 } else {
                     print("Log in success")
-                    self.goToPost = true
+                    self.goToNavMenu = true
                     self.goToLogIn = false
                     self.goToCreateAccount = false
                 }
@@ -87,6 +86,7 @@ struct LogInFormView: View {
                 .padding(.bottom, 20)
                 .frame(width: 300)
                 .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                .disableAutocorrection(true)
             SecureField("Password", text: $password)
                 .padding()
                 .background(Color.white)

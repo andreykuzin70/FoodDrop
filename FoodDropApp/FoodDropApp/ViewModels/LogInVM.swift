@@ -32,30 +32,26 @@ public class LogInVM: ObservableObject{
     }
     
     
-    func signIn(
-            email: String,
-            password: String,
-            handler: @escaping AuthDataResultCallback
-            ) {
-            Auth.auth().signIn(withEmail: email, password: password, completion: handler)
-        }
+    func signIn(email: String, password: String, handler: @escaping AuthDataResultCallback) {
+        Auth.auth().signIn(withEmail: email, password: password, completion: handler)
+    }
     
     // for the signout use. it changes the session
     func signOut () -> Bool {
-            do {
-                try Auth.auth().signOut()
-                self.session = false
-                return true
-            } catch {
-                return false
-            }
+        do {
+            try Auth.auth().signOut()
+            self.session = false
+            return true
+        } catch {
+            return false
         }
+    }
 
     // not sure about this one yet
     func unbind () {
-            if let handle = handle {
-                Auth.auth().removeStateDidChangeListener(handle)
-            }
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
         }
+    }
     // additional methods (sign up, sign in) will go here
 }

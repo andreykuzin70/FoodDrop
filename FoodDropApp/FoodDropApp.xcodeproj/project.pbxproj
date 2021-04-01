@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D3D445E26162E6500295673 /* SideMenuOptionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3D445D26162E6500295673 /* SideMenuOptionVM.swift */; };
+		0D3D446126162F0400295673 /* ClaimFoodVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3D446026162F0400295673 /* ClaimFoodVM.swift */; };
+		0D3D446426162F4800295673 /* ClaimFoodSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3D446326162F4800295673 /* ClaimFoodSheetView.swift */; };
+		0D3D446726162FA400295673 /* ClaimFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3D446626162FA400295673 /* ClaimFoodView.swift */; };
+		0D3D446A2616303600295673 /* NavMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3D44692616303600295673 /* NavMenuView.swift */; };
+		0D3D446D2616308B00295673 /* SideViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3D446C2616308B00295673 /* SideViewMenu.swift */; };
+		0D3D447026163E0E00295673 /* LogOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3D446F26163E0E00295673 /* LogOutView.swift */; };
 		0D7144422601C3DE00B73C76 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144412601C3DE00B73C76 /* LogInView.swift */; };
 		0D7144452601CA5B00B73C76 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144442601CA5B00B73C76 /* BackgroundView.swift */; };
 		0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144472601CFFC00B73C76 /* CreateAccountView.swift */; };
@@ -28,6 +35,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D3D445D26162E6500295673 /* SideMenuOptionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionVM.swift; sourceTree = "<group>"; };
+		0D3D446026162F0400295673 /* ClaimFoodVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimFoodVM.swift; sourceTree = "<group>"; };
+		0D3D446326162F4800295673 /* ClaimFoodSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimFoodSheetView.swift; sourceTree = "<group>"; };
+		0D3D446626162FA400295673 /* ClaimFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimFoodView.swift; sourceTree = "<group>"; };
+		0D3D44692616303600295673 /* NavMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavMenuView.swift; sourceTree = "<group>"; };
+		0D3D446C2616308B00295673 /* SideViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewMenu.swift; sourceTree = "<group>"; };
+		0D3D446F26163E0E00295673 /* LogOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutView.swift; sourceTree = "<group>"; };
 		0D7144412601C3DE00B73C76 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		0D7144442601CA5B00B73C76 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		0D7144472601CFFC00B73C76 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
@@ -92,6 +106,11 @@
 				0D7144472601CFFC00B73C76 /* CreateAccountView.swift */,
 				D82F22A126025A22003BC3F6 /* PostFoodView.swift */,
 				0D7144442601CA5B00B73C76 /* BackgroundView.swift */,
+				0D3D446326162F4800295673 /* ClaimFoodSheetView.swift */,
+				0D3D446626162FA400295673 /* ClaimFoodView.swift */,
+				0D3D44692616303600295673 /* NavMenuView.swift */,
+				0D3D446C2616308B00295673 /* SideViewMenu.swift */,
+				0D3D446F26163E0E00295673 /* LogOutView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -110,6 +129,8 @@
 				535D26472601CF1D00F8E22A /* CreateAccountVM.swift */,
 				535D26412601C01900F8E22A /* LogInVM.swift */,
 				55434F322605083A00046D3F /* PostFoodVM.swift */,
+				0D3D445D26162E6500295673 /* SideMenuOptionVM.swift */,
+				0D3D446026162F0400295673 /* ClaimFoodVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -285,13 +306,20 @@
 				0D71444B2601DFB600B73C76 /* HeaderView.swift in Sources */,
 				5546BC982601183100C1340F /* ContentView.swift in Sources */,
 				0D7144452601CA5B00B73C76 /* BackgroundView.swift in Sources */,
+				0D3D446726162FA400295673 /* ClaimFoodView.swift in Sources */,
 				D82F22A226025A22003BC3F6 /* PostFoodView.swift in Sources */,
+				0D3D445E26162E6500295673 /* SideMenuOptionVM.swift in Sources */,
+				0D3D446D2616308B00295673 /* SideViewMenu.swift in Sources */,
+				0D3D446426162F4800295673 /* ClaimFoodSheetView.swift in Sources */,
+				0D3D446A2616303600295673 /* NavMenuView.swift in Sources */,
 				535D26422601C01A00F8E22A /* LogInVM.swift in Sources */,
 				55434F3C26050A9800046D3F /* PostConfirmationView.swift in Sources */,
 				535D26482601CF1D00F8E22A /* CreateAccountVM.swift in Sources */,
 				535D26452601C30C00F8E22A /* Database.swift in Sources */,
+				0D3D446126162F0400295673 /* ClaimFoodVM.swift in Sources */,
 				5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */,
 				0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */,
+				0D3D447026163E0E00295673 /* LogOutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

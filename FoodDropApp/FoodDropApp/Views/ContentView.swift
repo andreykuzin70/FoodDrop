@@ -11,19 +11,17 @@ struct ContentView: View {
     
     @State var goToCreateAccount: Bool = false
     @State var goToLogIn: Bool = true
-    @State var goToPost: Bool = false
-    @State var postSubmitted: Bool = false
+    @State var goToNavMenu: Bool = false
     
     var body: some View {
         if goToCreateAccount {
             CreateAccountView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
         } else if goToLogIn {
-            LogInView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost)
-        } else if goToPost {
-            PostFoodView(foodPosted: $postSubmitted, foodPost: $goToPost)
-        }else if postSubmitted{
-            PostConfirmationView()
+            LogInView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu)
+        } else if goToNavMenu {
+            NavMenuView( goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu)
         }
+        
     }
 }
 
