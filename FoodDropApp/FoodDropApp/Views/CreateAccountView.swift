@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct CreateAccountView: View {
     
@@ -26,7 +27,7 @@ struct CreateAccountView: View {
                     .bold()
                     .padding(.bottom, 20)
                 
-                CreateAccountFormView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
+                CreateAccountFormView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn).environmentObject(CreateAccountVM())
                 Spacer()
             }
         }
@@ -46,7 +47,6 @@ struct CreateAccountFormView: View {
     @State var lastName: String = ""
     @State var orgName: String = ""
     @State var email: String = ""
-    @State var username: String = ""
     @State var password: String = ""
     @State var phoneNumber: String = ""
     @State var streetAddress: String = ""
@@ -55,8 +55,10 @@ struct CreateAccountFormView: View {
     @State var zipcode: String = ""
     
     @State var showAlert = false
-    //@State var successAlert = false
+    @State var alertMessage = ""
     
+    @EnvironmentObject var accountSession: CreateAccountVM
+
     var body: some View {
         VStack {
             HStack(spacing: -15) {
@@ -65,28 +67,28 @@ struct CreateAccountFormView: View {
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.horizontal)
+                    .disableAutocorrection(true)
                 TextField("Last Name", text: $lastName)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.horizontal)
+                    .disableAutocorrection(true)
             }
             TextField("Organization Name", text: $orgName)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(5.0)
                 .padding(.horizontal)
+                .disableAutocorrection(true)
             TextField("Email", text: $email)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(5.0)
                 .padding(.horizontal)
                 .keyboardType(.emailAddress)
-            TextField("Username", text: $username)
-                .padding()
-                .background(Color.white)
-                .cornerRadius(5.0)
-                .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
             SecureField("Password", text: $password)
                 .padding()
                 .background(Color.white)
@@ -103,17 +105,21 @@ struct CreateAccountFormView: View {
                 .background(Color.white)
                 .cornerRadius(5.0)
                 .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
             HStack(spacing: -20) {
                 TextField("City", text: $city)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.horizontal)
+                    .disableAutocorrection(true)
                 TextField("State", text: $state)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.horizontal)
+                    .disableAutocorrection(true)
                 TextField("ZipCode", text: $zipcode)
                     .padding()
                     .background(Color.white)
@@ -122,15 +128,7 @@ struct CreateAccountFormView: View {
             }
             
             Button(action: {
-                
-                if CreateAccount.create_Account(firstName: firstName, lastName: lastName, orgName: orgName, email: email, phoneNum: phoneNumber, address: streetAddress, state: state, city: city, zipcode: zipcode, username: username, password: password) {
-                
-                    self.goToCreateAccount = false
-                    self.goToLogIn = true
-                }else{
-                    showAlert = true
-                }
-                
+                self.createAccount()
             }, label: {
                 Text("Register")
                     .font(.headline)
@@ -141,8 +139,41 @@ struct CreateAccountFormView: View {
                     .cornerRadius(15.0)
                     .padding(.top)
             }).alert(isPresented: $showAlert) {
-                Alert(title: Text("Create account error"), message: Text(" One or more filds are empty "), dismissButton: .default(Text("OK")))
+                Alert(title: Text("Create account error"), message: Text(self.alertMessage), dismissButton: .default(Text("OK")))
             }
         }
     }
+    
+    
+    // This function takes care of the creation of new account. it validates if the textfields are empty and alert the user. if the user coudnt be added to the authentication for some reason, we show alert to correctly outputing
+    func createAccount () {
+    
+        // check the validation of empty entries
+        if !accountSession.validate_info(first_name: firstName, last_name: lastName, org_name: orgName, email: email, phone_num: phoneNumber, address: streetAddress, state: state, city: city, zipcode: zipcode, password: password){
+            
+            self.showAlert = true
+            self.alertMessage = "One or more field is empty"
+            return
+        }
+        
+        // add to the auth database
+        accountSession.createAccount(email: email, password: password) { (result, error) in
+                //self.loading = false
+                if error != nil {
+                    self.showAlert = true
+                    self.alertMessage = ("\(String(describing: error))")
+                   
+                    return
+                } else {
+                    print("Create Success")
+                    self.goToCreateAccount = false
+                    self.goToLogIn = true
+                    
+                    // add to the user database
+                    accountSession.createAccountAddUser(firstName: firstName, lastName: lastName, orgName: orgName, email: email, phoneNum: phoneNumber, address: streetAddress, state: state, city: city, zipcode: zipcode, password: password)
+                }
+        }
+        
+    }
+    
 }

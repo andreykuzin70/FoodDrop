@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct PostFoodView: View {
-    @Binding var foodPosted: Bool
-    @Binding var foodPost: Bool
     
     var body: some View {
         ZStack {
@@ -25,7 +23,7 @@ struct PostFoodView: View {
                     .bold()
                     .padding(.bottom, 20)
                 
-                PostFoodFormView(foodPosted: $foodPosted, foodPost: $foodPost)
+                PostFoodFormView()
                 
                 Spacer()
             }
@@ -34,15 +32,13 @@ struct PostFoodView: View {
 }
 
 
-//struct PostFoodView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PostFoodView()
-//    }
-//}
+struct PostFoodView_Previews: PreviewProvider {
+    static var previews: some View {
+        PostFoodView()
+    }
+}
 
 struct PostFoodFormView: View {
-    @Binding var foodPosted: Bool
-    @Binding var foodPost: Bool
     
     @State var foodType: String = ""
     @State var pickUpAdd: String = ""
@@ -61,11 +57,15 @@ struct PostFoodFormView: View {
                 .background(Color.white)
                 .cornerRadius(5.0)
                 .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
             TextField("Pick Up Address", text: $pickUpAdd)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(5.0)
                 .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
             
             DatePicker("Made on ", selection: $madeOnDate)
                 .frame(height: 20)
@@ -90,7 +90,6 @@ struct PostFoodFormView: View {
             }.frame(height: 40)
             .padding()
             .padding(.top, 40)
-//            .background(Color.white)
             .cornerRadius(5.0)
             .padding(.horizontal)
             
@@ -99,14 +98,18 @@ struct PostFoodFormView: View {
             Spacer()
             
             Button(action: {
-                
-                if PostFood.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate){
+                let postFoodVM = PostFoodVM()
+                if postFoodVM.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate){
                     
-                    foodPost = false
-                    foodPosted = true
                     // successfully added
                     print("food successfully posted")
-                }else{
+                    // Add a successfully posted view here 
+                    // go back to default input
+                    foodType = ""
+                    pickUpAdd = ""
+                    pickUpDate = Date()
+                    madeOnDate = Date()
+                } else {
                     showAlert = true
                 }
             }, label: {

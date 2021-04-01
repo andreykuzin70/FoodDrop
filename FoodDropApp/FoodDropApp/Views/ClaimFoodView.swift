@@ -12,7 +12,7 @@ struct ClaimFoodView: View {
         ZStack {
             BackgroundView()
             VStack {
-                HeaderView()
+//                HeaderView()
                 NavigationView{
                     List {
                         HStack {
@@ -33,7 +33,8 @@ struct ClaimFoodView: View {
                         
                     }
                 }
-            }.navigationTitle("Claim your desired food")
+            }.navigationTitle("Food Drop")
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
