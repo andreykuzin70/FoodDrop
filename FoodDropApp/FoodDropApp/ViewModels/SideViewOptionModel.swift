@@ -14,7 +14,7 @@ enum SideMenuOptionModel: Int, CaseIterable{
     
     var title: String{
         switch self {
-        case .CreatePost: return "My Posts"
+        case .CreatePost: return "Make Post"
         case .ClaimMeal: return "Claim a Meal"
         case .LogOut: return "Logout"
         }

@@ -16,15 +16,17 @@ struct ContentView: View {
     
     var body: some View {
         
-        if goToCreateAccount {
-            CreateAccountView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
-        } else if goToLogIn {
-            SignInView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost)
-        } else if goToPost {
-            PostFoodView(foodPosted: $postSubmitted, foodPost: $goToPost)
-        }else if postSubmitted{
-            PostConfirmationView()
-        }
+        NavMenuView( goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost, postSubmitted: $postSubmitted)
+        
+//        if goToCreateAccount {
+//            CreateAccountView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn)
+//        } else if goToLogIn {
+//            SignInView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost)
+//        } else if goToPost {
+//            PostFoodView(foodPosted: $postSubmitted, foodPost: $goToPost)
+//        }else if postSubmitted{
+//            PostConfirmationView()
+//        }
     }
 }
 

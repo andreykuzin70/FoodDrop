@@ -24,14 +24,15 @@ struct ClaimFoodSheetView: View {
                     Text("Pick up by : 04/03/2021 - 11:45 PM").padding()
                 }
                 Spacer()
-                Button("Calim Food") {
+                Button("Claim Food") {
                     presentationMode.wrappedValue.dismiss()
                 }
-                .font(.title)
                 .padding()
                 .foregroundColor(.white)
                 .background(Color.red)
-                .cornerRadius(5.0)
+                .cornerRadius(10)
+                .font(.system(size: 30, weight: .semibold))
+                .padding()
             }
         }
     }

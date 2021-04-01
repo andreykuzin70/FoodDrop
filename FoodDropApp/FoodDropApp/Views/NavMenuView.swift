@@ -10,12 +10,19 @@ import SwiftUI
 struct NavMenuView: View {
     @State private var isShowing = false
     
+    
+    @Binding var goToCreateAccount: Bool
+    @Binding var goToLogIn: Bool
+    @Binding var goToPost: Bool
+    @Binding var postSubmitted: Bool
+    
+    
     var body: some View {
         
         NavigationView{
             ZStack{
                 if isShowing{
-                    SideViewMenu(show: $isShowing)
+                    SideViewMenu(show: $isShowing, goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToPost: $goToPost, postSubmitted: $postSubmitted)
                 }
                 BackgroundView()
                     
@@ -34,6 +41,6 @@ struct NavMenuView: View {
 
 struct NavMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        NavMenuView()
+        NavMenuView(goToCreateAccount: .constant(true), goToLogIn: .constant(true), goToPost: .constant(true), postSubmitted: .constant(true))
     }
 }
