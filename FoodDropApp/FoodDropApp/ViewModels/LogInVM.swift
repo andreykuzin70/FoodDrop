@@ -8,6 +8,9 @@
 import Foundation
 import FirebaseAuth
 import Combine
+import Firebase
+import FirebaseFirestore
+
 
 public class LogInVM: ObservableObject{
     @Published var userRepository = UserRepository()
@@ -15,14 +18,29 @@ public class LogInVM: ObservableObject{
     var didChange = PassthroughSubject<LogInVM, Never>()
     var session: Bool? { didSet { self.didChange.send(self) }}
     var handle: AuthStateDidChangeListenerHandle?
-
+    let db = Firestore.firestore()
+    static var userName:String?
+    
     // checks if the user is signed in or not. if the user is signed in we change the session ture to show that the user is in. ohter wise we make it false to indicate the user is not signed in.
     func listen () {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 // if we have a user, create a new user model
-                print("Got user: \(user)")
+                print("Got user: \(user.uid)")
+            
+                // to ge the user name of the user
+                self.db.collection("users").whereField("userId", isEqualTo: user.uid)
+                    .getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            for document in querySnapshot!.documents {
+                                let u = try? document.data(as: User_info.self)
+                                LogInVM.userName = u!.firstName
+                                }
+                            }
+                    }
                 self.session = true
             } else {
                 // if we don't have a user, set our session to nil
@@ -30,7 +48,6 @@ public class LogInVM: ObservableObject{
             }
         }
     }
-    
     
     func signIn(email: String, password: String, handler: @escaping AuthDataResultCallback) {
         Auth.auth().signIn(withEmail: email, password: password, completion: handler)

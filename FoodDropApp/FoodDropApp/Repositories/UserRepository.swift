@@ -7,19 +7,18 @@
 
 import Foundation
 import FirebaseFirestore
+import Firebase
 import FirebaseFirestoreSwift
+
 
 class UserRepository: ObservableObject {
     let db = Firestore.firestore()
-    @Published var users = [User_info]()
+    var userName: String?
     
     init() {
-        loadData()
+
     }
     
-    func loadData() {
-        return
-    }
     
     func addUser(_ user: User_info) -> Bool {
         do {

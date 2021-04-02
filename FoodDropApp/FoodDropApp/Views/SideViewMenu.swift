@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct SideViewMenu: View {
     @Binding var show: Bool
@@ -49,6 +50,8 @@ struct SideViewMenu_Previews: PreviewProvider {
 
 struct SideMenuHeaderView: View {
     @Binding var home: Bool
+    var userRepository = UserRepository()
+    //static var user:User?
     
     var body: some View {
         ZStack(alignment: .topTrailing){
@@ -71,8 +74,9 @@ struct SideMenuHeaderView: View {
                     .clipped()
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 16)
-                Text("@User_Name")
-                    .font(.system(size: 25, weight: .semibold))
+                
+                Text(LogInVM.userName ?? "default")
+                    .font(.system(size: 25, weight: .semibold)).onAppear()
                 HStack{
                     Spacer()
                 }

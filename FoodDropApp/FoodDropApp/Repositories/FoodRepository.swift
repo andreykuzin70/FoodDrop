@@ -14,12 +14,12 @@ class FoodRepository: ObservableObject {
     @Published var foods = [Food_post]()
     
     init() {
-        loadData()
+        loadFood()
     }
     
-    func loadData() {
+    func loadFood() {
         db.collection("foods").addSnapshotListener { (querySnapshot, error) in
-            if let querySnapshot = querySnapshot {
+             if let querySnapshot = querySnapshot {
                 self.foods = querySnapshot.documents.compactMap { document in
                     do {
                         let _ = try document.data(as: Food_post.self)
@@ -32,6 +32,8 @@ class FoodRepository: ObservableObject {
         }
         print("data loaded")
     }
+    
+    
     
     func addFood(_ food: Food_post) -> Bool {
         do {
