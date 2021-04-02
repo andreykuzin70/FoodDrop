@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NavMenuView: View {
+    
+    
     @State private var isShowing = false
     
     @Binding var goToCreateAccount: Bool
@@ -29,10 +31,9 @@ struct NavMenuView: View {
                             isShowing.toggle()
                         }
                     }, label: {Image(systemName: "list.bullet").foregroundColor(.black)}))
-//                    .navigationTitle("Home")
-                
-                
             }
+            .navigationTitle("Food Drop")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
@@ -42,3 +43,6 @@ struct NavMenuView_Previews: PreviewProvider {
         NavMenuView(goToCreateAccount: .constant(true), goToLogIn: .constant(true), goToNavMenu: .constant(false))
     }
 }
+
+
+
