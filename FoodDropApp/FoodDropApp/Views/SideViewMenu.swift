@@ -36,6 +36,16 @@ struct SideViewMenu: View {
                     label: {
                         SideMenuOptionView(viewModel: SideMenuOptionVM.LogOut)
                     })
+                NavigationLink(
+                    destination: ClaimFoodView(),
+                    label: {
+                        SideMenuOptionView(viewModel: SideMenuOptionVM.FoodClaimed)
+                    })
+                NavigationLink(
+                    destination: ClaimFoodView(),
+                    label: {
+                        SideMenuOptionView(viewModel: SideMenuOptionVM.FoodPosted)
+                    })
                 Spacer()
             }
         }.navigationBarHidden(true)

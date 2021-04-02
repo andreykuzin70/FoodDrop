@@ -19,7 +19,7 @@ struct NavMenuView: View {
         
         NavigationView{
             ZStack{
-                if isShowing{
+                if isShowing {
                     SideViewMenu(show: $isShowing, goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu)
                 }
                 ClaimFoodView()
