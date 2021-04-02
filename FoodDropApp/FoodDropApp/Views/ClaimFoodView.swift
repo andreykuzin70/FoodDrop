@@ -14,28 +14,51 @@ var testFoods = [
 
 struct ClaimFoodView: View {
     
+    
+    init() {
+        // this is not the same as manipulating the proxy directly
+        let appearance = UINavigationBarAppearance()
+        
+        // this overrides everything you have set up earlier.
+        appearance.configureWithTransparentBackground()
+        
+
+        // this only applies to small titles
+        appearance.titleTextAttributes = [
+            .font : UIFont.systemFont(ofSize: 25, weight: UIFont.Weight(rawValue: 150)),
+            NSAttributedString.Key.foregroundColor : UIColor.black
+        ]
+        
+        appearance.backgroundColor = UIColor.init(Color.green)
+        
+        //In the following two lines you make sure that you apply the style for good
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        
+        // This property is not present on the UINavigationBarAppearance
+        // object for some reason and you have to leave it til the end
+        UINavigationBar.appearance().tintColor = .blue
+    }
+    
+    
     @ObservedObject private var claimFoodVM = ClaimFoodVM()
     
     var body: some View {
         ZStack {
             BackgroundView()
             VStack {
-                NavigationView{
-                    List(claimFoodVM.foods) { food in
-                        HStack {
-                            NavigationLink(
-                                destination: ClaimFoodSheetView(food: food),
-                                label: {
-                                    Text(food.foodType)
-                                    Spacer()
-                                    Text("Condition").foregroundColor(.gray)
-                                })
-                        }
-                        
+                List(claimFoodVM.foods) { food in
+                    HStack {
+                        NavigationLink(
+                            destination: ClaimFoodSheetView(food: food),
+                            label: {
+                                Text(food.foodType)
+                                Spacer()
+                                Text("Condition").foregroundColor(.gray)
+                            })
                     }
+                    
                 }
-                .navigationTitle("Food Drop")
-                .navigationBarTitleDisplayMode(.inline)
                 .onAppear() {
                     self.claimFoodVM.fetchFoods()
                 }
@@ -84,3 +107,4 @@ struct ClaimFoodSheetView: View {
         }
     }
 }
+
