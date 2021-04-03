@@ -26,11 +26,11 @@ enum SideMenuOptionVM: Int, CaseIterable{
     
     var imageName: String{
         switch self {
-        case .CreatePost: return "bookmark"
+        case .CreatePost: return "plus.message"
         case .ClaimMeal: return "cart.badge.plus"
         case .LogOut: return "arrow.left.square"
-        case .FoodPosted: return "tuningfork"
-        case .FoodClaimed: return "rectangle.and.pencil.and.ellipsis"
+        case .FoodPosted: return "applescript.fill"//square.and.arrow.up
+        case .FoodClaimed: return "bookmark.fill" //rectangle.and.pencil.and.ellipsis
         }
     }
 

@@ -53,11 +53,8 @@ struct ClaimFoodView: View {
                             destination: ClaimFoodSheetView(food: food),
                             label: {
                                 Text(food.foodType)
-                                Spacer()
-                                Text("Condition").foregroundColor(.gray)
                             })
                     }
-                    
                 }
                 .onAppear() {
                     self.claimFoodVM.fetchFoods()
@@ -70,27 +67,65 @@ struct ClaimFoodView: View {
 
 struct ClaimFoodView_Previews: PreviewProvider {
     static var previews: some View {
-        ClaimFoodView()
+        ClaimFoodSheetView(food: testFoods[0])
     }
 }
 
 struct ClaimFoodSheetView: View {
+    
+//    func dateFormatter(notFormattedDate: String) -> String? {
+//        let df = DateFormatter()
+//        print("The non formatted date is : \(notFormattedDate) ")
+//        df.dateStyle = .short
+//        df.timeStyle = .short
+//        df.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+//
+//
+//        let a = df.date(from: notFormattedDate)
+//        let b = df.string(from: a!)
+//
+//        return b
+//    }
     
     @Environment(\.presentationMode) var presentationMode
     
     @State var food: Food_post
     
     var body: some View {
+ 
         ZStack {
             BackgroundView()
             
             VStack {
-          
-                VStack{
-                    Text("Food Type: \(food.foodType)").padding()
-                    Text("Pick up address: \(food.pickupAddress)").padding()
-                    Text("Made on: \(food.madeOnDate)").padding()
-                    Text("Pick up by: \(food.pickupDate)").padding()
+                HeaderView()
+                
+                Spacer()
+                ZStack{
+                    Rectangle()
+//                        .fill(LinearGradient(gradient: Gradient(colors: [.white, .white, .white]), startPoint: .top, endPoint: .bottom))
+                        .frame(minWidth: 100, idealWidth: 200, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: 80, idealHeight: 150, maxHeight: 500, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .mask(LinearGradient(gradient: Gradient(colors: [Color.clear, Color.gray]), startPoint: .top, endPoint: .bottom))
+                        .mask(LinearGradient(gradient: Gradient(colors: [Color.clear, Color.gray]), startPoint: .bottom, endPoint: .top))
+                     
+                    VStack{
+                        Text("Food Type: \(food.foodType)")
+                            .padding()
+                            .font(.system(size: 35, weight: .semibold))
+                        
+                        Text("Pick up address: \(food.pickupAddress)")
+                            .padding()
+                            .font(.system(size: 20, weight: .semibold))
+                        
+    //                    Text(dateFormatter(notFormattedDate:food.madeOnDate) ?? "No date" ).padding()
+                        Text("Made on: \(food.madeOnDate)")
+                            .padding()
+                            .font(.system(size: 15, weight: .semibold))
+                        
+                        Text("Pick up by: \(food.pickupDate)")
+                            .padding()
+                            .font(.system(size: 15, weight: .semibold))
+                        
+                    }
                 }
                 Spacer()
                 Button("Claim Food") {

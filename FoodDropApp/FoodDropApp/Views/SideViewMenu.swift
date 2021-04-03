@@ -31,11 +31,7 @@ struct SideViewMenu: View {
                     label: {
                         SideMenuOptionView(viewModel: SideMenuOptionVM.ClaimMeal)
                     })
-                NavigationLink(
-                    destination: LogOutView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu).environmentObject(LogInVM()),
-                    label: {
-                        SideMenuOptionView(viewModel: SideMenuOptionVM.LogOut)
-                    })
+              
                 NavigationLink(
                     destination: ClaimFoodView(),
                     label: {
@@ -45,6 +41,11 @@ struct SideViewMenu: View {
                     destination: ClaimFoodView(),
                     label: {
                         SideMenuOptionView(viewModel: SideMenuOptionVM.FoodPosted)
+                    })
+                NavigationLink(
+                    destination: LogOutView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu).environmentObject(LogInVM()),
+                    label: {
+                        SideMenuOptionView(viewModel: SideMenuOptionVM.LogOut)
                     })
                 Spacer()
             }
@@ -85,7 +86,7 @@ struct SideMenuHeaderView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 16)
                 
-                Text(LogInVM.userName ?? "default")
+                Text("Hi, \(LogInVM.userName ?? "default")")
                     .font(.system(size: 25, weight: .semibold)).onAppear()
                 HStack{
                     Spacer()
