@@ -75,7 +75,7 @@ struct PostFoodFormView: View {
                 .padding(.horizontal)
             
             
-            DatePicker("Pickup By", selection: $pickUpDate, in: Date()...)
+            DatePicker("Pickup By", selection: $pickUpDate)
                 .frame(height: 20)
                 .padding()
                 .background(Color.white)

@@ -15,6 +15,8 @@ var testFoods = [
 struct ClaimFoodView: View {
     
     
+    @StateObject private var claimFoodVM = ClaimFoodVM()
+    
     init() {
         // this is not the same as manipulating the proxy directly
         let appearance = UINavigationBarAppearance()
@@ -38,16 +40,17 @@ struct ClaimFoodView: View {
         // This property is not present on the UINavigationBarAppearance
         // object for some reason and you have to leave it til the end
         UINavigationBar.appearance().tintColor = .blue
+        
+        // initialize any other instance variable
+//        claimFoodVM = claimFoodVM
     }
-    
-    
-    @ObservedObject private var claimFoodVM = ClaimFoodVM()
     
     var body: some View {
         ZStack {
             BackgroundView()
             VStack {
                 List(claimFoodVM.foods) { food in
+//                List(testFoods) { food in
                     HStack {
                         NavigationLink(
                             destination: ClaimFoodSheetView(food: food),
@@ -67,7 +70,8 @@ struct ClaimFoodView: View {
 
 struct ClaimFoodView_Previews: PreviewProvider {
     static var previews: some View {
-        ClaimFoodSheetView(food: testFoods[0])
+//        ClaimFoodSheetView(food: testFoods[0])
+        ClaimFoodView()
     }
 }
 

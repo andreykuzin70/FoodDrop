@@ -22,18 +22,23 @@ struct NavMenuView: View {
         NavigationView{
             ZStack{
                 if isShowing {
-                    SideViewMenu(show: $isShowing, goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu)
+                    SideViewMenu(isShowing: $isShowing, goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu)
                 }
-                ClaimFoodView()
+                VStack {
+                    ClaimFoodView()
+                }
                     .offset(x: isShowing ? 300 : 0, y: isShowing ? 100 : 0)
-                    .navigationBarItems(leading: Button(action: {
-                        withAnimation(.spring()){
-                            isShowing.toggle()
-                        }
-                    }, label: {Image(systemName: "list.bullet").foregroundColor(.black)}))
+                    .navigationBarItems(
+                        leading:
+                            Button(
+                                action: {
+                                    withAnimation(.spring()){ isShowing.toggle() }
+                                },
+                                label: { Image(systemName: "list.bullet").foregroundColor(.black)}
+                            )
+                    )
             }
-            .navigationTitle("Food Drop")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("Food Drop", displayMode: .inline)
         }
     }
 }

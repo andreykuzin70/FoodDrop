@@ -44,8 +44,8 @@ struct SignInView_Previews: PreviewProvider {
 }
 
 struct LogInFormView: View {
-    @State var email: String = ""
-    @State var password: String = ""
+    @State var email: String = "john@gmail.com"
+    @State var password: String = "123456"
     @Binding var goToCreateAccount: Bool
     @Binding var goToLogIn: Bool
     @Binding var goToNavMenu: Bool
@@ -93,32 +93,39 @@ struct LogInFormView: View {
                 .cornerRadius(5.0)
                 .padding(.bottom, 20)
                 .frame(width: 300)
-            Button(action: { self.logIn()
-            }, label: {
-                Text("LOGIN")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(width: 200)
-                    .background(Color.blue)
-                    .cornerRadius(15.0)
-            }).alert(isPresented: $showAlert) {
+            Button(
+                action: {
+                    self.logIn()
+                },
+                label: {
+                    Text("LOGIN")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 200)
+                        .background(Color.blue)
+                        .cornerRadius(15.0)
+                }
+            ).alert(isPresented: $showAlert) {
                 Alert(title: Text("Log in Error"), message: Text("Account not found or password/username not mactched "), dismissButton: .default(Text("OK")))
             }
             
             Divider().frame(width:200)
-            Button(action: {
-                self.goToCreateAccount = true
-                self.goToLogIn = false
-            }, label: {
-                Text("Create Account")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(width: 200)
-                    .background(Color.red)
-                    .cornerRadius(15.0)
-            })
+            Button(
+                action: {
+                    self.goToCreateAccount = true
+                    self.goToLogIn = false
+                },
+                label: {
+                    Text("Create Account")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 200)
+                        .background(Color.red)
+                        .cornerRadius(15.0)
+                }
+            )
         }.onAppear(perform: getUser)
     }
 }

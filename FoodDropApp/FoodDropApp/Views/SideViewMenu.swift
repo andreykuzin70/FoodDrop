@@ -9,66 +9,68 @@ import SwiftUI
 import Firebase
 
 struct SideViewMenu: View {
-    @Binding var show: Bool
+    @Binding var isShowing: Bool
     
     @Binding var goToCreateAccount: Bool
     @Binding var goToLogIn: Bool
     @Binding var goToNavMenu: Bool
     
     var body: some View {
-        ZStack{
-            VStack{
-                SideMenuHeaderView(home: $show)
-                    .frame(height: 180)
-                
-                NavigationLink(
-                    destination: PostFoodView(),
-                    label: {
-                        SideMenuOptionView(viewModel: SideMenuOptionVM.CreatePost)
-                    })
-                NavigationLink(
-                    destination: ClaimFoodView(),
-                    label: {
-                        SideMenuOptionView(viewModel: SideMenuOptionVM.ClaimMeal)
-                    })
-              
-                NavigationLink(
-                    destination: ComingSoonView(),
-                    label: {
-                        SideMenuOptionView(viewModel: SideMenuOptionVM.FoodClaimed)
-                    })
-                NavigationLink(
-                    destination: ComingSoonView(),
-                    label: {
-                        SideMenuOptionView(viewModel: SideMenuOptionVM.FoodPosted)
-                    })
-                NavigationLink(
-                    destination: LogOutView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu).environmentObject(LogInVM()),
-                    label: {
-                        SideMenuOptionView(viewModel: SideMenuOptionVM.LogOut)
-                    })
-                Spacer()
-            }
-        }.navigationBarHidden(true)
+        VStack{
+            SideMenuHeaderView(isShowing: $isShowing)
+                .frame(height: 180)
+            
+            NavigationLink(
+                destination: PostFoodView(),
+                label: {
+                    SideMenuOptionView(viewModel: SideMenuOptionVM.CreatePost)
+                })
+            
+            NavigationLink(
+                destination: ClaimFoodView(),
+                label: {
+                    SideMenuOptionView(viewModel: SideMenuOptionVM.ClaimMeal)
+                })
+          
+            NavigationLink(
+                destination: ComingSoonView(),
+                label: {
+                    SideMenuOptionView(viewModel: SideMenuOptionVM.FoodClaimed)
+                })
+            
+            NavigationLink(
+                destination: ComingSoonView(),
+                label: {
+                    SideMenuOptionView(viewModel: SideMenuOptionVM.FoodPosted)
+                })
+            
+            NavigationLink(
+                destination: LogOutView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu).environmentObject(LogInVM()),
+                label: {
+                    SideMenuOptionView(viewModel: SideMenuOptionVM.LogOut)
+                })
+            
+            Spacer()
+        }
+        .navigationBarHidden(true)
     }
 }
 
 struct SideViewMenu_Previews: PreviewProvider {
     static var previews: some View {
-        SideViewMenu(show: .constant(true), goToCreateAccount: .constant(true), goToLogIn: .constant(true), goToNavMenu: .constant(false))
+        SideViewMenu(isShowing: .constant(true), goToCreateAccount: .constant(true), goToLogIn: .constant(true), goToNavMenu: .constant(false))
     }
 }
 
 struct SideMenuHeaderView: View {
-    @Binding var home: Bool
+    @Binding var isShowing: Bool
     var userRepository = UserRepository()
-    //static var user:User?
     
     var body: some View {
         ZStack(alignment: .topTrailing){
             Button(action: {
-                withAnimation(.spring()){
-                    home.toggle()}}
+                    withAnimation(.spring()){ isShowing.toggle() }
+                }
                 , label: {
                 Image(systemName: "xmark")
                     .frame(width: 32, height: 32)
