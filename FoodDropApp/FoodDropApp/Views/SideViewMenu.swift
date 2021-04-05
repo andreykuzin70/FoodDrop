@@ -33,12 +33,12 @@ struct SideViewMenu: View {
                     })
               
                 NavigationLink(
-                    destination: ClaimFoodView(),
+                    destination: ComingSoonView(),
                     label: {
                         SideMenuOptionView(viewModel: SideMenuOptionVM.FoodClaimed)
                     })
                 NavigationLink(
-                    destination: ClaimFoodView(),
+                    destination: ComingSoonView(),
                     label: {
                         SideMenuOptionView(viewModel: SideMenuOptionVM.FoodPosted)
                     })

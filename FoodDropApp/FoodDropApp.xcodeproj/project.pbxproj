@@ -18,6 +18,7 @@
 		0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144472601CFFC00B73C76 /* CreateAccountView.swift */; };
 		0D71444B2601DFB600B73C76 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D71444A2601DFB600B73C76 /* HeaderView.swift */; };
 		0DAE43042611AF5C00879720 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE43032611AF5C00879720 /* UserRepository.swift */; };
+		0DE1D2E5261B97830052755C /* ComingSoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE1D2E4261B97830052755C /* ComingSoonView.swift */; };
 		0DE84D2C2613BBD90060CAEF /* FoodRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE84D2B2613BBD90060CAEF /* FoodRepository.swift */; };
 		0DFF49692611A0E100FCBA03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DFF49682611A0E100FCBA03 /* GoogleService-Info.plist */; };
 		535D26422601C01A00F8E22A /* LogInVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26412601C01900F8E22A /* LogInVM.swift */; };
@@ -45,6 +46,7 @@
 		0D7144472601CFFC00B73C76 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		0D71444A2601DFB600B73C76 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		0DAE43032611AF5C00879720 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		0DE1D2E4261B97830052755C /* ComingSoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonView.swift; sourceTree = "<group>"; };
 		0DE84D2B2613BBD90060CAEF /* FoodRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRepository.swift; sourceTree = "<group>"; };
 		0DFF49682611A0E100FCBA03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22BC8AAD79849B2C6B680FDD /* Pods_FoodDropApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodDropApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,7 @@
 				0D3D44692616303600295673 /* NavMenuView.swift */,
 				0D3D446C2616308B00295673 /* SideViewMenu.swift */,
 				0D3D446F26163E0E00295673 /* LogOutView.swift */,
+				0DE1D2E4261B97830052755C /* ComingSoonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				0D3D446726162FA400295673 /* ClaimFoodView.swift in Sources */,
 				D82F22A226025A22003BC3F6 /* PostFoodView.swift in Sources */,
 				0D3D445E26162E6500295673 /* SideMenuOptionVM.swift in Sources */,
+				0DE1D2E5261B97830052755C /* ComingSoonView.swift in Sources */,
 				0D3D446D2616308B00295673 /* SideViewMenu.swift in Sources */,
 				0D3D446A2616303600295673 /* NavMenuView.swift in Sources */,
 				535D26422601C01A00F8E22A /* LogInVM.swift in Sources */,
