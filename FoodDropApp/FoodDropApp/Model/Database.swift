@@ -33,5 +33,7 @@ public struct Food_post: Codable, Identifiable {
     var pickupAddress: String
     var madeOnDate: String
     var pickupDate: String
+    var isClaimed: Bool
+    var claimerId: String?
     //var discription: String
 }

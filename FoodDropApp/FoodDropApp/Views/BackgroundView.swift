@@ -12,3 +12,9 @@ struct BackgroundView: View {
             .ignoresSafeArea()
     }
 }
+
+struct BackgroundView_Previews: PreviewProvider {
+    static var previews: some View {
+        BackgroundView()
+    }
+}

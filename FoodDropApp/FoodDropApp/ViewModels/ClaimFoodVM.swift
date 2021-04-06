@@ -16,7 +16,7 @@ public class ClaimFoodVM: ObservableObject {
     private var db = Firestore.firestore()
     
     func fetchFoods() {
-        db.collection("foods").addSnapshotListener{ (querySnapshot, error) in
+        db.collection("foods").whereField("isClaimed", isEqualTo: false).addSnapshotListener{ (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return

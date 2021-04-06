@@ -38,7 +38,7 @@ struct NavMenuView: View {
                             )
                     )
             }
-            .navigationBarTitle("Food Drop", displayMode: .inline)
+            .navigationBarTitle("Available Foods", displayMode: .inline)
         }
     }
 }

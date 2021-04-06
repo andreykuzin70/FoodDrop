@@ -14,7 +14,7 @@ struct PostFoodView: View {
             BackgroundView()
             
             VStack {
-                HeaderView()
+//                HeaderView()
                 
                 Spacer()
                 

@@ -8,8 +8,8 @@
 import SwiftUI
 
 var testFoods = [
-    Food_post(id: "1", ownerId: "Mike", foodType: "Donut", pickupAddress: "123 F St", madeOnDate: "01/12/21", pickupDate: "01/13/21"),
-    Food_post(id: "2", ownerId: "John", foodType: "Pizza", pickupAddress: "334 G St", madeOnDate: "01/13/21", pickupDate: "01/15/21")
+    Food_post(id: "1", ownerId: "Mike", foodType: "Donut", pickupAddress: "123 F St", madeOnDate: "01/12/21", pickupDate: "01/13/21", isClaimed: false),
+    Food_post(id: "2", ownerId: "John", foodType: "Pizza", pickupAddress: "334 G St", madeOnDate: "01/13/21", pickupDate: "01/15/21", isClaimed: false)
 ]
 
 struct ClaimFoodView: View {
@@ -27,7 +27,7 @@ struct ClaimFoodView: View {
 
         // this only applies to small titles
         appearance.titleTextAttributes = [
-            .font : UIFont.systemFont(ofSize: 25, weight: UIFont.Weight(rawValue: 150)),
+            .font : UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(rawValue: 50)),
             NSAttributedString.Key.foregroundColor : UIColor.black
         ]
         
@@ -41,27 +41,34 @@ struct ClaimFoodView: View {
         // object for some reason and you have to leave it til the end
         UINavigationBar.appearance().tintColor = .blue
         
-        // initialize any other instance variable
-//        claimFoodVM = claimFoodVM
     }
+    
+    @State var showSheetView: Bool = false
     
     var body: some View {
         ZStack {
-            BackgroundView()
             VStack {
-                List(claimFoodVM.foods) { food in
-//                List(testFoods) { food in
-                    HStack {
-                        NavigationLink(
-                            destination: ClaimFoodSheetView(food: food),
-                            label: {
-                                Text(food.foodType)
+                
+                List() {
+                    ForEach (claimFoodVM.foods) { food in
+//                    ForEach (testFoods) { food in
+                        HStack {
+                            Image("food-icon")
+                                .renderingMode(.original)
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            Text(food.foodType).onTapGesture {
+                                showSheetView.toggle()
+                            }.font(.title3).sheet(isPresented: $showSheetView, content: {
+                                ClaimFoodSheetView(food: food, showSheetView: $showSheetView)
                             })
-                    }
+                        }
+                    }.listRowBackground(Color.clear)
                 }
                 .onAppear() {
                     self.claimFoodVM.fetchFoods()
                 }
+                Spacer()
             }
             
         }
@@ -70,79 +77,68 @@ struct ClaimFoodView: View {
 
 struct ClaimFoodView_Previews: PreviewProvider {
     static var previews: some View {
-//        ClaimFoodSheetView(food: testFoods[0])
         ClaimFoodView()
+        ClaimFoodSheetView(food: testFoods[0], showSheetView: .constant(true))
     }
 }
 
 struct ClaimFoodSheetView: View {
     
-//    func dateFormatter(notFormattedDate: String) -> String? {
-//        let df = DateFormatter()
-//        print("The non formatted date is : \(notFormattedDate) ")
-//        df.dateStyle = .short
-//        df.timeStyle = .short
-//        df.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-//
-//
-//        let a = df.date(from: notFormattedDate)
-//        let b = df.string(from: a!)
-//
-//        return b
-//    }
-    
     @Environment(\.presentationMode) var presentationMode
     
     @State var food: Food_post
+    @Binding var showSheetView: Bool
     
     var body: some View {
- 
-        ZStack {
-            BackgroundView()
-            
-            VStack {
-                HeaderView()
+        NavigationView {
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [.white, .white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .ignoresSafeArea()
                 
-                Spacer()
-                ZStack{
-                    Rectangle()
-//                        .fill(LinearGradient(gradient: Gradient(colors: [.white, .white, .white]), startPoint: .top, endPoint: .bottom))
-                        .frame(minWidth: 100, idealWidth: 200, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: 80, idealHeight: 150, maxHeight: 500, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .mask(LinearGradient(gradient: Gradient(colors: [Color.clear, Color.gray]), startPoint: .top, endPoint: .bottom))
-                        .mask(LinearGradient(gradient: Gradient(colors: [Color.clear, Color.gray]), startPoint: .bottom, endPoint: .top))
-                     
-                    VStack{
-                        Text("Food Type: \(food.foodType)")
-                            .padding()
-                            .font(.system(size: 35, weight: .semibold))
-                        
-                        Text("Pick up address: \(food.pickupAddress)")
-                            .padding()
-                            .font(.system(size: 20, weight: .semibold))
-                        
-    //                    Text(dateFormatter(notFormattedDate:food.madeOnDate) ?? "No date" ).padding()
-                        Text("Made on: \(food.madeOnDate)")
-                            .padding()
-                            .font(.system(size: 15, weight: .semibold))
-                        
-                        Text("Pick up by: \(food.pickupDate)")
-                            .padding()
-                            .font(.system(size: 15, weight: .semibold))
-                        
+                VStack {
+                    
+                    Spacer()
+                    ZStack {
+                         
+                        VStack{
+                            Text("Food Type: \(food.foodType)")
+                                .padding()
+                                .font(.system(size: 35, weight: .semibold))
+                            
+                            Text("Pick up address: \(food.pickupAddress)")
+                                .padding()
+                                .font(.system(size: 20, weight: .semibold))
+                            
+        //                    Text(dateFormatter(notFormattedDate:food.madeOnDate) ?? "No date" ).padding()
+                            Text("Made on: \(food.madeOnDate)")
+                                .padding()
+                                .font(.system(size: 15, weight: .semibold))
+                            
+                            Text("Pick up by: \(food.pickupDate)")
+                                .padding()
+                                .font(.system(size: 15, weight: .semibold))
+                            
+                        }
                     }
-                }
-                Spacer()
-                Button("Claim Food") {
-                    presentationMode.wrappedValue.dismiss()
-                }
-                .padding()
-                .foregroundColor(.white)
-                .background(Color.red)
-                .cornerRadius(10)
-                .font(.system(size: 30, weight: .semibold))
-                .padding()
+                    Spacer()
+                    Button("Claim Food") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.red)
+                    .cornerRadius(10)
+                    .font(.system(size: 30, weight: .semibold))
+                    .padding()
 
+                }
             }
+            .navigationBarTitle(Text("Food Details"), displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+                self.showSheetView = false
+            }) {
+                Text("Done").bold()
+            })
         }
     }
 }
