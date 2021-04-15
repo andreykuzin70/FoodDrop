@@ -96,23 +96,34 @@ struct PostFoodFormView: View {
             .padding(.horizontal)
             
             
+            
             Spacer()
             
             Button(action: {
-
-                let postFoodVM = PostFoodVM()
-                if postFoodVM.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate, location: location){
+                CLGeocoder().geocodeAddressString(pickUpAdd){a, b in
+                    if let placemarks = a {
+                        print("got placemarks")
+                        if let loc = placemarks[0].location{
+                            location = loc.coordinate
+                        }
+                    }
+                    print("\(location.latitude) \(location.longitude)")
                     
-                    // successfully added
-                    print("food successfully posted")
-                    // Add a successfully posted view here 
-                    // go back to default input
-                    foodType = ""
-                    pickUpAdd = ""
-                    pickUpDate = Date()
-                    madeOnDate = Date()
-                } else {
-                    showAlert = true
+                    
+                    let postFoodVM = PostFoodVM()
+                    if postFoodVM.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate, location: location){
+                        
+                        // successfully added
+                        print("food successfully posted")
+                        // Add a successfully posted view here
+                        // go back to default input
+                        foodType = ""
+                        pickUpAdd = ""
+                        pickUpDate = Date()
+                        madeOnDate = Date()
+                    } else {
+                        showAlert = true
+                    }
                 }
             }, label: {
                 Text("Submit Food")

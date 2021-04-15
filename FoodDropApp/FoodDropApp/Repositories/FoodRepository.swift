@@ -38,6 +38,7 @@ class FoodRepository: ObservableObject {
     func addFood(_ food: Food_post) -> Bool {
         do {
             let _ = try db.collection("foods").addDocument(from: food)
+            print("Food: \(food)")
             return true
         }
         catch {

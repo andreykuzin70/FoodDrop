@@ -115,11 +115,10 @@ struct ClaimFoodSheetView: View {
                             
                             VStack{
 //                                Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
-                                Map(coordinateRegion: $region, showUserLocation annotationItems: [food]){ place in
+                                Map(coordinateRegion: $region, annotationItems: [food]){ place in
                                     MapPin(coordinate: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
                                     
                                 }
-                                Map(coordinateRegion: <#T##Binding<MKCoordinateRegion>#>, interactionModes: <#T##MapInteractionModes#>, showsUserLocation: <#T##Bool#>, userTrackingMode: <#T##Binding<MapUserTrackingMode>?#>)
                             }
                             .frame(width: 400, height: 300)
                             
