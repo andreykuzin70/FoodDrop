@@ -26,7 +26,7 @@ public struct User_info: Codable, Identifiable {
 }
 
 
-public struct Food_post: Codable, Identifiable {
+public struct Food_post: Codable, Identifiable, Hashable {
     @DocumentID public var id: String?
     var ownerId: String?
     var foodType: String

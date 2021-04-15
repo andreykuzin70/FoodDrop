@@ -46,24 +46,28 @@ struct ClaimFoodView: View {
     }
     
     @State var showSheetView: Bool = false
+    @State var selectedFoodIndex: Int = 0
+    //@State var selected: Food_post = Food_post(id: "", ownerId: "", foodType: "", pickupAddress: "", madeOnDate: "", pickupDate: "", isClaimed: false, claimerId: "", latitude: "0", longitude: "0")
     
     var body: some View {
         ZStack {
             VStack {
                 
                 List() {
-                    ForEach (claimFoodVM.foods) { food in
+                    ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
                         //                    ForEach (testFoods) { food in
                         HStack {
                             Image("food-icon")
                                 .renderingMode(.original)
                                 .resizable()
                                 .frame(width: 40, height: 40)
-                            Text(food.foodType).onTapGesture {
-                                showSheetView.toggle()
-                            }.font(.title3).sheet(isPresented: $showSheetView, content: {
-                                ClaimFoodSheetView(food: food, showSheetView: $showSheetView)
-                            })
+                            Text(claimFoodVM.foods[i].foodType)
+                                .onTapGesture {
+                                    selectedFoodIndex = i
+                                    showSheetView.toggle()
+                                }.font(.title3).sheet(isPresented: $showSheetView, content: {
+                                    ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
+                                })
                         }
                     }.listRowBackground(Color.clear)
                 }
