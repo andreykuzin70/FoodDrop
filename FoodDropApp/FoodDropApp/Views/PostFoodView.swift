@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct PostFoodView: View {
     
@@ -46,6 +47,7 @@ struct PostFoodFormView: View {
     @State var madeOnDate: Date = Date()
     @State var pickedFoodCondition = "Fresh"
     var foodCondition = ["Fresh","About to Expire","Expired"]
+    @State var location: CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 0, longitude: 0)
     
     @State var showAlert = false
     
@@ -94,12 +96,12 @@ struct PostFoodFormView: View {
             .padding(.horizontal)
             
             
-            
             Spacer()
             
             Button(action: {
+
                 let postFoodVM = PostFoodVM()
-                if postFoodVM.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate){
+                if postFoodVM.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate, location: location){
                     
                     // successfully added
                     print("food successfully posted")

@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import MapKit
+import CoreLocation
 
-var testFoods = [
-    Food_post(id: "1", ownerId: "Mike", foodType: "Donut", pickupAddress: "123 F St", madeOnDate: "01/12/21", pickupDate: "01/13/21", isClaimed: false),
-    Food_post(id: "2", ownerId: "John", foodType: "Pizza", pickupAddress: "334 G St", madeOnDate: "01/13/21", pickupDate: "01/15/21", isClaimed: false)
-]
+//var testFoods = [
+//    Food_post(id: "1", ownerId: "Mike", foodType: "Donut", pickupAddress: "123 F St", madeOnDate: "01/12/21", pickupDate: "01/13/21", isClaimed: false),
+//    Food_post(id: "2", ownerId: "John", foodType: "Pizza", pickupAddress: "334 G St", madeOnDate: "01/13/21", pickupDate: "01/15/21", isClaimed: false)
+//]
 
 struct ClaimFoodView: View {
     
@@ -78,7 +80,7 @@ struct ClaimFoodView: View {
 struct ClaimFoodView_Previews: PreviewProvider {
     static var previews: some View {
         ClaimFoodView()
-        ClaimFoodSheetView(food: testFoods[0], showSheetView: .constant(true))
+        //ClaimFoodSheetView(food: testFoods[0], showSheetView: .constant(true))
     }
 }
 
@@ -87,6 +89,8 @@ struct ClaimFoodSheetView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var food: Food_post
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+
     @Binding var showSheetView: Bool
     
     var body: some View {
@@ -108,6 +112,16 @@ struct ClaimFoodSheetView: View {
                             Text("Pick up address: \(food.pickupAddress)")
                                 .padding()
                                 .font(.system(size: 20, weight: .semibold))
+                            
+                            VStack{
+//                                Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
+                                Map(coordinateRegion: $region, showUserLocation annotationItems: [food]){ place in
+                                    MapPin(coordinate: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
+                                    
+                                }
+                                Map(coordinateRegion: <#T##Binding<MKCoordinateRegion>#>, interactionModes: <#T##MapInteractionModes#>, showsUserLocation: <#T##Bool#>, userTrackingMode: <#T##Binding<MapUserTrackingMode>?#>)
+                            }
+                            .frame(width: 400, height: 300)
                             
         //                    Text(dateFormatter(notFormattedDate:food.madeOnDate) ?? "No date" ).padding()
                             Text("Made on: \(food.madeOnDate)")
@@ -141,5 +155,10 @@ struct ClaimFoodSheetView: View {
             })
         }
     }
+}
+
+struct Thing: Identifiable{
+    var id = UUID()
+    var location: CLLocationCoordinate2D
 }
 
