@@ -11,13 +11,30 @@ import CoreLocation
 import Foundation
 
 struct MapView: View {
+    private var food: Food_post
+
+    @State private var userTrackingMode: MapUserTrackingMode = .follow
+    @State var region: MKCoordinateRegion = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 39.0458, longitude: -77.6413),
+        span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
+    )
+
+    init(newFood: Food_post) {
+        food = newFood
+        region.center = CLLocationCoordinate2D(
+            latitude: Double(food.latitude) ?? 39.0458, longitude: Double(food.longitude) ?? -77.6413
+        )
+    }
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Map(coordinateRegion: $region, annotationItems: [food]) { f in
+            MapPin(coordinate: CLLocationCoordinate2D(latitude: Double(f.latitude)!, longitude: Double(f.longitude)!))
+        }
     }
 }
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(newFood: Food_post(id: "1", ownerId: "1", foodType: "Wrap", pickupAddress: "12", madeOnDate: "12", pickupDate: "12", isClaimed: false, latitude: "50.1018", longitude: "14.2632"))
     }
 }

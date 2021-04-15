@@ -95,12 +95,10 @@ struct PostFoodFormView: View {
             .cornerRadius(5.0)
             .padding(.horizontal)
             
-            
-            
             Spacer()
             
             Button(action: {
-                CLGeocoder().geocodeAddressString(pickUpAdd){a, b in
+                CLGeocoder().geocodeAddressString(pickUpAdd) {a, b in
                     if let placemarks = a {
                         print("got placemarks")
                         if let loc = placemarks[0].location{
@@ -108,7 +106,6 @@ struct PostFoodFormView: View {
                         }
                     }
                     print("\(location.latitude) \(location.longitude)")
-                    
                     
                     let postFoodVM = PostFoodVM()
                     if postFoodVM.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate, location: location){

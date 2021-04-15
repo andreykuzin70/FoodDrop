@@ -26,7 +26,7 @@ struct ClaimFoodView: View {
         // this overrides everything you have set up earlier.
         appearance.configureWithTransparentBackground()
         
-
+        
         // this only applies to small titles
         appearance.titleTextAttributes = [
             .font : UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(rawValue: 50)),
@@ -53,7 +53,7 @@ struct ClaimFoodView: View {
                 
                 List() {
                     ForEach (claimFoodVM.foods) { food in
-//                    ForEach (testFoods) { food in
+                        //                    ForEach (testFoods) { food in
                         HStack {
                             Image("food-icon")
                                 .renderingMode(.original)
@@ -89,8 +89,7 @@ struct ClaimFoodSheetView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var food: Food_post
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-
+    
     @Binding var showSheetView: Bool
     
     var body: some View {
@@ -103,7 +102,7 @@ struct ClaimFoodSheetView: View {
                     
                     Spacer()
                     ZStack {
-                         
+                        
                         VStack{
                             Text("Food Type: \(food.foodType)")
                                 .padding()
@@ -113,16 +112,11 @@ struct ClaimFoodSheetView: View {
                                 .padding()
                                 .font(.system(size: 20, weight: .semibold))
                             
-                            VStack{
-//                                Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
-                                Map(coordinateRegion: $region, annotationItems: [food]){ place in
-                                    MapPin(coordinate: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
-                                    
-                                }
+                            VStack {
+                                MapView(newFood: food)
                             }
                             .frame(width: 400, height: 300)
                             
-        //                    Text(dateFormatter(notFormattedDate:food.madeOnDate) ?? "No date" ).padding()
                             Text("Made on: \(food.madeOnDate)")
                                 .padding()
                                 .font(.system(size: 15, weight: .semibold))
@@ -130,7 +124,6 @@ struct ClaimFoodSheetView: View {
                             Text("Pick up by: \(food.pickupDate)")
                                 .padding()
                                 .font(.system(size: 15, weight: .semibold))
-                            
                         }
                     }
                     Spacer()
@@ -143,7 +136,7 @@ struct ClaimFoodSheetView: View {
                     .cornerRadius(10)
                     .font(.system(size: 30, weight: .semibold))
                     .padding()
-
+                    
                 }
             }
             .navigationBarTitle(Text("Food Details"), displayMode: .inline)

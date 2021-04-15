@@ -26,7 +26,7 @@ public class PostFoodVM: ObservableObject {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             userId = user?.uid
             
-            let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : madeOnDate.description, pickupDate: pickup_date.description, isClaimed: false, latitude: location.latitude, longitude: location.longitude)
+            let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : madeOnDate.description, pickupDate: pickup_date.description, isClaimed: false, latitude: String(location.latitude), longitude: String(location.longitude))
             
             print("added Food")
             let _ = self.foodRepository.addFood(newFood)
