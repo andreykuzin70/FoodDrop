@@ -28,7 +28,17 @@ struct MapView: View {
 
     var body: some View {
         Map(coordinateRegion: $region, annotationItems: [food]) { f in
-            MapPin(coordinate: CLLocationCoordinate2D(latitude: Double(f.latitude)!, longitude: Double(f.longitude)!))
+//            MapPin(coordinate: CLLocationCoordinate2D(latitude: Double(f.latitude)!, longitude: Double(f.longitude)!))
+            MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: Double(f.latitude)!, longitude: Double(f.longitude)!), anchorPoint: CGPoint(x: 0.5, y: 0.5)){
+                VStack{
+                Text("\(f.foodType)")
+                    .foregroundColor(.red)
+                    .bold()
+                    Image(systemName: "mappin")
+                }
+                
+            }
+
         }
     }
 }
