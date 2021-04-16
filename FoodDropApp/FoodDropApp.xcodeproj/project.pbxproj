@@ -17,6 +17,7 @@
 		0D7144452601CA5B00B73C76 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144442601CA5B00B73C76 /* BackgroundView.swift */; };
 		0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7144472601CFFC00B73C76 /* CreateAccountView.swift */; };
 		0D71444B2601DFB600B73C76 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D71444A2601DFB600B73C76 /* HeaderView.swift */; };
+		0D9889B626292DEA00AE55C8 /* FoodClaimedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9889B526292DEA00AE55C8 /* FoodClaimedView.swift */; };
 		0DAE43042611AF5C00879720 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE43032611AF5C00879720 /* UserRepository.swift */; };
 		0DE1D2E5261B97830052755C /* ComingSoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE1D2E4261B97830052755C /* ComingSoonView.swift */; };
 		0DE84D2C2613BBD90060CAEF /* FoodRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE84D2B2613BBD90060CAEF /* FoodRepository.swift */; };
@@ -46,6 +47,7 @@
 		0D7144442601CA5B00B73C76 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		0D7144472601CFFC00B73C76 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		0D71444A2601DFB600B73C76 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		0D9889B526292DEA00AE55C8 /* FoodClaimedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodClaimedView.swift; sourceTree = "<group>"; };
 		0DAE43032611AF5C00879720 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		0DE1D2E4261B97830052755C /* ComingSoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonView.swift; sourceTree = "<group>"; };
 		0DE84D2B2613BBD90060CAEF /* FoodRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRepository.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				0D3D446F26163E0E00295673 /* LogOutView.swift */,
 				0DE1D2E4261B97830052755C /* ComingSoonView.swift */,
 				5585BCC226288FEB00CB9DB1 /* MapView.swift */,
+				0D9889B526292DEA00AE55C8 /* FoodClaimedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				55434F3C26050A9800046D3F /* PostConfirmationView.swift in Sources */,
 				535D26482601CF1D00F8E22A /* CreateAccountVM.swift in Sources */,
 				535D26452601C30C00F8E22A /* Database.swift in Sources */,
+				0D9889B626292DEA00AE55C8 /* FoodClaimedView.swift in Sources */,
 				0D3D446126162F0400295673 /* ClaimFoodVM.swift in Sources */,
 				5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */,
 				0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */,

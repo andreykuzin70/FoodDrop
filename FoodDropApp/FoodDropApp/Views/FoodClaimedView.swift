@@ -1,94 +1,76 @@
 //
-//  ClaimFoodView.swift
+//  FoodClaimedView.swift
 //  FoodDropApp
 //
-//  Created by Shahryar shagoshtasbi on 3/31/21.
+//  Created by Natnael Mekonnen on 4/15/21.
 //
 
 import SwiftUI
-import MapKit
-import CoreLocation
 
-//var testFoods = [
-//    Food_post(id: "1", ownerId: "Mike", foodType: "Donut", pickupAddress: "123 F St", madeOnDate: "01/12/21", pickupDate: "01/13/21", isClaimed: false),
-//    Food_post(id: "2", ownerId: "John", foodType: "Pizza", pickupAddress: "334 G St", madeOnDate: "01/13/21", pickupDate: "01/15/21", isClaimed: false)
-//]
-
-struct ClaimFoodView: View {
-    
-    
+struct FoodClaimedView: View {
     @StateObject private var claimFoodVM = ClaimFoodVM()
     
     init() {
-        // this is not the same as manipulating the proxy directly
         let appearance = UINavigationBarAppearance()
         
-        // this overrides everything you have set up earlier.
         appearance.configureWithTransparentBackground()
-        
-        
-        // this only applies to small titles
         appearance.titleTextAttributes = [
             .font : UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(rawValue: 50)),
             NSAttributedString.Key.foregroundColor : UIColor.black
         ]
         
         appearance.backgroundColor = UIColor.init(Color.green)
-        
-        //In the following two lines you make sure that you apply the style for good
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().standardAppearance = appearance
-        
-        // This property is not present on the UINavigationBarAppearance
-        // object for some reason and you have to leave it til the end
         UINavigationBar.appearance().tintColor = .blue
         
     }
     
     @State var showSheetView: Bool = false
     @State var selectedFoodIndex: Int = 0
-    //@State var selected: Food_post = Food_post(id: "", ownerId: "", foodType: "", pickupAddress: "", madeOnDate: "", pickupDate: "", isClaimed: false, claimerId: "", latitude: "0", longitude: "0")
     
     var body: some View {
         ZStack {
             VStack {
                 
+                Text("Foods You Claimed")
+                    .font(.title)
+                    .bold()
+                    .padding(.bottom, 20)
+                
                 List() {
-                    ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
-                        //                    ForEach (testFoods) { food in
+                    ForEach (0..<claimFoodVM.claimedFoods.count, id: \.self) { i in
                         HStack {
                             Image("food-icon")
                                 .renderingMode(.original)
                                 .resizable()
                                 .frame(width: 40, height: 40)
-                            Text(claimFoodVM.foods[i].foodType)
+                            Text(claimFoodVM.claimedFoods[i].foodType)
                                 .onTapGesture {
                                     selectedFoodIndex = i
                                     showSheetView.toggle()
                                 }.font(.title3).sheet(isPresented: $showSheetView, content: {
-                                    ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
+                                    FoodClaimedSheetView(food: claimFoodVM.claimedFoods[selectedFoodIndex], showSheetView: $showSheetView)
                                 })
                         }
                     }.listRowBackground(Color.clear)
                 }
                 .onAppear() {
-                    self.claimFoodVM.fetchFoods()
+                    self.claimFoodVM.getClaimedFoods()
                 }
                 Spacer()
             }
-            
         }
     }
 }
 
-struct ClaimFoodView_Previews: PreviewProvider {
+struct FoodClaimedView_Previews: PreviewProvider {
     static var previews: some View {
-        ClaimFoodView()
-        //ClaimFoodSheetView(food: testFoods[0], showSheetView: .constant(true))
+        FoodClaimedView()
     }
 }
 
-struct ClaimFoodSheetView: View {
+struct FoodClaimedSheetView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -132,23 +114,6 @@ struct ClaimFoodSheetView: View {
                         }
                     }
                     Spacer()
-                    Button("Claim Food") {
-                        let claimFoodVM = ClaimFoodVM()
-                        if claimFoodVM.claimFood(food: food) {
-                            showAlert = true
-                            presentationMode.wrappedValue.dismiss()
-                        }
-                    }
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.red)
-                    .cornerRadius(10)
-                    .font(.system(size: 30, weight: .semibold))
-                    .padding()
-                    .alert(isPresented: $showAlert) {
-                        Alert(title: Text("Food Claimed"), message: Text("Go to your claimed food to see it"), dismissButton: .default(Text("OK")))
-                    }
-                    
                 }
             }
             .navigationBarTitle(Text("Food Details"), displayMode: .inline)

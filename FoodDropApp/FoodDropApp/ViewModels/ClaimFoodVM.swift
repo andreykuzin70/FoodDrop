@@ -14,6 +14,7 @@ public class ClaimFoodVM: ObservableObject {
     
     @Published var foodRepository = FoodRepository()
     @Published var foods = [Food_post]()
+    @Published var claimedFoods = [Food_post]()
     
     private var db = Firestore.firestore()
     
@@ -29,6 +30,24 @@ public class ClaimFoodVM: ObservableObject {
                 return data
             }
         }
+    }
+    
+    func getClaimedFoods() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            
+            self.db.collection("foods").whereField("claimerId", isEqualTo: user?.uid ?? "").addSnapshotListener{ (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+                
+                self.claimedFoods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
+                    let data = try? queryDocumentSnapshot.data(as: Food_post.self)
+                    return data
+                }
+            }
+        }
+        
     }
     
     func claimFood(food: Food_post) -> Bool {
