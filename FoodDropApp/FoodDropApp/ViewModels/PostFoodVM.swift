@@ -12,6 +12,19 @@ import CoreLocation
 
 public class PostFoodVM: ObservableObject {
     
+    
+    
+    let dateFormatter = DateFormatter()
+    
+    init() {
+        createDateFormatter()
+    }
+    
+    func createDateFormatter() {
+        dateFormatter.dateFormat = "MMM d, y, HH:mm"
+    }
+    
+    
     @Published var foodRepository = FoodRepository()
     
     func post_food(food_type: String, pickup_address: String,
@@ -26,7 +39,7 @@ public class PostFoodVM: ObservableObject {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             userId = user?.uid
             
-            let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : madeOnDate.description, pickupDate: pickup_date.description, isClaimed: false, latitude: String(location.latitude), longitude: String(location.longitude))
+            let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : self.dateFormatter.string(from: madeOnDate), pickupDate: self.dateFormatter.string(from: pickup_date), isClaimed: false, latitude: String(location.latitude), longitude: String(location.longitude))
             
             print("added Food")
             let _ = self.foodRepository.addFood(newFood)
