@@ -14,7 +14,7 @@ class FoodRepository: ObservableObject {
     @Published var foods = [Food_post]()
     
     init() {
-        loadFood()
+//        loadFood()
     }
     
     func loadFood() {
