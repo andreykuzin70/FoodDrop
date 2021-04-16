@@ -95,6 +95,7 @@ struct ClaimFoodSheetView: View {
     @State var food: Food_post
     
     @Binding var showSheetView: Bool
+    @State var showAlert: Bool = false
     
     var body: some View {
         NavigationView {
@@ -132,7 +133,12 @@ struct ClaimFoodSheetView: View {
                     }
                     Spacer()
                     Button("Claim Food") {
-                        presentationMode.wrappedValue.dismiss()
+                        let claimFoodVM = ClaimFoodVM()
+                        if claimFoodVM.claimFood(food: food) {
+                            showAlert = false
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        showAlert = true
                     }
                     .padding()
                     .foregroundColor(.white)
@@ -140,6 +146,9 @@ struct ClaimFoodSheetView: View {
                     .cornerRadius(10)
                     .font(.system(size: 30, weight: .semibold))
                     .padding()
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("Unable to Claim"), message: Text("Error "), dismissButton: .default(Text("OK")))
+                    }
                     
                 }
             }
