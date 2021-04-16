@@ -119,8 +119,11 @@ struct ClaimFoodSheetView: View {
                             
                             VStack {
                                 MapView(newFood: food)
+                                    .frame(width: 350, height: 300)
+                                    .cornerRadius(25)
+                                    .shadow(radius: 25)
                             }
-                            .frame(width: 400, height: 300)
+                            
                             
                             Text("Made on: \(food.madeOnDate)")
                                 .padding()
@@ -138,6 +141,7 @@ struct ClaimFoodSheetView: View {
                             showAlert = true
                             presentationMode.wrappedValue.dismiss()
                         }
+                        showSheetView.toggle()
                     }
                     .padding()
                     .foregroundColor(.white)
@@ -148,6 +152,7 @@ struct ClaimFoodSheetView: View {
                     .alert(isPresented: $showAlert) {
                         Alert(title: Text("Food Claimed"), message: Text("Go to your claimed food to see it"), dismissButton: .default(Text("OK")))
                     }
+                    .disabled(!showSheetView)
                     
                 }
             }
