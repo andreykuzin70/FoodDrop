@@ -42,6 +42,9 @@ struct MapView: View {
             }
 
         }
+        .frame(width: 350, height: 300)
+        .cornerRadius(10)
+        .shadow(radius: 25)
     }
 }
 

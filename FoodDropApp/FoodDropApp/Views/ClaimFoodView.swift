@@ -119,9 +119,6 @@ struct ClaimFoodSheetView: View {
                             
                             VStack {
                                 MapView(newFood: food)
-                                    .frame(width: 350, height: 300)
-                                    .cornerRadius(25)
-                                    .shadow(radius: 25)
                             }
                             
                             
