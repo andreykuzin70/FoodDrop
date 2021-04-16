@@ -8,9 +8,11 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseAuth
 
 public class ClaimFoodVM: ObservableObject {
     
+    @Published var foodRepository = FoodRepository()
     @Published var foods = [Food_post]()
     
     private var db = Firestore.firestore()
@@ -24,16 +26,22 @@ public class ClaimFoodVM: ObservableObject {
             
             self.foods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
                 let data = try? queryDocumentSnapshot.data(as: Food_post.self)
-//                print("=====>\(data)")
                 return data
             }
         }
     }
     
-    // This is the function that will return an array, including all the foodposts data from Database
-    func get_food() -> [Food_post]?{
-        return nil;
-//            Database.FoodPosts[id] ?? Database.FoodPosts("Lasagna", "123 Rockville", Date.init(), Date.init(timeIntervalSinceNow: 3600))
+    func claimFood(food: Food_post) -> Bool {
+        var food = food
+        var res = true
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            food.claimerId = user?.uid
+            food.isClaimed = true
+            
+            print("Updated Food")
+            res = self.foodRepository.updateFood(updatedFood: food)
+        }
+        return res
     }
     
 }

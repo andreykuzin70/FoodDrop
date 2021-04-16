@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import MapKit
+import CoreLocation
 
-var testFoods = [
-    Food_post(id: "1", ownerId: "Mike", foodType: "Donut", pickupAddress: "123 F St", madeOnDate: "01/12/21", pickupDate: "01/13/21", isClaimed: false),
-    Food_post(id: "2", ownerId: "John", foodType: "Pizza", pickupAddress: "334 G St", madeOnDate: "01/13/21", pickupDate: "01/15/21", isClaimed: false)
-]
+//var testFoods = [
+//    Food_post(id: "1", ownerId: "Mike", foodType: "Donut", pickupAddress: "123 F St", madeOnDate: "01/12/21", pickupDate: "01/13/21", isClaimed: false),
+//    Food_post(id: "2", ownerId: "John", foodType: "Pizza", pickupAddress: "334 G St", madeOnDate: "01/13/21", pickupDate: "01/15/21", isClaimed: false)
+//]
 
 struct ClaimFoodView: View {
     
@@ -24,7 +26,7 @@ struct ClaimFoodView: View {
         // this overrides everything you have set up earlier.
         appearance.configureWithTransparentBackground()
         
-
+        
         // this only applies to small titles
         appearance.titleTextAttributes = [
             .font : UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(rawValue: 50)),
@@ -44,24 +46,28 @@ struct ClaimFoodView: View {
     }
     
     @State var showSheetView: Bool = false
+    @State var selectedFoodIndex: Int = 0
+    //@State var selected: Food_post = Food_post(id: "", ownerId: "", foodType: "", pickupAddress: "", madeOnDate: "", pickupDate: "", isClaimed: false, claimerId: "", latitude: "0", longitude: "0")
     
     var body: some View {
         ZStack {
             VStack {
                 
                 List() {
-                    ForEach (claimFoodVM.foods) { food in
-//                    ForEach (testFoods) { food in
+                    ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
+                        //                    ForEach (testFoods) { food in
                         HStack {
                             Image("food-icon")
                                 .renderingMode(.original)
                                 .resizable()
                                 .frame(width: 40, height: 40)
-                            Text(food.foodType).onTapGesture {
-                                showSheetView.toggle()
-                            }.font(.title3).sheet(isPresented: $showSheetView, content: {
-                                ClaimFoodSheetView(food: food, showSheetView: $showSheetView)
-                            })
+                            Text(claimFoodVM.foods[i].foodType)
+                                .onTapGesture {
+                                    selectedFoodIndex = i
+                                    showSheetView.toggle()
+                                }.font(.title3).sheet(isPresented: $showSheetView, content: {
+                                    ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
+                                })
                         }
                     }.listRowBackground(Color.clear)
                 }
@@ -78,7 +84,7 @@ struct ClaimFoodView: View {
 struct ClaimFoodView_Previews: PreviewProvider {
     static var previews: some View {
         ClaimFoodView()
-        ClaimFoodSheetView(food: testFoods[0], showSheetView: .constant(true))
+        //ClaimFoodSheetView(food: testFoods[0], showSheetView: .constant(true))
     }
 }
 
@@ -87,7 +93,9 @@ struct ClaimFoodSheetView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var food: Food_post
+    
     @Binding var showSheetView: Bool
+    @State var showAlert: Bool = false
     
     var body: some View {
         NavigationView {
@@ -99,7 +107,7 @@ struct ClaimFoodSheetView: View {
                     
                     Spacer()
                     ZStack {
-                         
+                        
                         VStack{
                             Text("Food Type: \(food.foodType)")
                                 .padding()
@@ -109,7 +117,11 @@ struct ClaimFoodSheetView: View {
                                 .padding()
                                 .font(.system(size: 20, weight: .semibold))
                             
-        //                    Text(dateFormatter(notFormattedDate:food.madeOnDate) ?? "No date" ).padding()
+                            VStack {
+                                MapView(newFood: food)
+                            }
+                            .frame(width: 400, height: 300)
+                            
                             Text("Made on: \(food.madeOnDate)")
                                 .padding()
                                 .font(.system(size: 15, weight: .semibold))
@@ -117,12 +129,16 @@ struct ClaimFoodSheetView: View {
                             Text("Pick up by: \(food.pickupDate)")
                                 .padding()
                                 .font(.system(size: 15, weight: .semibold))
-                            
                         }
                     }
                     Spacer()
                     Button("Claim Food") {
-                        presentationMode.wrappedValue.dismiss()
+                        let claimFoodVM = ClaimFoodVM()
+                        if claimFoodVM.claimFood(food: food) {
+                            showAlert = false
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        showAlert = true
                     }
                     .padding()
                     .foregroundColor(.white)
@@ -130,7 +146,10 @@ struct ClaimFoodSheetView: View {
                     .cornerRadius(10)
                     .font(.system(size: 30, weight: .semibold))
                     .padding()
-
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("Unable to Claim"), message: Text("Error "), dismissButton: .default(Text("OK")))
+                    }
+                    
                 }
             }
             .navigationBarTitle(Text("Food Details"), displayMode: .inline)
@@ -141,5 +160,10 @@ struct ClaimFoodSheetView: View {
             })
         }
     }
+}
+
+struct Thing: Identifiable{
+    var id = UUID()
+    var location: CLLocationCoordinate2D
 }
 

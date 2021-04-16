@@ -33,15 +33,23 @@ class FoodRepository: ObservableObject {
         print("data loaded")
     }
     
-    
-    
     func addFood(_ food: Food_post) -> Bool {
         do {
             let _ = try db.collection("foods").addDocument(from: food)
+            print("Food: \(food)")
             return true
-        }
-        catch {
+        } catch {
           fatalError("Unable to encode food: \(error.localizedDescription).")
+        }
+    }
+    
+    func updateFood(updatedFood food: Food_post) -> Bool {
+        do {
+            let _ = try db.collection("foods").document(food.id!).setData(from: food)
+            print("Updated food: \(food)")
+            return true
+        } catch {
+            fatalError("Unable to encode food: \(error.localizedDescription).")
         }
     }
 }

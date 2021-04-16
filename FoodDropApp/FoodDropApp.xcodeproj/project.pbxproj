@@ -30,6 +30,7 @@
 		5546BC982601183100C1340F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BC972601183100C1340F /* ContentView.swift */; };
 		5546BC9A2601183300C1340F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5546BC992601183300C1340F /* Assets.xcassets */; };
 		5546BC9D2601183300C1340F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5546BC9C2601183300C1340F /* Preview Assets.xcassets */; };
+		5585BCC326288FEB00CB9DB1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585BCC226288FEB00CB9DB1 /* MapView.swift */; };
 		ACCA496FB9B346F9CCABB429 /* Pods_FoodDropApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22BC8AAD79849B2C6B680FDD /* Pods_FoodDropApp.framework */; };
 		D82F22A226025A22003BC3F6 /* PostFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F22A126025A22003BC3F6 /* PostFoodView.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		5546BC992601183300C1340F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5546BC9C2601183300C1340F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5546BC9E2601183300C1340F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5585BCC226288FEB00CB9DB1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A426C1A8B0DC72057565D523 /* Pods-FoodDropApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDropApp.debug.xcconfig"; path = "Target Support Files/Pods-FoodDropApp/Pods-FoodDropApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D82F22A126025A22003BC3F6 /* PostFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFoodView.swift; sourceTree = "<group>"; };
 		F817DB1B9D84DC549F94022D /* Pods-FoodDropApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDropApp.release.xcconfig"; path = "Target Support Files/Pods-FoodDropApp/Pods-FoodDropApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				0D3D446C2616308B00295673 /* SideViewMenu.swift */,
 				0D3D446F26163E0E00295673 /* LogOutView.swift */,
 				0DE1D2E4261B97830052755C /* ComingSoonView.swift */,
+				5585BCC226288FEB00CB9DB1 /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				0DAE43042611AF5C00879720 /* UserRepository.swift in Sources */,
 				0D7144422601C3DE00B73C76 /* LogInView.swift in Sources */,
 				55434F332605083B00046D3F /* PostFoodVM.swift in Sources */,
+				5585BCC326288FEB00CB9DB1 /* MapView.swift in Sources */,
 				0DE84D2C2613BBD90060CAEF /* FoodRepository.swift in Sources */,
 				0D71444B2601DFB600B73C76 /* HeaderView.swift in Sources */,
 				5546BC982601183100C1340F /* ContentView.swift in Sources */,
