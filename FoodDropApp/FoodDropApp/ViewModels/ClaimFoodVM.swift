@@ -19,15 +19,20 @@ public class ClaimFoodVM: ObservableObject {
     private var db = Firestore.firestore()
     
     func fetchFoods() {
-        db.collection("foods").whereField("isClaimed", isEqualTo: false).addSnapshotListener{ (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else {
-                print("No documents")
-                return
-            }
-            
-            self.foods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
-                let data = try? queryDocumentSnapshot.data(as: Food_post.self)
-                return data
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            self.db.collection("foods")
+                .whereField("isClaimed", isEqualTo: false)
+                .whereField("ownerId", isNotEqualTo: user?.uid ?? "")
+                .addSnapshotListener{ (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+                
+                self.foods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
+                    let data = try? queryDocumentSnapshot.data(as: Food_post.self)
+                    return data
+                }
             }
         }
     }
