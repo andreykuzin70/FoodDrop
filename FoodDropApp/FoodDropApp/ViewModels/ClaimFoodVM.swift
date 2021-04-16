@@ -50,6 +50,7 @@ public class ClaimFoodVM: ObservableObject {
         
     }
     
+    
     func claimFood(food: Food_post) -> Bool {
         var food = food
         var res = true

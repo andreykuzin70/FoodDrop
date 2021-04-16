@@ -8,6 +8,9 @@
 import Foundation
 import FirebaseAuth
 import CoreLocation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
 
 
 public class PostFoodVM: ObservableObject {
@@ -26,6 +29,8 @@ public class PostFoodVM: ObservableObject {
     
     
     @Published var foodRepository = FoodRepository()
+    private var db = Firestore.firestore()
+    @Published var postedFoods = [Food_post]()
     
     func post_food(food_type: String, pickup_address: String,
                    madeOnDate: Date, pickup_date: Date, location: CLLocationCoordinate2D) -> Bool{
@@ -57,4 +62,29 @@ public class PostFoodVM: ObservableObject {
         }
         return true
     }
+    
+    
+    func getPostedFoods() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            
+            self.db.collection("foods").whereField("ownerId", isEqualTo: user?.uid ?? "").addSnapshotListener{ (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+                
+                self.postedFoods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
+                    let data = try? queryDocumentSnapshot.data(as: Food_post.self)
+                    return data
+                }
+            }
+        }
+        
+    }
+
+    
+    
+    
+    
+    
 }
