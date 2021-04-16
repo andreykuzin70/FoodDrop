@@ -13,9 +13,9 @@ class FoodRepository: ObservableObject {
     let db = Firestore.firestore()
     @Published var foods = [Food_post]()
     
-    init() {
+//    init() {
 //        loadFood()
-    }
+//    }
     
     func loadFood() {
         db.collection("foods").addSnapshotListener { (querySnapshot, error) in
