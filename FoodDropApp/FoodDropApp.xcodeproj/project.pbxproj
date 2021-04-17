@@ -25,6 +25,7 @@
 		535D26422601C01A00F8E22A /* LogInVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26412601C01900F8E22A /* LogInVM.swift */; };
 		535D26452601C30C00F8E22A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26442601C30C00F8E22A /* Database.swift */; };
 		535D26482601CF1D00F8E22A /* CreateAccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D26472601CF1D00F8E22A /* CreateAccountVM.swift */; };
+		53D6A024262968A500D03972 /* ImagePickerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D6A023262968A500D03972 /* ImagePickerVM.swift */; };
 		55434F332605083B00046D3F /* PostFoodVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55434F322605083A00046D3F /* PostFoodVM.swift */; };
 		55434F3C26050A9800046D3F /* PostConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55434F3B26050A9800046D3F /* PostConfirmationView.swift */; };
 		5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546BC952601183100C1340F /* FoodDropAppApp.swift */; };
@@ -57,6 +58,7 @@
 		535D26412601C01900F8E22A /* LogInVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogInVM.swift; path = FoodDropApp/ViewModels/LogInVM.swift; sourceTree = SOURCE_ROOT; };
 		535D26442601C30C00F8E22A /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		535D26472601CF1D00F8E22A /* CreateAccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountVM.swift; path = FoodDropApp/ViewModels/CreateAccountVM.swift; sourceTree = SOURCE_ROOT; };
+		53D6A023262968A500D03972 /* ImagePickerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerVM.swift; sourceTree = "<group>"; };
 		55434F322605083A00046D3F /* PostFoodVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostFoodVM.swift; path = FoodDropApp/ViewModels/PostFoodVM.swift; sourceTree = SOURCE_ROOT; };
 		55434F3B26050A9800046D3F /* PostConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostConfirmationView.swift; sourceTree = "<group>"; };
 		5546BC922601183100C1340F /* FoodDropApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDropApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				55434F322605083A00046D3F /* PostFoodVM.swift */,
 				0D3D445D26162E6500295673 /* SideMenuOptionVM.swift */,
 				0D3D446026162F0400295673 /* ClaimFoodVM.swift */,
+				53D6A023262968A500D03972 /* ImagePickerVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				0D3D445E26162E6500295673 /* SideMenuOptionVM.swift in Sources */,
 				0DE1D2E5261B97830052755C /* ComingSoonView.swift in Sources */,
 				0D3D446D2616308B00295673 /* SideViewMenu.swift in Sources */,
+				53D6A024262968A500D03972 /* ImagePickerVM.swift in Sources */,
 				0D3D446A2616303600295673 /* NavMenuView.swift in Sources */,
 				535D26422601C01A00F8E22A /* LogInVM.swift in Sources */,
 				55434F3C26050A9800046D3F /* PostConfirmationView.swift in Sources */,

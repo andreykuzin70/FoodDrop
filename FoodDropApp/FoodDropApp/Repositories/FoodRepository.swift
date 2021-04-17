@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 class FoodRepository: ObservableObject {
     let db = Firestore.firestore()
@@ -50,6 +51,26 @@ class FoodRepository: ObservableObject {
             return true
         } catch {
             fatalError("Unable to encode food: \(error.localizedDescription).")
+        }
+    }
+    
+    
+    func uploadImage(image:UIImage, imageName: String){
+        
+        if let imageData = image.jpegData(compressionQuality: 0.5){
+           let storage = Storage.storage()
+            
+            storage.reference().child(imageName).putData(imageData, metadata: nil){ (_, error) in
+                if let error = error {
+                    print("Error Uploading ---  \(error.localizedDescription)")
+                }else{
+                    print("Successful upleading ")
+                }
+                
+            }
+        }
+        else{
+            print("can not create JPEG image")
         }
     }
 }

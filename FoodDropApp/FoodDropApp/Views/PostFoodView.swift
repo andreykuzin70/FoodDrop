@@ -46,6 +46,13 @@ struct PostFoodFormView: View {
     @State var pickUpDate: Date = Date()
     @State var madeOnDate: Date = Date()
     @State var pickedFoodCondition = "Fresh"
+    // For camera use
+    @State var showActionSheet = false
+    @State var showImagePicker = false
+    @State var sourceType:UIImagePickerController.SourceType = .camera
+    @State var imageToUpload:UIImage?
+    @State var imageButtonText = "Add Image"
+    
     var foodCondition = ["Fresh","About to Expire","Expired"]
     @State var location: CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 0, longitude: 0)
     
@@ -84,6 +91,39 @@ struct PostFoodFormView: View {
                 .cornerRadius(5.0)
                 .padding(.horizontal)
             
+            Button(action: {
+                self.showActionSheet = true
+            }){
+                Text(imageButtonText)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(width: 300)
+                    .background(Color.green)
+                    .cornerRadius(15.0)
+                    .padding(.top)
+            }.actionSheet(isPresented: $showActionSheet){
+                ActionSheet(title: Text("Add Image to Post "),
+                            message: nil ,
+                            buttons: [
+                                .default(Text("Camera"), action:{
+                                    self.showImagePicker = true
+                                    self.sourceType = .camera
+                                }),
+                                
+                                .default(Text("Photo Library"), action:{
+                                    self.showImagePicker = true
+                                    self.sourceType = .photoLibrary
+                                }),
+                                
+                                .cancel()
+                            ])
+            }.sheet(isPresented: $showImagePicker){
+                ImagePicker(image: self.$imageToUpload,
+                            showImagePicker: self.$showImagePicker, imageButtonText: $imageButtonText,
+                            sourceType: self.sourceType)
+            }
+            
             
             Picker("Food Condition", selection: $pickedFoodCondition) {
                 ForEach(foodCondition, id:\.self){
@@ -108,19 +148,21 @@ struct PostFoodFormView: View {
                     print("\(location.latitude) \(location.longitude)")
                     
                     let postFoodVM = PostFoodVM()
-                    if postFoodVM.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate, location: location){
-                        
-                        // successfully added
-                        print("food successfully posted")
-                        // Add a successfully posted view here
-                        // go back to default input
-                        foodType = ""
-                        pickUpAdd = ""
-                        pickUpDate = Date()
-                        madeOnDate = Date()
-                    } else {
-                        showAlert = true
-                    }
+                    
+                        if postFoodVM.post_food(food_type: foodType, pickup_address: pickUpAdd, madeOnDate: madeOnDate, pickup_date: pickUpDate, location: location, imageToUpload: imageToUpload){
+                            
+                            // successfully added
+                            print("food successfully posted")
+                            // Add a successfully posted view here
+                            // go back to default input
+                            foodType = ""
+                            pickUpAdd = ""
+                            pickUpDate = Date()
+                            madeOnDate = Date()
+                            imageButtonText = "Add Image"
+                        } else {
+                            showAlert = true
+                        }
                 }
             }, label: {
                 Text("Submit Food")
