@@ -15,6 +15,9 @@ import FirebaseFirestoreSwift
 
 public class PostFoodVM: ObservableObject {
     
+    @Published var foodRepository = FoodRepository()
+    private var db = Firestore.firestore()
+    @Published var postedFoods = [Food_post]()
     
     
     let dateFormatter = DateFormatter()
@@ -26,16 +29,12 @@ public class PostFoodVM: ObservableObject {
     func createDateFormatter() {
         dateFormatter.dateFormat = "MMM d, y, HH:mm"
     }
-    
-    
-    @Published var foodRepository = FoodRepository()
-    private var db = Firestore.firestore()
-    @Published var postedFoods = [Food_post]()
+
     
     func post_food(food_type: String, pickup_address: String,
-                   madeOnDate: Date, pickup_date: Date, location: CLLocationCoordinate2D) -> Bool{
+                   madeOnDate: Date, pickup_date: Date, location: CLLocationCoordinate2D, imageToUpload: UIImage?) -> Bool{
         
-        if !validate_post(food_type: food_type, pickup_address: pickup_address, madeOnDate: madeOnDate, pickup_date: pickup_date) {
+        if !validate_post(food_type: food_type, pickup_address: pickup_address, madeOnDate: madeOnDate, pickup_date: pickup_date, imageToUpload: imageToUpload) {
             return false
         }
         
@@ -43,10 +42,13 @@ public class PostFoodVM: ObservableObject {
         
         Auth.auth().addStateDidChangeListener { (auth, user) in
             userId = user?.uid
+            let imageId = "\(userId!.description)\(UUID.init())"
             
-            let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : self.dateFormatter.string(from: madeOnDate), pickupDate: self.dateFormatter.string(from: pickup_date), isClaimed: false, latitude: String(location.latitude), longitude: String(location.longitude))
+            let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : self.dateFormatter.string(from: madeOnDate), pickupDate: self.dateFormatter.string(from: pickup_date), isClaimed: false, latitude: String(location.latitude), longitude: String(location.longitude), ImageId: imageId)
             
             print("added Food")
+        
+            self.foodRepository.uploadImage(image: imageToUpload!, imageName: imageId)
             let _ = self.foodRepository.addFood(newFood)
         }
         
@@ -55,9 +57,10 @@ public class PostFoodVM: ObservableObject {
     }
     
     
-    func validate_post(food_type: String, pickup_address: String, madeOnDate: Date, pickup_date: Date) -> Bool{
+    func validate_post(food_type: String, pickup_address: String, madeOnDate: Date, pickup_date: Date, imageToUpload:UIImage?) -> Bool{
         
-        if(food_type == "" || pickup_address == "" || madeOnDate >= pickup_date){
+        if(food_type == "" || pickup_address == "" || madeOnDate >= pickup_date ||
+            imageToUpload == nil ) {
             return false
         }
         return true
