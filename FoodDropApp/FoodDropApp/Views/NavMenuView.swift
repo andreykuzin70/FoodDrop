@@ -27,16 +27,19 @@ struct NavMenuView: View {
                 VStack {
                     ClaimFoodView()
                 }
-                    .offset(x: isShowing ? 300 : 0, y: isShowing ? 100 : 0)
-                    .navigationBarItems(
-                        leading:
-                            Button(
-                                action: {
-                                    withAnimation(.spring()){ isShowing.toggle() }
-                                },
-                                label: { Image(systemName: "list.bullet").foregroundColor(.black)}
-                            )
-                    )
+                .onTapGesture {
+                    withAnimation(.spring()){ isShowing = false }
+                }
+                .offset(x: isShowing ? 300 : 0, y: isShowing ? 100 : 0)
+                .navigationBarItems(
+                    leading:
+                        Button(
+                            action: {
+                                withAnimation(.spring()){ isShowing.toggle() }
+                            },
+                            label: { Image(systemName: "list.bullet").foregroundColor(.black)}
+                        )
+                )
             }
             .navigationBarTitle("Available Foods", displayMode: .inline)
         }
