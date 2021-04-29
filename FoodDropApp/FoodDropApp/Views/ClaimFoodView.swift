@@ -96,6 +96,10 @@ struct ClaimFoodSheetView: View {
     
     @Binding var showSheetView: Bool
     @State var showAlert: Bool = false
+   
+    // for image
+    @State var image: UIImage?
+    @StateObject private var claimFoodVM = ClaimFoodVM()
     
     var body: some View {
         NavigationView {
@@ -119,6 +123,9 @@ struct ClaimFoodSheetView: View {
                             
                             VStack {
                                 MapView(newFood: food)
+                                
+                                // display image here
+                                
                             }
                             .frame(width: 400, height: 300)
                             
@@ -157,6 +164,23 @@ struct ClaimFoodSheetView: View {
             }) {
                 Text("Done").bold()
             })
+        }
+    }
+    
+    func getImage(imageName: String){
+        
+        claimFoodVM.getImage(imageName: imageName ){(result, error) in
+            if let _ = error{
+                print("Error at image retrival")
+            }else{
+                if let imageData = result{
+                    self.image = UIImage(data: imageData)
+                }else{
+                    print("can not unwrape image(null)")
+                }
+            }
+            
+            
         }
     }
 }

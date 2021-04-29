@@ -19,6 +19,7 @@ class FoodRepository: ObservableObject {
 //    }
     
     func loadFood() {
+        print("I am at Loading Foods ")
         db.collection("foods").addSnapshotListener { (querySnapshot, error) in
              if let querySnapshot = querySnapshot {
                 self.foods = querySnapshot.documents.compactMap { document in
@@ -27,6 +28,7 @@ class FoodRepository: ObservableObject {
                     } catch {
                         fatalError("Unable to encode food: \(error.localizedDescription).")
                     }
+                    print("All foods are not loaded")
                     return nil
                 }
             }
@@ -73,4 +75,5 @@ class FoodRepository: ObservableObject {
             print("can not create JPEG image")
         }
     }
+    
 }
