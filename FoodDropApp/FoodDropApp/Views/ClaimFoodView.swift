@@ -48,6 +48,24 @@ struct ClaimFoodView: View {
     @State var showSheetView: Bool = false
     @State var selectedFoodIndex: Int = 0
     //@State var selected: Food_post = Food_post(id: "", ownerId: "", foodType: "", pickupAddress: "", madeOnDate: "", pickupDate: "", isClaimed: false, claimerId: "", latitude: "0", longitude: "0")
+    @State var image: UIImage?
+//    let uiImage =  (UIImage(named: named) ?? UIImage(named: "Default.png"))!
+    
+    func getImage(imageName: String) -> UIImage? {
+        
+        claimFoodVM.getImage(imageName: imageName ) {(result, error) in
+            if let _ = error{
+                print("Error at image retrival")
+            } else {
+                if let imageData = result {
+                    self.image = UIImage(data: imageData)
+                } else {
+                    print("can not unwrape image(null)")
+                }
+            }
+        }
+        return self.image
+    }
     
     var body: some View {
         ZStack {
@@ -57,10 +75,10 @@ struct ClaimFoodView: View {
                     ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
                         //                    ForEach (testFoods) { food in
                         HStack {
-                            Image("food-icon")
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 40, height: 40)
+//                            Image("food-icon")
+//                                .renderingMode(.original)
+//                                .resizable()
+//                                .frame(width: 40, height: 40)
                             Text(claimFoodVM.foods[i].foodType)
                                 .onTapGesture {
                                     selectedFoodIndex = i
@@ -69,6 +87,12 @@ struct ClaimFoodView: View {
                                     ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
                                 })
                         }
+                        let _ = self.getImage(imageName: claimFoodVM.foods[i].imageId)
+                        let uiImage =  (self.image ?? UIImage(named: "food-icon"))!
+                        Image(uiImage: uiImage)
+                            .renderingMode(.original)
+                            .resizable()
+                            .frame(width: 325, height: 325)
                     }.listRowBackground(Color.clear)
                 }
                 .onAppear() {
@@ -164,23 +188,6 @@ struct ClaimFoodSheetView: View {
             }) {
                 Text("Done").bold()
             })
-        }
-    }
-    
-    func getImage(imageName: String){
-        
-        claimFoodVM.getImage(imageName: imageName ){(result, error) in
-            if let _ = error{
-                print("Error at image retrival")
-            }else{
-                if let imageData = result{
-                    self.image = UIImage(data: imageData)
-                }else{
-                    print("can not unwrape image(null)")
-                }
-            }
-            
-            
         }
     }
 }

@@ -42,7 +42,7 @@ public class PostFoodVM: ObservableObject {
         
         Auth.auth().addStateDidChangeListener { (auth, user) in
             userId = user?.uid
-            let imageId = "\(userId!.description)\(UUID.init())"
+            let imageId = "\(UUID.init())"
             
             let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : self.dateFormatter.string(from: madeOnDate), pickupDate: self.dateFormatter.string(from: pickup_date), isClaimed: false, latitude: String(location.latitude), longitude: String(location.longitude), imageId: imageId)
             
