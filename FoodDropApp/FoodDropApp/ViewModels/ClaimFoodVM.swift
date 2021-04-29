@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
+import FirebaseStorage
 
 public class ClaimFoodVM: ObservableObject {
     
@@ -67,6 +68,11 @@ public class ClaimFoodVM: ObservableObject {
             res = self.foodRepository.updateFood(updatedFood: food)
         }
         return res
+    }
+    
+    
+    func getImage(imageName: String, handler: @escaping (Data? , Error? ) -> Void){
+        Storage.storage().reference().child(imageName).getData(maxSize: 1 * 1024 * 1024, completion: handler)
     }
     
 }

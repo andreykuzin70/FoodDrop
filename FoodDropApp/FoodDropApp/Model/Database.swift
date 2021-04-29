@@ -37,5 +37,5 @@ public struct Food_post: Codable, Identifiable, Hashable {
     var claimerId: String?
     var latitude: String
     var longitude: String
-    var ImageId: String
+    var imageId: String
 }
