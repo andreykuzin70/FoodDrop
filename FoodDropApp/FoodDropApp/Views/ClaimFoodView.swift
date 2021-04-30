@@ -18,6 +18,7 @@ struct ClaimFoodView: View {
     
     
     @StateObject private var claimFoodVM = ClaimFoodVM()
+    @State var images: [String : UIImage] = [:]
     
     init() {
         // this is not the same as manipulating the proxy directly
@@ -44,6 +45,27 @@ struct ClaimFoodView: View {
         UINavigationBar.appearance().tintColor = .blue
         
     }
+    
+    func getImage(imageName: String) -> Bool{
+        //self.images[imageName] = UIImage(imageLiteralResourceName: "food-icon")
+        
+        claimFoodVM.getImage(imageName: imageName ){(result, error) in
+            if let _ = error{
+                print("Error at image retrival")
+            }else{
+                if let imageData = result{
+                    self.images[imageName] = UIImage(data: imageData)
+                }else{
+                    print("can not unwrape image(null)")
+                }
+            }
+            
+            
+        }
+        return true;
+    }
+    
+    
     
     @State var showSheetView: Bool = false
     @State var selectedFoodIndex: Int = 0
@@ -87,9 +109,10 @@ struct ClaimFoodView: View {
                                     ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
                                 })
                         }
-                        let _ = self.getImage(imageName: claimFoodVM.foods[i].imageId)
-                        let uiImage =  (self.image ?? UIImage(named: "food-icon"))!
-                        Image(uiImage: uiImage)
+                        let imageName = claimFoodVM.foods[i].imageId
+                        let _ = self.getImage(imageName: imageName)
+                        
+                        Image(uiImage: self.images[imageName] ?? UIImage(imageLiteralResourceName: "food-icon"))
                             .renderingMode(.original)
                             .resizable()
                             .frame(width: 325, height: 325)
@@ -120,10 +143,6 @@ struct ClaimFoodSheetView: View {
     
     @Binding var showSheetView: Bool
     @State var showAlert: Bool = false
-   
-    // for image
-    @State var image: UIImage?
-    @StateObject private var claimFoodVM = ClaimFoodVM()
     
     var body: some View {
         NavigationView {
@@ -147,8 +166,6 @@ struct ClaimFoodSheetView: View {
                             
                             VStack {
                                 MapView(newFood: food)
-                                
-                                // display image here
                                 
                             }
                             .frame(width: 400, height: 300)
