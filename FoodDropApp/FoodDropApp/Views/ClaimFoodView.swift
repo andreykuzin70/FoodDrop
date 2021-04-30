@@ -9,11 +9,6 @@ import SwiftUI
 import MapKit
 import CoreLocation
 
-//var testFoods = [
-//    Food_post(id: "1", ownerId: "Mike", foodType: "Donut", pickupAddress: "123 F St", madeOnDate: "01/12/21", pickupDate: "01/13/21", isClaimed: false),
-//    Food_post(id: "2", ownerId: "John", foodType: "Pizza", pickupAddress: "334 G St", madeOnDate: "01/13/21", pickupDate: "01/15/21", isClaimed: false)
-//]
-
 struct ClaimFoodView: View {
     
     
@@ -46,48 +41,9 @@ struct ClaimFoodView: View {
         
     }
     
-    func getImage(imageName: String) -> Bool{
-        //self.images[imageName] = UIImage(imageLiteralResourceName: "food-icon")
-        
-        claimFoodVM.getImage(imageName: imageName ){(result, error) in
-            if let _ = error{
-                print("Error at image retrival")
-            }else{
-                if let imageData = result{
-                    self.images[imageName] = UIImage(data: imageData)
-                }else{
-                    print("can not unwrape image(null)")
-                }
-            }
-            
-            
-        }
-        return true;
-    }
-    
-    
-    
     @State var showSheetView: Bool = false
     @State var selectedFoodIndex: Int = 0
-    //@State var selected: Food_post = Food_post(id: "", ownerId: "", foodType: "", pickupAddress: "", madeOnDate: "", pickupDate: "", isClaimed: false, claimerId: "", latitude: "0", longitude: "0")
     @State var image: UIImage?
-//    let uiImage =  (UIImage(named: named) ?? UIImage(named: "Default.png"))!
-    
-    func getImage(imageName: String) -> UIImage? {
-        
-        claimFoodVM.getImage(imageName: imageName ) {(result, error) in
-            if let _ = error{
-                print("Error at image retrival")
-            } else {
-                if let imageData = result {
-                    self.image = UIImage(data: imageData)
-                } else {
-                    print("can not unwrape image(null)")
-                }
-            }
-        }
-        return self.image
-    }
     
     var body: some View {
         ZStack {
@@ -95,12 +51,7 @@ struct ClaimFoodView: View {
                 
                 List() {
                     ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
-                        //                    ForEach (testFoods) { food in
                         HStack {
-//                            Image("food-icon")
-//                                .renderingMode(.original)
-//                                .resizable()
-//                                .frame(width: 40, height: 40)
                             Text(claimFoodVM.foods[i].foodType)
                                 .onTapGesture {
                                     selectedFoodIndex = i
@@ -109,10 +60,9 @@ struct ClaimFoodView: View {
                                     ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
                                 })
                         }
-                        let imageName = claimFoodVM.foods[i].imageId
-                        let _ = self.getImage(imageName: imageName)
+                        let id = claimFoodVM.foods[i].id
                         
-                        Image(uiImage: self.images[imageName] ?? UIImage(imageLiteralResourceName: "food-icon"))
+                        Image(uiImage: claimFoodVM.foodImages[id!] ?? UIImage(imageLiteralResourceName: "food-icon"))
                             .renderingMode(.original)
                             .resizable()
                             .frame(width: 325, height: 325)

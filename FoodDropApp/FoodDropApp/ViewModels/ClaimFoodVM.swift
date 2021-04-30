@@ -15,6 +15,7 @@ public class ClaimFoodVM: ObservableObject {
     
     @Published var foodRepository = FoodRepository()
     @Published var foods = [Food_post]()
+    @Published var foodImages: [String: UIImage] = [:]
     @Published var claimedFoods = [Food_post]()
     
     private var db = Firestore.firestore()
@@ -30,10 +31,16 @@ public class ClaimFoodVM: ObservableObject {
                     return
                 }
                 
+                
                 self.foods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
                     let data = try? queryDocumentSnapshot.data(as: Food_post.self)
+                    self.getImage(imageName: data!.imageId, foodId: (data?.id)!)
                     return data
                 }
+                
+//                self.foodImages = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
+//                    return [:]
+//                }
             }
         }
     }
@@ -70,9 +77,39 @@ public class ClaimFoodVM: ObservableObject {
         return res
     }
     
-    
-    func getImage(imageName: String, handler: @escaping (Data? , Error? ) -> Void){
-        Storage.storage().reference().child(imageName).getData(maxSize: 1 * 1024 * 1024, completion: handler)
+    func getImage(imageName: String, foodId: String){
+        Storage.storage().reference().child(imageName).getData(maxSize: 1 * 1024 * 1024) { (result, error) in
+            if let _ = error{
+                print("Error at image retrival")
+            } else {
+                if let imageData = result{
+                    self.foodImages[foodId] = UIImage(data: imageData)
+                } else {
+                    print("can not unwrape image(null)")
+                }
+            }
+        }
+        
+        
     }
     
 }
+
+//func getImage(imageName: String) -> Bool{
+//    //self.images[imageName] = UIImage(imageLiteralResourceName: "food-icon")
+//
+//    claimFoodVM.getImage(imageName: imageName ){(result, error) in
+//        if let _ = error{
+//            print("Error at image retrival")
+//        }else{
+//            if let imageData = result{
+//                self.images[imageName] = UIImage(data: imageData)
+//            }else{
+//                print("can not unwrape image(null)")
+//            }
+//        }
+//
+//
+//    }
+//    return true;
+//}
