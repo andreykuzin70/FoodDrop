@@ -171,10 +171,10 @@
 		5546BC942601183100C1340F /* FoodDropApp */ = {
 			isa = PBXGroup;
 			children = (
+				5546BC952601183100C1340F /* FoodDropAppApp.swift */,
 				0DAE43022611AF1A00879720 /* Repositories */,
 				55434F49260517BB00046D3F /* Model */,
 				55434F4B260517C800046D3F /* ViewModels */,
-				5546BC952601183100C1340F /* FoodDropAppApp.swift */,
 				55434F42260514D600046D3F /* Views */,
 				5546BC992601183300C1340F /* Assets.xcassets */,
 				5546BC9E2601183300C1340F /* Info.plist */,

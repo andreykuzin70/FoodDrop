@@ -9,15 +9,11 @@ import SwiftUI
 import MapKit
 import CoreLocation
 
-//var testFoods = [
-//    Food_post(id: "1", ownerId: "Mike", foodType: "Donut", pickupAddress: "123 F St", madeOnDate: "01/12/21", pickupDate: "01/13/21", isClaimed: false),
-//    Food_post(id: "2", ownerId: "John", foodType: "Pizza", pickupAddress: "334 G St", madeOnDate: "01/13/21", pickupDate: "01/15/21", isClaimed: false)
-//]
-
 struct ClaimFoodView: View {
     
     
     @StateObject private var claimFoodVM = ClaimFoodVM()
+    @State var images: [String : UIImage] = [:]
     
     init() {
         // this is not the same as manipulating the proxy directly
@@ -47,7 +43,7 @@ struct ClaimFoodView: View {
     
     @State var showSheetView: Bool = false
     @State var selectedFoodIndex: Int = 0
-    //@State var selected: Food_post = Food_post(id: "", ownerId: "", foodType: "", pickupAddress: "", madeOnDate: "", pickupDate: "", isClaimed: false, claimerId: "", latitude: "0", longitude: "0")
+    @State var image: UIImage?
     
     var body: some View {
         ZStack {
@@ -55,12 +51,7 @@ struct ClaimFoodView: View {
                 
                 List() {
                     ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
-                        //                    ForEach (testFoods) { food in
                         HStack {
-                            Image("food-icon")
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 40, height: 40)
                             Text(claimFoodVM.foods[i].foodType)
                                 .onTapGesture {
                                     selectedFoodIndex = i
@@ -69,6 +60,12 @@ struct ClaimFoodView: View {
                                     ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
                                 })
                         }
+                        let id = claimFoodVM.foods[i].id
+                        
+                        Image(uiImage: claimFoodVM.foodImages[id!] ?? UIImage(imageLiteralResourceName: "food-icon"))
+                            .renderingMode(.original)
+                            .resizable()
+                            .frame(width: 325, height: 325)
                     }.listRowBackground(Color.clear)
                 }
                 .onAppear() {
@@ -96,10 +93,6 @@ struct ClaimFoodSheetView: View {
     
     @Binding var showSheetView: Bool
     @State var showAlert: Bool = false
-   
-    // for image
-    @State var image: UIImage?
-    @StateObject private var claimFoodVM = ClaimFoodVM()
     
     var body: some View {
         NavigationView {
@@ -123,8 +116,6 @@ struct ClaimFoodSheetView: View {
                             
                             VStack {
                                 MapView(newFood: food)
-                                
-                                // display image here
                                 
                             }
                             .frame(width: 400, height: 300)
@@ -164,23 +155,6 @@ struct ClaimFoodSheetView: View {
             }) {
                 Text("Done").bold()
             })
-        }
-    }
-    
-    func getImage(imageName: String){
-        
-        claimFoodVM.getImage(imageName: imageName ){(result, error) in
-            if let _ = error{
-                print("Error at image retrival")
-            }else{
-                if let imageData = result{
-                    self.image = UIImage(data: imageData)
-                }else{
-                    print("can not unwrape image(null)")
-                }
-            }
-            
-            
         }
     }
 }
