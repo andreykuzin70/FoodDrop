@@ -49,22 +49,23 @@ struct ClaimFoodView: View {
         //        ZStack {
         VStack {
             
-            if claimFoodVM.foods.count != 0 {
-                HStack{
-                    Spacer()
-                    Button(action:{
-                        
-                        
-                    }, label: {
-                        Text("Sort by Date")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(width: 120 )
-                            .background(Color.gray)
-                            .cornerRadius(15.0)
-                    })
-                }
+
+                if claimFoodVM.foods.count != 0 {
+                    HStack{
+                        Spacer()
+                        Button(action:{
+                            claimFoodVM.sortFood()
+                        }, label: {
+                            Text("Filter by Date")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(width: 400 , height: 50 )
+                                .background(Color.blue)
+                                .padding(.top, 5)
+            
+                        })
+                    }.background(Color.clear)
                 
                 Spacer()
                 List() {
@@ -161,14 +162,7 @@ struct ClaimFoodSheetView: View {
                     }
                     Spacer()
                     
-                    
-                    
-                    
-//    Button
-                    
-                    
-                    
-                    
+          
                     
                     
                     Button("Claim Food") {
