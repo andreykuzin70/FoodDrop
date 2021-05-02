@@ -44,7 +44,7 @@ public class PostFoodVM: ObservableObject {
             userId = user?.uid
             let imageId = "\(UUID.init())"
             
-            let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : self.dateFormatter.string(from: madeOnDate), pickupDate: self.dateFormatter.string(from: pickup_date), isClaimed: false, latitude: String(location.latitude), longitude: String(location.longitude), imageId: imageId)
+            let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : self.dateFormatter.string(from: madeOnDate), pickupDate: self.dateFormatter.string(from: pickup_date), isClaimed: false, latitude: String(location.latitude), longitude: String(location.longitude), imageId: imageId, rating: 0)
             
             print("added Food")
         

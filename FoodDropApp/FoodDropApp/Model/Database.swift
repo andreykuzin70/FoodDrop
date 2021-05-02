@@ -38,4 +38,5 @@ public struct Food_post: Codable, Identifiable, Hashable {
     var latitude: String
     var longitude: String
     var imageId: String
+    var rating: Int
 }

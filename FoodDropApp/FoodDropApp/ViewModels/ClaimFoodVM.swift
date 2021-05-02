@@ -76,6 +76,17 @@ public class ClaimFoodVM: ObservableObject {
         return res
     }
     
+    func updateFood(food: Food_post) -> Bool {
+        var food = food
+        var res = true
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            print("Updated Food")
+            res = self.foodRepository.updateFood(updatedFood: food)
+        }
+        self.fetchFoods()
+        return res
+    }
+    
     func getImage(imageName: String, foodId: String){
         Storage.storage().reference().child(imageName).getData(maxSize: 1 * 1024 * 1024) { (result, error) in
             if let _ = error{

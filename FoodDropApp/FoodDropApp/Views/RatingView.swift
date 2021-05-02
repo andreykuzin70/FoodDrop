@@ -10,6 +10,7 @@ import SwiftUI
 struct RatingView: View {
     
     @State var rating: Int
+    @State var food: Food_post
     
     var label = ""
     
@@ -22,7 +23,7 @@ struct RatingView: View {
     var onColor = Color.yellow
     
     func image(for number: Int) -> Image {
-        if number > rating {
+        if number > food.rating {
             return offImage ?? onImage
         } else {
             return onImage
@@ -40,16 +41,14 @@ struct RatingView: View {
                 
                 ForEach(1..<maximumRating + 1) { number in
                     self.image(for: number)
-                        .foregroundColor(number > self.rating ? self.offColor : self.onColor)
+                        .foregroundColor(number > self.food.rating ? self.offColor : self.onColor)
                         .onTapGesture {
-                            self.rating = number
+                            self.food.rating = number
+                            let _ = FoodRepository().updateFood(updatedFood: self.food)
                         }
                 }
-            }    }
+            }
+        }
     }
 }
 
-struct RatingView_Previews: PreviewProvider {
-    static var previews: some View {
-        RatingView(rating: 2)    }
-}

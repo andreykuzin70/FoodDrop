@@ -52,7 +52,7 @@ struct FoodClaimedView: View {
                                             FoodClaimedSheetView(food: claimFoodVM.claimedFoods[selectedFoodIndex], showSheetView: $showSheetView)
                                         })
                                 }
-                                RatingView(rating: claimFoodVM.foodRatings[i])
+                                RatingView(rating: claimFoodVM.foodRatings[i], food: claimFoodVM.claimedFoods[selectedFoodIndex])
                             }
                             .onTapGesture {
                                 selectedFoodIndex = i
