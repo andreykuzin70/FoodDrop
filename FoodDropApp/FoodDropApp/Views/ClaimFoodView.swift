@@ -12,7 +12,7 @@ import CoreLocation
 struct ClaimFoodView: View {
     
     
-    @StateObject private var claimFoodVM = ClaimFoodVM()
+    @ObservedObject private var claimFoodVM = ClaimFoodVM()
     @State var images: [String : UIImage] = [:]
     
     init() {
@@ -145,7 +145,7 @@ struct ClaimFoodSheetView: View {
                         let claimFoodVM = ClaimFoodVM()
                         if claimFoodVM.claimFood(food: food) {
                             showAlert = true
-                            presentationMode.wrappedValue.dismiss()
+//                            presentationMode.wrappedValue.dismiss()
                         }
                     }
                     .padding()
@@ -155,7 +155,9 @@ struct ClaimFoodSheetView: View {
                     .font(.system(size: 30, weight: .semibold))
                     .padding()
                     .alert(isPresented: $showAlert) {
-                        Alert(title: Text("Food Claimed"), message: Text("Go to your claimed food to see it"), dismissButton: .default(Text("OK")))
+                        Alert(title: Text("Food Claimed"), message: Text("Go to your claimed food to see it"), dismissButton: .default(Text("OK")) {
+                                self.showSheetView = false
+                            })
                     }
                     
                 }

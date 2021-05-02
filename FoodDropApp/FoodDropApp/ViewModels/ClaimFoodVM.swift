@@ -25,7 +25,7 @@ public class ClaimFoodVM: ObservableObject {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             self.db.collection("foods")
                 .whereField("isClaimed", isEqualTo: false)
-                .whereField("ownerId", isNotEqualTo: user?.uid ?? "")
+                .whereField("ownerId", isNotEqualTo: user?.uid ?? "_")
                 .addSnapshotListener{ (querySnapshot, error) in
                 guard let documents = querySnapshot?.documents else {
                     print("No documents")
@@ -35,13 +35,9 @@ public class ClaimFoodVM: ObservableObject {
                 
                 self.foods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
                     let data = try? queryDocumentSnapshot.data(as: Food_post.self)
-                    self.getImage(imageName: data!.imageId, foodId: (data?.id)!)
+//                    self.getImage(imageName: data!.imageId, foodId: (data?.id)!)
                     return data
                 }
-                
-//                self.foodImages = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
-//                    return [:]
-//                }
             }
         }
     }
@@ -76,6 +72,7 @@ public class ClaimFoodVM: ObservableObject {
             print("Updated Food")
             res = self.foodRepository.updateFood(updatedFood: food)
         }
+        self.fetchFoods()
         return res
     }
     

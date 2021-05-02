@@ -66,7 +66,7 @@ class FoodRepository: ObservableObject {
                 if let error = error {
                     print("Error Uploading ---  \(error.localizedDescription)")
                 }else{
-                    print("Successful upleading ")
+                    print("Successful uploading ")
                 }
                 
             }
