@@ -12,7 +12,7 @@ import CoreLocation
 struct ClaimFoodView: View {
     
     
-    @ObservedObject private var claimFoodVM = ClaimFoodVM()
+    @StateObject private var claimFoodVM = ClaimFoodVM()
     @State var images: [String : UIImage] = [:]
     
     init() {
