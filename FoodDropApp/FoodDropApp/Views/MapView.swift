@@ -46,6 +46,6 @@ struct MapView: View {
 }
 
 struct MapView_Previews: PreviewProvider {
-    static var previews: some View {        MapView(newFood: Food_post(id: "1", ownerId: "1", foodType: "Wrap", pickupAddress: "12", madeOnDate: "12", pickupDate: "12", isClaimed: false, latitude: "50.1018", longitude: "14.2632", imageId: "12345"))
+    static var previews: some View {        MapView(newFood: Food_post(id: "1", ownerId: "1", foodType: "Wrap", pickupAddress: "12", madeOnDate: "12", pickupDate: "12", isClaimed: false, latitude: "50.1018", longitude: "14.2632", imageId: "12345", rating: 0))
     }
 }
