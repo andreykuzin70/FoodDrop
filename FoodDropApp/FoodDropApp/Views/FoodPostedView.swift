@@ -39,27 +39,38 @@ struct FoodPostedView: View {
                     .bold()
                     .padding(.bottom, 20)
                 
-                List() {
-                    ForEach (0..<postFoodVM.postedFoods.count, id: \.self) { i in
-                        HStack {
-                            Image("food-icon")
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                            Text(postFoodVM.postedFoods[i].foodType)
-                                .onTapGesture {
-                                    selectedFoodIndex = i
-                                    showSheetView.toggle()
-                                }.font(.title3).sheet(isPresented: $showSheetView, content: {
-                                    PostedFoodSheetView(food: postFoodVM.postedFoods[selectedFoodIndex], showSheetView: $showSheetView)
-                                })
-                        }
-                    }.listRowBackground(Color.clear)
+                if postFoodVM.postedFoods.count != 0 {
+                    List() {
+                        ForEach (0..<postFoodVM.postedFoods.count, id: \.self) { i in
+                            HStack {
+                                Image("food-icon")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                Text(postFoodVM.postedFoods[i].foodType)
+                                    .onTapGesture {
+                                        selectedFoodIndex = i
+                                        showSheetView.toggle()
+                                    }.font(.title3).sheet(isPresented: $showSheetView, content: {
+                                        PostedFoodSheetView(food: postFoodVM.postedFoods[selectedFoodIndex], showSheetView: $showSheetView)
+                                    })
+                            }
+                        }.listRowBackground(Color.clear)
+                    }
+                    Spacer()
+                } else {
+                    Spacer()
+                    Text("You have not posted any food.")
+                        .foregroundColor(.gray)
+                        .padding()
+                    Text("Please go ahead and make a food post!")
+                        .foregroundColor(.gray)
+                        .padding()
+                    Spacer()
                 }
-                .onAppear() {
-                    self.postFoodVM.getPostedFoods()
-                }
-                Spacer()
+            }
+            .onAppear() {
+                self.postFoodVM.getPostedFoods()
             }
         }
     }

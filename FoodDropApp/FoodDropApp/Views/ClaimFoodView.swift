@@ -46,38 +46,46 @@ struct ClaimFoodView: View {
     @State var image: UIImage?
     
     var body: some View {
-        ZStack {
+//        ZStack {
             VStack {
-                
-                List() {
-                    ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
-                        VStack{
-                            HStack {
-                                Text(claimFoodVM.foods[i].foodType)
-                                    .font(.title3).sheet(isPresented: $showSheetView, content: {
-                                        ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
-                                    })
+                if claimFoodVM.foods.count != 0 {
+                    List() {
+                        ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
+                            VStack{
+                                HStack {
+                                    Text(claimFoodVM.foods[i].foodType)
+                                        .font(.title3).sheet(isPresented: $showSheetView, content: {
+                                            ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
+                                        })
+                                }
+                                let id = claimFoodVM.foods[i].id
+                                
+                                Image(uiImage: claimFoodVM.foodImages[id!] ?? UIImage(imageLiteralResourceName: "food-icon"))
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width: 325, height: 325)
                             }
-                            let id = claimFoodVM.foods[i].id
-                            
-                            Image(uiImage: claimFoodVM.foodImages[id!] ?? UIImage(imageLiteralResourceName: "food-icon"))
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 325, height: 325)
-                        }
-                        .onTapGesture {
-                            selectedFoodIndex = i
-                            showSheetView.toggle()
-                        }
-                    }.listRowBackground(Color.clear)
+                            .onTapGesture {
+                                selectedFoodIndex = i
+                                showSheetView.toggle()
+                            }
+                        }.listRowBackground(Color.clear)
+                    }
+                    Spacer()
+                } else {
+                    Text("No available food to be claimed currently.")
+                        .foregroundColor(.gray)
+                        .padding()
+                    Text("Come back next time!")
+                        .foregroundColor(.gray)
+                        .padding()
                 }
-                .onAppear() {
-                    self.claimFoodVM.fetchFoods()
-                }
-                Spacer()
+            }
+            .onAppear() {
+                self.claimFoodVM.fetchFoods()
             }
             
-        }
+//        }
     }
 }
 
