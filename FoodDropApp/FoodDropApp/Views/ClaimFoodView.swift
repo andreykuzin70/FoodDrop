@@ -48,7 +48,25 @@ struct ClaimFoodView: View {
     var body: some View {
 //        ZStack {
             VStack {
+            
                 if claimFoodVM.foods.count != 0 {
+                    HStack{
+                        Spacer()
+                        Button(action:{
+                            
+                            
+                        }, label: {
+                            Text("Sort by Date")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(width: 120 )
+                                .background(Color.gray)
+                                .cornerRadius(15.0)
+                        })
+                    }
+                    
+                    Spacer()
                     List() {
                         ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
                             VStack{
