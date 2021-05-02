@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RatingView: View {
     
-    @Binding var rating: Int
+    @State var rating: Int
     
     var label = ""
     
@@ -51,5 +51,5 @@ struct RatingView: View {
 
 struct RatingView_Previews: PreviewProvider {
     static var previews: some View {
-        RatingView(rating: .constant(2))    }
+        RatingView(rating: 2)    }
 }

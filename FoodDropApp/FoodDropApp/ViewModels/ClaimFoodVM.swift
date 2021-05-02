@@ -15,6 +15,7 @@ public class ClaimFoodVM: ObservableObject {
     
     @Published var foodRepository = FoodRepository()
     @Published var foods = [Food_post]()
+    @Published var foodRatings: [Int] = []
     @Published var foodImages: [String: UIImage] = [:]
     @Published var claimedFoods = [Food_post]()
     
@@ -56,6 +57,7 @@ public class ClaimFoodVM: ObservableObject {
                 
                 self.claimedFoods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
                     let data = try? queryDocumentSnapshot.data(as: Food_post.self)
+                    self.foodRatings.append(0)
                     return data
                 }
             }

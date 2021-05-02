@@ -38,27 +38,42 @@ struct FoodClaimedView: View {
                     .bold()
                     .padding(.bottom, 20)
                 
-                List() {
-                    ForEach (0..<claimFoodVM.claimedFoods.count, id: \.self) { i in
-                        HStack {
-                            Image("food-icon")
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                            Text(claimFoodVM.claimedFoods[i].foodType)
-                                .onTapGesture {
-                                    selectedFoodIndex = i
-                                    showSheetView.toggle()
-                                }.font(.title3).sheet(isPresented: $showSheetView, content: {
-                                    FoodClaimedSheetView(food: claimFoodVM.claimedFoods[selectedFoodIndex], showSheetView: $showSheetView)
-                                })
-                        }
-                    }.listRowBackground(Color.clear)
+                if claimFoodVM.claimedFoods.count != 0 {
+                    List() {
+                        ForEach (0..<claimFoodVM.claimedFoods.count, id: \.self) { i in
+                            VStack {
+                                HStack {
+                                    Image("food-icon")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .frame(width: 40, height: 40)
+                                    Text(claimFoodVM.claimedFoods[i].foodType)
+                                        .font(.title3).sheet(isPresented: $showSheetView, content: {
+                                            FoodClaimedSheetView(food: claimFoodVM.claimedFoods[selectedFoodIndex], showSheetView: $showSheetView)
+                                        })
+                                }
+                                RatingView(rating: claimFoodVM.foodRatings[i])
+                            }
+                            .onTapGesture {
+                                selectedFoodIndex = i
+                                showSheetView.toggle()
+                            }
+                        }.listRowBackground(Color.clear)
+                    }
+                    Spacer()
+                } else {
+                    Spacer()
+                    Text("You have not claimed any food.")
+                        .foregroundColor(.gray)
+                        .padding()
+                    Text("Please go ahead and claim a food!")
+                        .foregroundColor(.gray)
+                        .padding()
+                    Spacer()
                 }
-                .onAppear() {
-                    self.claimFoodVM.getClaimedFoods()
-                }
-                Spacer()
+            }
+            .onAppear() {
+                self.claimFoodVM.getClaimedFoods()
             }
         }
     }
