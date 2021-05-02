@@ -21,6 +21,26 @@ public class ClaimFoodVM: ObservableObject {
     
     private var db = Firestore.firestore()
     
+    func sortFood(){
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, y, HH:mm"
+        
+        for i in 1...foods.count{
+            for j in 0..<(foods.count - 1) {
+                let date_1 = dateFormatter.date(from: foods[j].madeOnDate)!
+                let date_2 = dateFormatter.date(from: foods[j + 1].madeOnDate)!
+                
+                if(date_1 > date_2){
+                    foods.swapAt(j, j + 1 )
+                }
+            }
+        }
+        
+    }
+    
+    
+    
     func fetchFoods() {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             self.db.collection("foods")
@@ -105,21 +125,4 @@ public class ClaimFoodVM: ObservableObject {
     
 }
 
-//func getImage(imageName: String) -> Bool{
-//    //self.images[imageName] = UIImage(imageLiteralResourceName: "food-icon")
-//
-//    claimFoodVM.getImage(imageName: imageName ){(result, error) in
-//        if let _ = error{
-//            print("Error at image retrival")
-//        }else{
-//            if let imageData = result{
-//                self.images[imageName] = UIImage(data: imageData)
-//            }else{
-//                print("can not unwrape image(null)")
-//            }
-//        }
-//
-//
-//    }
-//    return true;
-//}
+
