@@ -13,6 +13,7 @@ enum SideMenuOptionVM: Int, CaseIterable{
     case LogOut
     case FoodPosted
     case FoodClaimed
+    case Donation
     
     var title: String{
         switch self {
@@ -21,6 +22,7 @@ enum SideMenuOptionVM: Int, CaseIterable{
         case .LogOut: return "Logout"
         case .FoodPosted: return "Food Posted"
         case .FoodClaimed: return "Food Claimed"
+        case .Donation: return "Make a Donation"
         }
     }
     
@@ -31,6 +33,7 @@ enum SideMenuOptionVM: Int, CaseIterable{
         case .LogOut: return "arrow.left.square"
         case .FoodPosted: return "applescript.fill"//square.and.arrow.up
         case .FoodClaimed: return "bookmark.fill" //rectangle.and.pencil.and.ellipsis
+        case .Donation: return "dollarsign.circle.fill"
         }
     }
 

@@ -46,9 +46,10 @@ struct ClaimFoodView: View {
     @State var image: UIImage?
     
     var body: some View {
-//        ZStack {
-            VStack {
+        //        ZStack {
+        VStack {
             
+<<<<<<< HEAD
                 if claimFoodVM.foods.count != 0 {
                     HStack{
                         Spacer()
@@ -66,44 +67,63 @@ struct ClaimFoodView: View {
                         })
                     }.background(Color.clear)
                     
+=======
+            if claimFoodVM.foods.count != 0 {
+                HStack{
+>>>>>>> 76f5425e8e59c1f234c94d0de3dced76ccde3067
                     Spacer()
-                    List() {
-                        ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
-                            VStack{
-                                HStack {
-                                    Text(claimFoodVM.foods[i].foodType)
-                                        .font(.title3).sheet(isPresented: $showSheetView, content: {
-                                            ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
-                                        })
-                                }
-                                let id = claimFoodVM.foods[i].id
-                                
-                                Image(uiImage: claimFoodVM.foodImages[id!] ?? UIImage(imageLiteralResourceName: "food-icon"))
-                                    .renderingMode(.original)
-                                    .resizable()
-                                    .frame(width: 325, height: 325)
-                            }
-                            .onTapGesture {
-                                selectedFoodIndex = i
-                                showSheetView.toggle()
-                            }
-                        }.listRowBackground(Color.clear)
-                    }
-                    Spacer()
-                } else {
-                    Text("No available food to be claimed currently.")
-                        .foregroundColor(.gray)
-                        .padding()
-                    Text("Come back next time!")
-                        .foregroundColor(.gray)
-                        .padding()
+                    Button(action:{
+                        
+                        
+                    }, label: {
+                        Text("Sort by Date")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 120 )
+                            .background(Color.gray)
+                            .cornerRadius(15.0)
+                    })
                 }
+                
+                Spacer()
+                List() {
+                    ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
+                        VStack{
+                            HStack {
+                                Text(claimFoodVM.foods[i].foodType)
+                                    .font(.title3).sheet(isPresented: $showSheetView, content: {
+                                        ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
+                                    })
+                            }
+                            let id = claimFoodVM.foods[i].id
+                            
+                            Image(uiImage: claimFoodVM.foodImages[id!] ?? UIImage(imageLiteralResourceName: "food-icon"))
+                                .renderingMode(.original)
+                                .resizable()
+                                .frame(width: 325, height: 325)
+                        }
+                        .onTapGesture {
+                            selectedFoodIndex = i
+                            showSheetView.toggle()
+                        }
+                    }.listRowBackground(Color.clear)
+                }
+                Spacer()
+            } else {
+                Text("No available food to be claimed currently.")
+                    .foregroundColor(.gray)
+                    .padding()
+                Text("Come back next time!")
+                    .foregroundColor(.gray)
+                    .padding()
             }
-            .onAppear() {
-                self.claimFoodVM.fetchFoods()
-            }
-            
-//        }
+        }
+        .onAppear() {
+            self.claimFoodVM.fetchFoods()
+        }
+        
+        //        }
     }
 }
 
@@ -122,6 +142,7 @@ struct ClaimFoodSheetView: View {
     
     @Binding var showSheetView: Bool
     @State var showAlert: Bool = false
+    
     
     var body: some View {
         NavigationView {
@@ -159,11 +180,22 @@ struct ClaimFoodSheetView: View {
                         }
                     }
                     Spacer()
+                    
+                    
+                    
+                    
+//    Button
+                    
+                    
+                    
+                    
+                    
+                    
                     Button("Claim Food") {
                         let claimFoodVM = ClaimFoodVM()
                         if claimFoodVM.claimFood(food: food) {
                             showAlert = true
-//                            presentationMode.wrappedValue.dismiss()
+                            //                            presentationMode.wrappedValue.dismiss()
                         }
                     }
                     .padding()
@@ -174,8 +206,8 @@ struct ClaimFoodSheetView: View {
                     .padding()
                     .alert(isPresented: $showAlert) {
                         Alert(title: Text("Food Claimed"), message: Text("Go to your claimed food to see it"), dismissButton: .default(Text("OK")) {
-                                self.showSheetView = false
-                            })
+                            self.showSheetView = false
+                        })
                     }
                     
                 }
