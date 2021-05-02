@@ -43,7 +43,11 @@ struct SideViewMenu: View {
                 label: {
                     SideMenuOptionView(viewModel: SideMenuOptionVM.FoodPosted)
                 })
-            
+            NavigationLink(
+                destination: Donation(),
+                label: {
+                    SideMenuOptionView(viewModel: SideMenuOptionVM.Donation)
+                })
             NavigationLink(
                 destination: LogOutView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu).environmentObject(LogInVM()),
                 label: {
