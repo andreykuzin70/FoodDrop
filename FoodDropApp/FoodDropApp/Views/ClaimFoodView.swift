@@ -49,7 +49,7 @@ struct ClaimFoodView: View {
         //        ZStack {
         VStack {
             
-<<<<<<< HEAD
+
                 if claimFoodVM.foods.count != 0 {
                     HStack{
                         Spacer()
@@ -66,25 +66,6 @@ struct ClaimFoodView: View {
             
                         })
                     }.background(Color.clear)
-                    
-=======
-            if claimFoodVM.foods.count != 0 {
-                HStack{
->>>>>>> 76f5425e8e59c1f234c94d0de3dced76ccde3067
-                    Spacer()
-                    Button(action:{
-                        
-                        
-                    }, label: {
-                        Text("Sort by Date")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(width: 120 )
-                            .background(Color.gray)
-                            .cornerRadius(15.0)
-                    })
-                }
                 
                 Spacer()
                 List() {
@@ -181,14 +162,7 @@ struct ClaimFoodSheetView: View {
                     }
                     Spacer()
                     
-                    
-                    
-                    
-//    Button
-                    
-                    
-                    
-                    
+          
                     
                     
                     Button("Claim Food") {
