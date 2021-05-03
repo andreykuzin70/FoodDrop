@@ -20,7 +20,6 @@ struct LogOutView: View {
     func logOut() {
         goToNavMenu = false
         goToLogIn = true
-//        let ret = session.signOut()
         let ret = LogInVM().signOut()
         print("Signed Out: \(ret)")
     }
