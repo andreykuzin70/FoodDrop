@@ -34,7 +34,7 @@ public class ClaimFoodVM: ObservableObject {
                 
                 self.foods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
                     let data = try? queryDocumentSnapshot.data(as: Food_post.self)
-//                    self.getImage(imageName: data!.imageId, foodId: (data?.id)!)
+                    self.getImage(imageName: data!.imageId, foodId: (data?.id)!)
                     return data
                 }
             }
