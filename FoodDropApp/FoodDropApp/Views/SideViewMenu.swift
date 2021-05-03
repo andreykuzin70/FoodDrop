@@ -45,7 +45,7 @@ struct SideViewMenu: View {
                 })
             
             NavigationLink(
-                destination: LogOutView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu).environmentObject(LogInVM()),
+                destination: LogOutView(goToCreateAccount: $goToCreateAccount, goToLogIn: $goToLogIn, goToNavMenu: $goToNavMenu),
                 label: {
                     SideMenuOptionView(viewModel: SideMenuOptionVM.LogOut)
                 })

@@ -22,7 +22,7 @@ public class ClaimFoodVM: ObservableObject {
     private var db = Firestore.firestore()
     
     func fetchFoods() {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
+        let handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             self.db.collection("foods")
                 .whereField("isClaimed", isEqualTo: false)
                 .whereField("ownerId", isNotEqualTo: user?.uid ?? "_")
@@ -32,14 +32,15 @@ public class ClaimFoodVM: ObservableObject {
                     return
                 }
                 
-                
                 self.foods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
                     let data = try? queryDocumentSnapshot.data(as: Food_post.self)
-//                    self.getImage(imageName: data!.imageId, foodId: (data?.id)!)
+                    self.getImage(imageName: data!.imageId, foodId: (data?.id)!)
                     return data
                 }
             }
         }
+//        Auth.auth().removeStateDidChangeListener(handle)
+        
     }
     
     func getClaimedFoods() {

@@ -23,13 +23,15 @@ public class CreateAccountVM: ObservableObject {
         
         Auth.auth().addStateDidChangeListener { (auth, user) in
             userId = user?.uid
-            let newUser = User_info(userId: userId, firstName: firstName, lastName: lastName, orgName: orgName,
-                                    email: email, phoneNum: phoneNum, address: address,
-                                    state: state, city: city , zipcode: zipcode, password: password);
-            print("added user")
-            let _ = self.userRepository.addUser(newUser)
+            if userId != nil {
+                let newUser = User_info(userId: userId, firstName: firstName, lastName: lastName, orgName: orgName,
+                                        email: email, phoneNum: phoneNum, address: address,
+                                        state: state, city: city , zipcode: zipcode, password: password);
+                print("added user")
+                let _ = self.userRepository.addUser(newUser)
+            }
         }
-        }
+    }
 
     // to add it to the authentication
     func createAccount(email: String, password: String,

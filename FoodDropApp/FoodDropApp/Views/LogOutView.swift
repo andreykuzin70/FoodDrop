@@ -15,12 +15,13 @@ struct LogOutView: View {
     @Binding var goToLogIn: Bool
     @Binding var goToNavMenu: Bool
     
-    @EnvironmentObject var session: LogInVM
+//    @EnvironmentObject var session: LogInVM
     
     func logOut() {
         goToNavMenu = false
         goToLogIn = true
-        let ret = session.signOut()
+//        let ret = session.signOut()
+        let ret = LogInVM().signOut()
         print("Signed Out: \(ret)")
     }
     

@@ -38,13 +38,14 @@ public class LogInVM: ObservableObject{
                             for document in querySnapshot!.documents {
                                 let u = try? document.data(as: User_info.self)
                                 LogInVM.userName = u!.firstName
-                                }
                             }
+                        }
                     }
                 self.session = true
             } else {
                 // if we don't have a user, set our session to nil
                 self.session = false
+                self.unbind()
             }
         }
     }
@@ -56,6 +57,7 @@ public class LogInVM: ObservableObject{
     // for the signout use. it changes the session
     func signOut () -> Bool {
         do {
+            self.unbind()
             try Auth.auth().signOut()
             self.session = false
             return true
@@ -64,7 +66,6 @@ public class LogInVM: ObservableObject{
         }
     }
 
-    // not sure about this one yet
     func unbind () {
         if let handle = handle {
             Auth.auth().removeStateDidChangeListener(handle)
