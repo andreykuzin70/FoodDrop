@@ -26,6 +26,10 @@ struct MapView: View {
         )
     }
 
+    func setRegion() {
+        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: Double(food.latitude)!, longitude: Double(food.longitude)!), latitudinalMeters: 300, longitudinalMeters: 300)
+    }
+    
     var body: some View {
         Map(coordinateRegion: $region, annotationItems: [food]) { f in
 //            MapPin(coordinate: CLLocationCoordinate2D(latitude: Double(f.latitude)!, longitude: Double(f.longitude)!))
@@ -41,6 +45,8 @@ struct MapView: View {
                 
             }
 
+        }.onAppear{
+            setRegion()
         }
     }
 }
