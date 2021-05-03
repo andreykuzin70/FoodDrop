@@ -34,7 +34,7 @@ public class ClaimFoodVM: ObservableObject {
                 
                 self.foods = documents.compactMap{ (queryDocumentSnapshot) -> Food_post? in
                     let data = try? queryDocumentSnapshot.data(as: Food_post.self)
-                    self.getImage(imageName: data!.imageId, foodId: (data?.id)!)
+//                    self.getImage(imageName: data!.imageId, foodId: (data?.id)!)
                     return data
                 }
             }
@@ -42,6 +42,25 @@ public class ClaimFoodVM: ObservableObject {
 //        Auth.auth().removeStateDidChangeListener(handle)
         
     }
+    
+    func sortFood(){
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, y, HH:mm"
+            
+            for _ in 1...foods.count{
+                for j in 0..<(foods.count - 1) {
+                    let date_1 = dateFormatter.date(from: foods[j].madeOnDate)!
+                    let date_2 = dateFormatter.date(from: foods[j + 1].madeOnDate)!
+                    
+                    if(date_1 > date_2){
+                        foods.swapAt(j, j + 1 )
+                    }
+                }
+            }
+            
+        }
+
     
     func getClaimedFoods() {
         Auth.auth().addStateDidChangeListener { (auth, user) in
