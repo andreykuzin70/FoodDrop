@@ -44,8 +44,8 @@ struct SignInView_Previews: PreviewProvider {
 }
 
 struct LogInFormView: View {
-    @State var email: String = "john@gmail.com"
-    @State var password: String = "123456"
+    @State var email: String = ""
+    @State var password: String = ""
     @Binding var goToCreateAccount: Bool
     @Binding var goToLogIn: Bool
     @Binding var goToNavMenu: Bool
