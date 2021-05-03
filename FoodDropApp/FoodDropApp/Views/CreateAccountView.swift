@@ -141,6 +141,19 @@ struct CreateAccountFormView: View {
             }).alert(isPresented: $showAlert) {
                 Alert(title: Text("Create account error"), message: Text(self.alertMessage), dismissButton: .default(Text("OK")))
             }
+            
+            Button(action: {
+                self.goToCreateAccount = false
+                self.goToLogIn = true
+            }, label: {
+                Text("🔙")
+                    .font(.headline)
+                    .padding()
+                    .frame(width: 300)
+                    .background(Color.blue)
+                    .cornerRadius(15.0)
+                    .padding(.top)
+            })
         }
     }
     

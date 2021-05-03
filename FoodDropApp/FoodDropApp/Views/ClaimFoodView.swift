@@ -66,16 +66,27 @@ struct ClaimFoodView: View {
             
                         })
                     }.background(Color.clear)
-                
-                Spacer()
-                List() {
-                    ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
-                        VStack{
-                            HStack {
-                                Text(claimFoodVM.foods[i].foodType)
-                                    .font(.title3).sheet(isPresented: $showSheetView, content: {
-                                        ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
-                                    })
+                    Spacer()
+                    
+                    List() {
+                        ForEach (0..<claimFoodVM.foods.count, id: \.self) { i in
+                            VStack{
+                                HStack {
+                                    Text(claimFoodVM.foods[i].foodType)
+                                        .font(.title3).sheet(isPresented: $showSheetView, content: {
+                                            ClaimFoodSheetView(food: claimFoodVM.foods[selectedFoodIndex], showSheetView: $showSheetView)
+                                        })
+                                }
+                                let id = claimFoodVM.foods[i].id
+                                
+                                Image(uiImage: claimFoodVM.foodImages[id!] ?? UIImage(imageLiteralResourceName: "food-icon"))
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width: 325, height: 325)
+                            }
+                            .onTapGesture {
+                                selectedFoodIndex = i
+                                showSheetView.toggle()
                             }
                             let id = claimFoodVM.foods[i].id
                             

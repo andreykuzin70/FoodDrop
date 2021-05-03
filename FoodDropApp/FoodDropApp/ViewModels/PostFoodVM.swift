@@ -40,17 +40,20 @@ public class PostFoodVM: ObservableObject {
         
         var userId: String?
         
-        Auth.auth().addStateDidChangeListener { (auth, user) in
+        let handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             userId = user?.uid
-            let imageId = "\(UUID.init())"
+            if userId != nil {
+                let imageId = "\(UUID.init())"
+                
+                let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : self.dateFormatter.string(from: madeOnDate), pickupDate: self.dateFormatter.string(from: pickup_date), isClaimed: false, latitude: String(location.latitude), longitude: String(location.longitude), imageId: imageId, rating: 0)
+                
+                print("added Food")
             
-            let newFood = Food_post(ownerId:userId, foodType: food_type, pickupAddress: pickup_address, madeOnDate : self.dateFormatter.string(from: madeOnDate), pickupDate: self.dateFormatter.string(from: pickup_date), isClaimed: false, latitude: String(location.latitude), longitude: String(location.longitude), imageId: imageId, rating: 0)
-            
-            print("added Food")
-        
-            self.foodRepository.uploadImage(image: imageToUpload!, imageName: imageId)
-            let _ = self.foodRepository.addFood(newFood)
+                self.foodRepository.uploadImage(image: imageToUpload!, imageName: imageId)
+                let _ = self.foodRepository.addFood(newFood)
+            }
         }
+        Auth.auth().removeStateDidChangeListener(handle)
         
         return true
 
