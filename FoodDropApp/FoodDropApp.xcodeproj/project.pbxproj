@@ -36,6 +36,7 @@
 		5585BCC326288FEB00CB9DB1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585BCC226288FEB00CB9DB1 /* MapView.swift */; };
 		ACCA496FB9B346F9CCABB429 /* Pods_FoodDropApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22BC8AAD79849B2C6B680FDD /* Pods_FoodDropApp.framework */; };
 		D82F22A226025A22003BC3F6 /* PostFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F22A126025A22003BC3F6 /* PostFoodView.swift */; };
+		D82FB673263F538D00CD5851 /* Donation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FB672263F538D00CD5851 /* Donation.swift */; };
 		D848E7AE2639DF6C0066CDE7 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D848E7AD2639DF6C0066CDE7 /* RatingView.swift */; };
 		D8ED263826293BC9001C3CD0 /* FoodPostedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ED263726293BC9001C3CD0 /* FoodPostedView.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +74,7 @@
 		5585BCC226288FEB00CB9DB1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A426C1A8B0DC72057565D523 /* Pods-FoodDropApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDropApp.debug.xcconfig"; path = "Target Support Files/Pods-FoodDropApp/Pods-FoodDropApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D82F22A126025A22003BC3F6 /* PostFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFoodView.swift; sourceTree = "<group>"; };
+		D82FB672263F538D00CD5851 /* Donation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
 		D848E7AD2639DF6C0066CDE7 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		D8ED263726293BC9001C3CD0 /* FoodPostedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPostedView.swift; sourceTree = "<group>"; };
 		F817DB1B9D84DC549F94022D /* Pods-FoodDropApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDropApp.release.xcconfig"; path = "Target Support Files/Pods-FoodDropApp/Pods-FoodDropApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				0D9889B626292DEA00AE55C8 /* FoodClaimedView.swift in Sources */,
 				0D3D446126162F0400295673 /* ClaimFoodVM.swift in Sources */,
 				5546BC962601183100C1340F /* FoodDropAppApp.swift in Sources */,
+				D82FB673263F538D00CD5851 /* Donation.swift in Sources */,
 				0D7144482601CFFC00B73C76 /* CreateAccountView.swift in Sources */,
 				0D3D447026163E0E00295673 /* LogOutView.swift in Sources */,
 			);

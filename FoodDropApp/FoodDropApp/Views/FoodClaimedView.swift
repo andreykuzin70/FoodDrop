@@ -10,6 +10,7 @@ import SwiftUI
 struct FoodClaimedView: View {
     @StateObject private var claimFoodVM = ClaimFoodVM()
     
+    
     init() {
         let appearance = UINavigationBarAppearance()
         
@@ -60,6 +61,7 @@ struct FoodClaimedView: View {
                             }
                         }.listRowBackground(Color.clear)
                     }
+                    
                     Spacer()
                 } else {
                     Spacer()
