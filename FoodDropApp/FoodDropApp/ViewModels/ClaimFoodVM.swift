@@ -44,7 +44,6 @@ public class ClaimFoodVM: ObservableObject {
     }
     
     func sortFood(){
-            
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d, y, HH:mm"
             
